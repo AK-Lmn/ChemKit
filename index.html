@@ -21,8 +21,22 @@
 
 <header class="nav">
   <div class="nav__inner">
-    <a href="https://chemkit.vercel.app/" class="nav__brand">
-      <span class="nav__mark">Ck</span>
+    <a href="https://chemkit.vercel.app/" class="nav__brand" aria-label="ChemKit home">
+      <span class="nav__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="24" height="24" focusable="false" aria-hidden="true">
+          <defs>
+            <linearGradient id="brand-grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#4dd8e8"></stop>
+              <stop offset="1" stop-color="#5b9dff"></stop>
+            </linearGradient>
+          </defs>
+          <rect width="32" height="32" rx="8" fill="#0a0e1a"></rect>
+          <ellipse cx="16" cy="16" rx="11" ry="4.4" stroke="url(#brand-grad)" stroke-width="1.6" fill="none"></ellipse>
+          <ellipse cx="16" cy="16" rx="11" ry="4.4" stroke="url(#brand-grad)" stroke-width="1.6" fill="none" transform="rotate(60 16 16)"></ellipse>
+          <ellipse cx="16" cy="16" rx="11" ry="4.4" stroke="url(#brand-grad)" stroke-width="1.6" fill="none" transform="rotate(120 16 16)"></ellipse>
+          <circle cx="16" cy="16" r="3" fill="#4dd8e8"></circle>
+        </svg>
+      </span>
       <span class="nav__word">ChemKit</span>
     </a>
     <a class="nav__github" href="https://github.com/AK-Lmn/ChemKit" target="_blank" rel="noopener">
@@ -233,13 +247,27 @@
 <footer class="footer">
   <div class="footer__inner">
     <div class="footer__brand">
-      <span class="nav__mark">Ck</span>
+      <span class="nav__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="24" height="24" focusable="false" aria-hidden="true">
+          <defs>
+            <linearGradient id="brand-grad-footer" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#4dd8e8"></stop>
+              <stop offset="1" stop-color="#5b9dff"></stop>
+            </linearGradient>
+          </defs>
+          <rect width="32" height="32" rx="8" fill="#0a0e1a"></rect>
+          <ellipse cx="16" cy="16" rx="11" ry="4.4" stroke="url(#brand-grad-footer)" stroke-width="1.6" fill="none"></ellipse>
+          <ellipse cx="16" cy="16" rx="11" ry="4.4" stroke="url(#brand-grad-footer)" stroke-width="1.6" fill="none" transform="rotate(60 16 16)"></ellipse>
+          <ellipse cx="16" cy="16" rx="11" ry="4.4" stroke="url(#brand-grad-footer)" stroke-width="1.6" fill="none" transform="rotate(120 16 16)"></ellipse>
+          <circle cx="16" cy="16" r="3" fill="#4dd8e8"></circle>
+        </svg>
+      </span>
       <div>
         <p class="footer__title">ChemKit</p>
         <p class="footer__tag">Chemistry Tools</p>
       </div>
     </div>
-    <p class="footer__made">Made by Kim Lamano</p>
+    <p class="footer__made">Made by <a href="https://github.com/AK-Lmn" target="_blank" rel="noopener">@AK-Lmn</a></p>
   </div>
 </footer>
 

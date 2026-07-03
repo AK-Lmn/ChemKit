@@ -145,11 +145,14 @@ p { margin: 0; }
   width: 34px;
   height: 34px;
   border-radius: 9px;
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--bg-0);
-  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  overflow: hidden;
+  background: transparent;
+  flex: 0 0 auto;
+}
+
+.nav__mark svg {
+  width: 100%;
+  height: 100%;
 }
 
 .nav__word {
@@ -609,6 +612,14 @@ p { margin: 0; }
   font-family: var(--font-mono);
   font-size: 13px;
   color: var(--text-2);
+}
+
+.footer__made a {
+  color: var(--text-0);
+}
+
+.footer__made a:hover {
+  color: var(--cyan);
 }
 
 /* ============================
