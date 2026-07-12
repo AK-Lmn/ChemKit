@@ -220,6 +220,81 @@ p { margin: 0; }
   max-width: 520px;
 }
 
+.section--compact {
+  padding-top: 20px;
+  padding-bottom: 28px;
+}
+
+.origin-panel,
+.tool-picker {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(77, 216, 232, 0.08), transparent 52%), var(--surface);
+  backdrop-filter: blur(18px);
+}
+
+.origin-panel {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.15fr);
+  gap: 36px;
+  align-items: center;
+  padding: 28px 30px;
+}
+
+.origin-panel .eyebrow,
+.tool-picker .eyebrow { margin-bottom: 10px; }
+
+.origin-panel__text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-2);
+}
+
+.tool-picker {
+  display: grid;
+  grid-template-columns: minmax(210px, 0.7fr) minmax(0, 1.3fr);
+  gap: 30px;
+  align-items: start;
+  margin: -12px 0 28px;
+  padding: 24px 26px;
+}
+
+.tool-picker__title {
+  font-size: clamp(21px, 2.4vw, 27px);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.tool-picker__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 20px;
+}
+
+.tool-picker__list li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 13.5px;
+  color: var(--text-2);
+}
+
+.tool-picker__list li::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px rgba(77, 216, 232, 0.65);
+}
+
+.tool-picker__list strong {
+  color: var(--text-0);
+  font-weight: 500;
+}
+
 /* ============================
    Buttons
    ============================ */
@@ -660,6 +735,9 @@ p { margin: 0; }
   .tile-grid--roadmap { grid-template-columns: 1fr 1fr; }
   .feature-grid { grid-template-columns: 1fr 1fr; }
   .section { padding: 88px 24px; }
+  .section--compact { padding-top: 16px; padding-bottom: 24px; }
+  .origin-panel,
+  .tool-picker { grid-template-columns: 1fr; gap: 20px; }
 }
 
 @media (max-width: 620px) {
@@ -673,6 +751,11 @@ p { margin: 0; }
   .section__head { margin-bottom: 36px; }
   .hero__cta { flex-direction: column; width: 100%; }
   .hero__cta .btn { width: 100%; }
+  .section--compact { padding-top: 12px; padding-bottom: 20px; }
+  .origin-panel,
+  .tool-picker { padding: 22px 20px; }
+  .tool-picker { margin-top: -4px; }
+  .tool-picker__list { grid-template-columns: 1fr; gap: 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
