@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ChemKit — Interactive Chemistry Tools</title>
-<meta name="description" content="ChemKit is a suite of fast, student-friendly chemistry tools: Element Explorer, MoleMate, GasLab, pH Calculator, and SolutionLab.">
+<meta name="description" content="ChemKit is a suite of fast, student-friendly chemistry tools: Element Explorer, MoleMate, GasLab, pH Calculator, SolutionLab, and Chemical Equation Balancer.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -80,7 +80,7 @@
   <section class="section" id="tools">
     <div class="section__head reveal">
       <p class="eyebrow">The toolkit</p>
-      <h2 class="section__title">Five tools. One goal: get you unstuck.</h2>
+      <h2 class="section__title">Six tools. One goal: get you unstuck.</h2>
       <p class="section__desc">Each one solves a single problem well — no clutter, no sign-up walls, no ads.</p>
     </div>
 
@@ -95,6 +95,7 @@
         <li><strong>Need gas law variables?</strong> Use GasLab.</li>
         <li><strong>Need pH, pOH, or ion concentration?</strong> Use pH Calculator.</li>
         <li><strong>Need molarity, dilution, or percent concentration?</strong> Use SolutionLab.</li>
+        <li><strong>Need to balance a chemical equation?</strong> Use Chemical Equation Balancer.</li>
       </ul>
     </div>
 
@@ -205,6 +206,27 @@
         </div>
       </article>
 
+      <!-- Chemical Equation Balancer -->
+      <article class="tile reveal" style="--accent:#ff8f70; --accent-soft:rgba(255,143,112,0.14);">
+        <div class="tile__top">
+          <span class="tile__number">—</span>
+          <span class="tile__state">Live</span>
+        </div>
+        <div class="tile__symbol">Eb</div>
+        <h3 class="tile__name">Chemical Equation Balancer</h3>
+        <p class="tile__desc">Balance chemical equations and compare atom counts without trial-and-error guessing.</p>
+        <ul class="tile__features">
+          <li>Supports common formulas and parentheses</li>
+          <li>Balances equations with exact whole-number coefficients</li>
+          <li>Shows coefficients and atom count tables</li>
+          <li>Saves recent equations locally</li>
+        </ul>
+        <div class="tile__actions">
+          <a href="https://chem-balancer.vercel.app/" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Open Tool</a>
+          <a href="https://github.com/AK-Lmn/Chem-Balancer" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">View Repo</a>
+        </div>
+      </article>
+
     </div>
   </section>
 
@@ -259,16 +281,6 @@
         <div class="tile__symbol tile__symbol--ghost">St</div>
         <h3 class="tile__name">Stoichiometry Solver</h3>
         <p class="tile__desc">Balance reactants and products to calculate exact yields.</p>
-      </div>
-
-      <div class="tile tile--ghost reveal">
-        <div class="tile__top">
-          <span class="tile__number">—</span>
-          <span class="tile__state tile__state--ghost">○ Undiscovered</span>
-        </div>
-        <div class="tile__symbol tile__symbol--ghost">Eb</div>
-        <h3 class="tile__name">Chemical Equation Balancer</h3>
-        <p class="tile__desc">Paste an unbalanced equation, get back the balanced one.</p>
       </div>
     </div>
   </section>
