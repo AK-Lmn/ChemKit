@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ChemKit — Interactive Chemistry Tools</title>
-<meta name="description" content="ChemKit is a suite of fast, student-friendly chemistry tools: Element Explorer, MoleMate, GasLab, pH Calculator, SolutionLab, and Chemical Equation Balancer.">
+<meta name="description" content="ChemKit is a suite of fast, student-friendly chemistry tools: Element Explorer, MoleMate, GasLab, pH Calculator, SolutionLab, Chemical Equation Balancer, and Stoichiometry Solver.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -80,7 +80,7 @@
   <section class="section" id="tools">
     <div class="section__head reveal">
       <p class="eyebrow">The toolkit</p>
-      <h2 class="section__title">Six tools. One goal: get you unstuck.</h2>
+      <h2 class="section__title">Seven tools. One goal: get you unstuck.</h2>
       <p class="section__desc">Each one solves a single problem well — no clutter, no sign-up walls, no ads.</p>
     </div>
 
@@ -96,6 +96,7 @@
         <li><strong>Need pH, pOH, or ion concentration?</strong> Use pH Calculator.</li>
         <li><strong>Need molarity, dilution, or percent concentration?</strong> Use SolutionLab.</li>
         <li><strong>Need to balance a chemical equation?</strong> Use Chemical Equation Balancer.</li>
+        <li><strong>Need mole or gram conversions from an equation?</strong> Use Stoichiometry Solver.</li>
       </ul>
     </div>
 
@@ -227,6 +228,27 @@
         </div>
       </article>
 
+      <!-- Stoichiometry Solver -->
+      <article class="tile reveal" style="--accent:#d08cff; --accent-soft:rgba(208,140,255,0.14);">
+        <div class="tile__top">
+          <span class="tile__number">&mdash;</span>
+          <span class="tile__state">Live</span>
+        </div>
+        <div class="tile__symbol">Ss</div>
+        <h3 class="tile__name">Stoichiometry Solver</h3>
+        <p class="tile__desc">Use balanced equations to convert between moles and grams with guided stoichiometry steps.</p>
+        <ul class="tile__features">
+          <li>Supports mole-to-mole and gram-to-gram conversions</li>
+          <li>Calculates molar mass from formulas</li>
+          <li>Uses balanced-equation mole ratios</li>
+          <li>Shows step-by-step solutions</li>
+        </ul>
+        <div class="tile__actions">
+          <a href="https://stoichiometry-solver.vercel.app/" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Open Tool</a>
+          <a href="https://github.com/AK-Lmn/Stoichiometry-Solver" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">View Repo</a>
+        </div>
+      </article>
+
     </div>
   </section>
 
@@ -264,23 +286,22 @@
     </div>
   </section>
 
-  <!-- ROADMAP -->
-  <section class="section" id="roadmap">
-    <div class="section__head reveal">
-      <p class="eyebrow">Roadmap</p>
-      <h2 class="section__title">Undiscovered elements</h2>
-      <p class="section__desc">Tools that haven't been synthesized yet — in progress or planned.</p>
-    </div>
-
-    <div class="tile-grid tile-grid--roadmap">
-      <div class="tile tile--ghost reveal">
-        <div class="tile__top">
-          <span class="tile__number">—</span>
-          <span class="tile__state tile__state--ghost">○ Undiscovered</span>
-        </div>
-        <div class="tile__symbol tile__symbol--ghost">St</div>
-        <h3 class="tile__name">Stoichiometry Solver</h3>
-        <p class="tile__desc">Balance reactants and products to calculate exact yields.</p>
+  <!-- MORE TOOLS -->
+  <section class="section section--compact" id="roadmap">
+    <div class="more-tools reveal">
+      <div>
+        <p class="eyebrow">What's next</p>
+        <h2 class="section__title">More tools soon</h2>
+        <p class="more-tools__text">ChemKit will keep growing with small, focused chemistry tools built for quick checks and guided practice.</p>
+      </div>
+      <div>
+        <p class="more-tools__label">Potential future tools</p>
+        <ul class="more-tools__list">
+          <li>Formula reference</li>
+          <li>Unit converter</li>
+          <li>Percent yield</li>
+          <li>Limiting reactant</li>
+        </ul>
       </div>
     </div>
   </section>
