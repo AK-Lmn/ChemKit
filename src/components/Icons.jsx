@@ -152,26 +152,26 @@ export function IconFlaskConical({ className = '' }) {
   )
 }
 
-export function IconSearch({ className = '' }) {
+export function IconSearch({ className = '', ...props }) {
   return (
-    <svg {...baseProps} className={className}>
+    <svg {...baseProps} {...props} className={className}>
       <circle cx="11" cy="11" r="8" />
       <path d="m21 21-4.3-4.3" />
     </svg>
   )
 }
 
-export function IconStar({ className = '', filled = false }) {
+export function IconStar({ className = '', filled = false, ...props }) {
   return (
-    <svg {...baseProps} fill={filled ? 'currentColor' : 'none'} className={className}>
+    <svg {...baseProps} {...props} fill={filled ? 'currentColor' : 'none'} className={className}>
       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
     </svg>
   )
 }
 
-export function IconChevronDown({ className = '' }) {
+export function IconChevronDown({ className = '', ...props }) {
   return (
-    <svg {...baseProps} className={className}>
+    <svg {...baseProps} {...props} className={className}>
       <path d="m6 9 6 6 6-6" />
     </svg>
   )
@@ -194,9 +194,9 @@ export function IconCopy({ className = '', ...props }) {
   )
 }
 
-export function IconTrash({ className = '' }) {
+export function IconTrash({ className = '', ...props }) {
   return (
-    <svg {...baseProps} className={className}>
+    <svg {...baseProps} {...props} className={className}>
       <path d="M3 6h18" />
       <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
       <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
@@ -204,36 +204,36 @@ export function IconTrash({ className = '' }) {
   )
 }
 
-export function IconRotateCcw({ className = '' }) {
+export function IconRotateCcw({ className = '', ...props }) {
   return (
-    <svg {...baseProps} className={className}>
+    <svg {...baseProps} {...props} className={className}>
       <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
       <path d="M3 3v5h5" />
     </svg>
   )
 }
 
-export function IconArrowRight({ className = '' }) {
+export function IconArrowRight({ className = '', ...props }) {
   return (
-    <svg {...baseProps} className={className}>
+    <svg {...baseProps} {...props} className={className}>
       <path d="M5 12h14" />
       <path d="m12 5 7 7-7 7" />
     </svg>
   )
 }
 
-export function IconX({ className = '' }) {
+export function IconX({ className = '', ...props }) {
   return (
-    <svg {...baseProps} className={className}>
+    <svg {...baseProps} {...props} className={className}>
       <path d="M18 6 6 18" />
       <path d="m6 6 12 12" />
     </svg>
   )
 }
 
-export function IconAlertCircle({ className = '' }) {
+export function IconAlertCircle({ className = '', ...props }) {
   return (
-    <svg {...baseProps} className={className}>
+    <svg {...baseProps} {...props} className={className}>
       <circle cx="12" cy="12" r="10" />
       <line x1="12" x2="12" y1="8" y2="12" />
       <line x1="12" x2="12.01" y1="16" y2="16" />
@@ -241,9 +241,9 @@ export function IconAlertCircle({ className = '' }) {
   )
 }
 
-export function IconHistory({ className = '' }) {
+export function IconHistory({ className = '', ...props }) {
   return (
-    <svg {...baseProps} className={className}>
+    <svg {...baseProps} {...props} className={className}>
       <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
       <path d="M3 3v5h5" />
       <path d="M12 7v5l4 2" />

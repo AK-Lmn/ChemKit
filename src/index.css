@@ -790,6 +790,29 @@ button {
   border-color: var(--status-error);
 }
 
+.ck-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.ck-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ck-search-input {
+  padding-left: 36px !important;
+}
+
 .ck-unit-tag {
   display: inline-flex;
   align-items: center;

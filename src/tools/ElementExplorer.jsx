@@ -117,28 +117,17 @@ export function ElementExplorer({ onSendToMoleMate }) {
             <label htmlFor="element-search" className="ck-label" style={{ display: 'block', marginBottom: '6px' }}>
               Search elements
             </label>
-            <div style={{ position: 'relative' }}>
-              <IconSearch
-                style={{
-                  position: 'absolute',
-                  left: '12px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  width: '16px',
-                  height: '16px',
-                  color: 'var(--text-muted)',
-                  pointerEvents: 'none',
-                }}
-              />
+            <div className="ck-search-wrap">
+              <IconSearch className="ck-search-icon" />
               <input
                 id="element-search"
                 type="text"
-                className="ck-input"
-                style={{ paddingLeft: '36px' }}
+                className="ck-input ck-search-input"
                 placeholder="Name, symbol, or atomic #"
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
                 autoComplete="off"
+                spellCheck={false}
               />
             </div>
           </div>
