@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import {
+  ChemKitMark,
   IconArrowRight,
   IconAtom,
   IconExternalLink,
@@ -239,20 +240,14 @@ export function Overview({ onOpenTool }) {
         </div>
 
         <div className="hero-visual" aria-hidden="true">
-          <div className="element-card">
-            <span className="atomic">06</span>
-            <strong>Ck</strong>
-            <span>ChemKit</span>
+          <div className="catalyst-card">
+            <ChemKitMark className="catalyst-card-mark" />
+            <span className="catalyst-card-title">Chem<span className="text-amber">Kit</span></span>
+            <span className="catalyst-card-sub">Catalytic Suite</span>
           </div>
-          <div className="orbit orbit-one">
-            <i />
-          </div>
-          <div className="orbit orbit-two">
-            <i />
-          </div>
-          <div className="orbit orbit-three">
-            <i />
-          </div>
+          <div className="hex-resonance hex-one" />
+          <div className="hex-resonance hex-two" />
+          <div className="hex-resonance hex-three" />
         </div>
       </section>
 

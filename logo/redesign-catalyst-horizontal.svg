@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 120" width="540" height="120" fill="none">
+  <title>ChemKit Horizontal Lockup</title>
+  <!-- Catalyst Hexagon Symbol -->
+  <g transform="translate(16, 12) scale(0.375)">
+    <path d="M 128 32 L 44.86 80 L 44.86 176 L 128 224" stroke="#000000" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="128" y1="52" x2="128" y2="204" stroke="#000000" stroke-width="22" stroke-linecap="round" />
+    <line x1="128" y1="128" x2="211.14" y2="80" stroke="#000000" stroke-width="22" stroke-linecap="round" />
+    <line x1="128" y1="128" x2="211.14" y2="176" stroke="#000000" stroke-width="22" stroke-linecap="round" />
+    <circle cx="128" cy="128" r="20" fill="#000000" />
+  </g>
+  <!-- Wordmark -->
+  <text x="136" y="68" fill="#000000" font-family="system-ui, -apple-system, 'Inter', 'Segoe UI', sans-serif" font-size="46" font-weight="800" letter-spacing="-1">Chem<tspan fill="#f59e0b">Kit</tspan></text>
+  <text x="138" y="92" fill="#52525b" font-family="system-ui, -apple-system, 'Inter', 'Segoe UI', sans-serif" font-size="12" font-weight="600" letter-spacing="3">PRECISION CHEMISTRY SUITE</text>
+</svg>

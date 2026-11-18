@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
-  AtomMark,
+  ChemKitMark,
   IconGithub,
   IconLayoutGrid,
   LogoChemBalancer,
@@ -209,8 +209,8 @@ export default function App() {
             aria-label="ChemKit home"
             onClick={() => navigate('overview')}
           >
-            <AtomMark className="ck-brand-mark" />
-            <span>ChemKit</span>
+            <ChemKitMark className="ck-brand-mark" />
+            <span>Chem<span className="ck-brand-accent">Kit</span></span>
           </button>
 
           <div className="ck-header-right">

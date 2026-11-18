@@ -8,19 +8,32 @@ const baseProps = {
   'aria-hidden': 'true',
 }
 
-export function AtomMark({ className = '' }) {
+export function ChemKitMark({ className = '' }) {
   return (
-    <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
-      <rect width="32" height="32" rx="8" fill="#0d1524" stroke="#263854" strokeWidth="1" />
-      <g fill="none" stroke="#38d9e8" strokeWidth="1.5">
-        <ellipse cx="16" cy="16" rx="10.5" ry="4.2" />
-        <ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(60 16 16)" />
-        <ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(120 16 16)" />
+    <svg viewBox="0 0 256 256" className={className} fill="none" aria-hidden="true">
+      <rect width="256" height="256" rx="56" fill="#090d14" stroke="rgba(245, 158, 11, 0.32)" strokeWidth="8" />
+      <g transform="translate(16 16) scale(0.875)">
+        {/* Left facet forming 'C' */}
+        <path
+          d="M 128 36 L 48 82.2 L 48 173.8 L 128 220"
+          stroke="#f59e0b"
+          strokeWidth="24"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        {/* Central spine and diagonal arms forming 'K' */}
+        <line x1="128" y1="56" x2="128" y2="200" stroke="#f59e0b" strokeWidth="24" strokeLinecap="round" />
+        <line x1="128" y1="128" x2="208" y2="82.2" stroke="#f59e0b" strokeWidth="24" strokeLinecap="round" />
+        <line x1="128" y1="128" x2="208" y2="173.8" stroke="#f59e0b" strokeWidth="24" strokeLinecap="round" />
+        {/* Central Catalytic Prism Core */}
+        <circle cx="128" cy="128" r="20" fill="#3b82f6" stroke="#fbbf24" strokeWidth="6" />
       </g>
-      <circle cx="16" cy="16" r="2.8" fill="#38d9e8" />
     </svg>
   )
 }
+
+export const AtomMark = ChemKitMark
+
 
 export function IconLayoutGrid({ className = '' }) {
   return (

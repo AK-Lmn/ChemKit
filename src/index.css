@@ -3,33 +3,41 @@
 :root {
   color-scheme: dark;
 
-  /* Surface & Neutrals */
-  --bg-canvas: #080d16;
-  --bg-surface: #0e1624;
-  --bg-elevated: #141f32;
-  --bg-interactive: #1a273f;
-  --border-subtle: rgba(148, 178, 211, 0.14);
-  --border-strong: rgba(148, 178, 211, 0.28);
+  /* Surface & Neutrals - Deep Basalt / Carbon Obsidian */
+  --bg-canvas: #090d14;
+  --bg-surface: #0f1622;
+  --bg-elevated: #151e2e;
+  --bg-interactive: #1c283c;
+  --border-subtle: rgba(245, 158, 11, 0.12);
+  --border-strong: rgba(245, 158, 11, 0.28);
 
   /* Typography */
-  --text-primary: #eef4fc;
-  --text-secondary: #a2b3c8;
-  --text-muted: #7c90a8;
-  --text-inverse: #061019;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-inverse: #090d14;
 
-  /* Brand Gradients & Accents */
-  --cyan: #4dd8e8;
-  --blue: #5b9dff;
-  --purple: #a875ff;
+  /* Brand Signature: Solar Precision Laboratory */
+  --amber: #f59e0b;
+  --amber-light: #fbbf24;
+  --amber-dark: #d97706;
+  --cobalt: #3b82f6;
+  --cobalt-light: #60a5fa;
+  --cobalt-dark: #2563eb;
+
+  /* Legacy aliases mapped to precision theme */
+  --cyan: #f59e0b;
+  --blue: #3b82f6;
+  --purple: #8b5cf6;
 
   /* Semantic Accents */
-  --accent-primary: #38d9e8;
-  --accent-primary-hover: #5ae3f0;
-  --accent-primary-muted: rgba(56, 217, 232, 0.12);
-  --accent-primary-border: rgba(56, 217, 232, 0.36);
-  --status-success: #34d399;
-  --status-success-bg: rgba(52, 211, 153, 0.12);
-  --status-success-border: rgba(52, 211, 153, 0.34);
+  --accent-primary: #f59e0b;
+  --accent-primary-hover: #fbbf24;
+  --accent-primary-muted: rgba(245, 158, 11, 0.12);
+  --accent-primary-border: rgba(245, 158, 11, 0.36);
+  --status-success: #10b981;
+  --status-success-bg: rgba(16, 185, 129, 0.12);
+  --status-success-border: rgba(16, 185, 129, 0.34);
   --status-error: #f87171;
   --status-error-bg: rgba(248, 113, 113, 0.12);
   --status-error-border: rgba(248, 113, 113, 0.34);
@@ -196,6 +204,11 @@ button {
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--text-primary);
+}
+
+.ck-brand-accent {
+  color: var(--amber);
+  font-weight: 700;
 }
 
 .ck-brand-mark {
@@ -1054,48 +1067,48 @@ button.ck-history-item:hover {
   text-align: center;
 }
 
-/* Ambient Glow Background */
+/* Ambient Glow Background - Solar Precision Laboratory */
 .background {
   position: fixed;
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background-image: linear-gradient(rgba(77, 216, 232, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(77, 216, 232, 0.025) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(245, 158, 11, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.03) 1px, transparent 1px);
   background-size: 64px 64px;
-  mask-image: linear-gradient(to bottom, #000, transparent 85%);
+  mask-image: linear-gradient(to bottom, #000, transparent 88%);
   pointer-events: none;
 }
 
 .background i {
   position: absolute;
   border-radius: 50%;
-  filter: blur(110px);
-  opacity: 0.13;
+  filter: blur(120px);
+  opacity: 0.14;
 }
 
 .background i:nth-child(1) {
   width: 700px;
   height: 700px;
-  left: -300px;
-  top: -220px;
-  background: var(--cyan);
+  left: -280px;
+  top: -200px;
+  background: var(--amber);
 }
 
 .background i:nth-child(2) {
   width: 650px;
   height: 650px;
-  right: -280px;
-  top: 20%;
-  background: var(--purple);
+  right: -260px;
+  top: 18%;
+  background: var(--cobalt);
 }
 
 .background i:nth-child(3) {
-  width: 500px;
-  height: 500px;
+  width: 520px;
+  height: 520px;
   left: 35%;
-  bottom: -350px;
-  background: var(--blue);
+  bottom: -320px;
+  background: var(--amber-light);
 }
 
 /* Landing Page Hero */
@@ -1115,8 +1128,8 @@ button.ck-history-item:hover {
 
 .eyebrow {
   margin: 0 0 14px;
-  color: var(--cyan);
-  font: 500 11px var(--font-mono);
+  color: var(--amber);
+  font: 600 11px var(--font-mono);
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -1132,7 +1145,7 @@ button.ck-history-item:hover {
 }
 
 .hero h1 span {
-  background: linear-gradient(105deg, var(--cyan), var(--blue) 54%, var(--purple));
+  background: linear-gradient(105deg, var(--amber), #fbbf24 45%, var(--cobalt));
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -1162,7 +1175,7 @@ button.ck-history-item:hover {
   gap: 8px;
   border: 1px solid transparent;
   border-radius: var(--radius-md);
-  font: 500 13px var(--font-mono);
+  font: 600 13px var(--font-mono);
   cursor: pointer;
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
@@ -1177,10 +1190,15 @@ button.ck-history-item:hover {
 }
 
 .landing-btn.primary {
-  background: linear-gradient(135deg, var(--cyan), var(--blue));
-  color: #061019;
-  font-weight: 600;
-  box-shadow: 0 12px 35px -18px var(--cyan);
+  background: linear-gradient(135deg, var(--amber), #d97706);
+  color: #090d14;
+  font-weight: 700;
+  box-shadow: 0 12px 35px -18px rgba(245, 158, 11, 0.65);
+}
+
+.landing-btn.primary:hover {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  box-shadow: 0 16px 40px -14px rgba(245, 158, 11, 0.75);
 }
 
 .landing-btn.secondary {
@@ -1190,8 +1208,8 @@ button.ck-history-item:hover {
 }
 
 .landing-btn.secondary:hover {
-  border-color: rgba(77, 216, 232, 0.38);
-  background: rgba(77, 216, 232, 0.06);
+  border-color: rgba(245, 158, 11, 0.38);
+  background: rgba(245, 158, 11, 0.06);
 }
 
 .hero-meta {
@@ -1214,8 +1232,8 @@ button.ck-history-item:hover {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #34d399;
-  box-shadow: 0 0 10px #34d399;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
   display: inline-block;
 }
 
@@ -1228,89 +1246,99 @@ button.ck-history-item:hover {
   justify-self: end;
 }
 
-.element-card {
+/* Catalyst Hexagon Prism Visual */
+.catalyst-card {
   position: relative;
   z-index: 3;
-  width: 150px;
+  width: 170px;
   aspect-ratio: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(77, 216, 232, 0.32);
-  border-radius: 20px;
-  background: linear-gradient(145deg, rgba(77, 216, 232, 0.14), rgba(9, 14, 25, 0.88));
-  box-shadow: 0 30px 90px -32px rgba(77, 216, 232, 0.55), inset 0 1px rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(18px);
-  transform: rotate(-4deg);
+  gap: 8px;
+  border: 1px solid rgba(245, 158, 11, 0.36);
+  border-radius: 28px;
+  background: linear-gradient(145deg, rgba(245, 158, 11, 0.14), rgba(9, 13, 20, 0.94));
+  box-shadow: 0 32px 90px -30px rgba(245, 158, 11, 0.55), inset 0 1px rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  transform: rotate(-3deg);
   animation: float 6s ease-in-out infinite;
 }
 
-.element-card strong {
+.catalyst-card-mark {
+  width: 64px;
+  height: 64px;
+  filter: drop-shadow(0 6px 16px rgba(245, 158, 11, 0.45));
+}
+
+.catalyst-card-title {
   font-family: var(--font-display);
-  font-size: 58px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
   line-height: 1;
-  color: var(--cyan);
 }
 
-.element-card > span:last-child {
-  font: 500 11px var(--font-mono);
-  color: var(--text-muted);
-  margin-top: 7px;
+.catalyst-card-title .text-amber {
+  color: var(--amber);
 }
 
-.atomic {
+.catalyst-card-sub {
+  font: 600 10px var(--font-mono);
+  color: var(--amber-light);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.hex-resonance {
   position: absolute;
-  top: 14px;
-  left: 16px;
-  color: var(--text-muted);
-  font: 500 11px var(--font-mono);
-}
-
-.orbit {
-  position: absolute;
-  border: 1px solid rgba(115, 164, 204, 0.15);
-  border-radius: 50%;
-  animation: spin 18s linear infinite;
+  border: 1px solid rgba(245, 158, 11, 0.18);
+  border-radius: 42px;
+  animation: spin 22s linear infinite;
   pointer-events: none;
 }
 
-.orbit i {
+.hex-resonance:before {
+  content: "";
   position: absolute;
   top: -4px;
   left: 50%;
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 14px var(--cyan);
+  background: var(--amber);
+  box-shadow: 0 0 14px var(--amber);
 }
 
-.orbit-one {
-  inset: 24px;
+.hex-one {
+  inset: 18px;
 }
 
-.orbit-two {
-  inset: 60px;
-  transform: rotate(65deg);
-  animation-duration: 13s;
+.hex-two {
+  inset: 54px;
+  transform: rotate(60deg);
+  animation-duration: 16s;
   animation-direction: reverse;
+  border-color: rgba(59, 130, 246, 0.24);
 }
 
-.orbit-two i {
-  background: var(--purple);
-  box-shadow: 0 0 14px var(--purple);
+.hex-two:before {
+  background: var(--cobalt);
+  box-shadow: 0 0 14px var(--cobalt);
 }
 
-.orbit-three {
-  inset: 96px;
-  animation-duration: 9s;
+.hex-three {
+  inset: 90px;
+  transform: rotate(120deg);
+  animation-duration: 11s;
+  border-color: rgba(251, 191, 36, 0.22);
 }
 
-.orbit-three i {
-  background: var(--blue);
-  box-shadow: 0 0 14px var(--blue);
+.hex-three:before {
+  background: var(--amber-light);
+  box-shadow: 0 0 14px var(--amber-light);
 }
 
 @keyframes spin {
