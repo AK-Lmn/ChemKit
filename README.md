@@ -1,8 +1,6 @@
 # ChemKit
 
-A student-built chemistry toolkit for quick calculations, guided practice, and clean study support.
-
-ChemKit is the main landing hub for a collection of focused browser-based chemistry tools. It brings together tools for elements, mole calculations, gas laws, pH, solution concentration, equation balancing, and stoichiometry.
+A unified browser-based chemistry suite combining seven interactive tools in one React application with shared IUPAC atomic data and calculation engines.
 
 ## Live Site
 
@@ -10,32 +8,30 @@ ChemKit is the main landing hub for a collection of focused browser-based chemis
 
 ## Tools
 
-| Tool | Purpose |
-| --- | --- |
-| Element Explorer | Interactive periodic table with search, filters, favorites, and atomic details. |
-| MoleMate | Mole calculator for mass, molar mass, and particle estimates. |
-| GasLab | Guided gas laws calculator for Boyle's, Charles's, Gay-Lussac's, Avogadro's, and the Ideal Gas Law. |
-| pH Calculator | Convert between pH, pOH, hydrogen ion concentration, and hydroxide ion concentration. |
-| SolutionLab | Solve molarity, dilution, mass concentration, and percent concentration problems. |
-| Chemical Equation Balancer | Balance chemical equations and compare atom counts. |
-| Stoichiometry Solver | Convert between moles and grams using balanced-equation mole ratios. |
+| Tool | Route | Purpose |
+| --- | --- | --- |
+| Element Explorer | `/elements` | Interactive 18-column periodic table with search, category filters, favorites, and atomic details. |
+| MoleMate | `/moles` | Chemical formula molar mass breakdown, mass-to-mole conversion (`mg`, `g`, `kg`), and Avogadro particle counts. |
+| GasLab | `/gas-laws` | Boyle, Charles, Gay-Lussac, Avogadro, and Ideal Gas Law solver with automatic unit conversion. |
+| Chemical Equation Balancer | `/balancer` | Exact whole-number equation balancing with atom-count verification and one-click handoff to stoichiometry. |
+| Stoichiometry Solver | `/stoichiometry` | Mole-to-mole and gram-to-gram conversions with auto-balancing and step-by-step work. |
+| pH Calculator | `/ph` | Conversions across pH, pOH, `[H+]`, and `[OH-]`, plus exact quadratic weak acid/base dissociation. |
+| SolutionLab | `/solutions` | Molarity, moles, volume, dilution (`M1V1 = M2V2`), mass concentration (`g/L`), `% w/w`, and `% v/v`. |
 
-## Built With
+## Development
 
-- Vite
-- React
-- Tailwind CSS
-- JavaScript
+```bash
+npm install
+npm test
+npm run dev
+npm run build
+```
 
-## Project Note
+## Architecture
 
-ChemKit started as my SHS capstone project and was later rebuilt into a cleaner set of chemistry mini-tools for students.
-
-## Contributions
-
-Suggestions, bug reports, and small improvements are welcome. Please open an issue if you notice something wrong or have an idea for a useful chemistry tool.
-
-For contribution details, see [CONTRIBUTING.md](CONTRIBUTING.md).
+- `src/lib/` holds pure chemistry engines and the single 118-element IUPAC dataset (`elements.js`, `molar-mass.js`, `gas-laws.js`, `balancer.js`, `stoichiometry.js`, `ph.js`, `solutions.js`).
+- `src/tools/` holds each tool view, sharing custom accessible controls (`Select.jsx`) and inline Lucide SVGs (`Icons.jsx`).
+- `test/` runs 46 unit tests via Node's built-in test runner (`node --test`).
 
 ## Author
 
