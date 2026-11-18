@@ -218,3 +218,35 @@ export function IconGithub({ className = '' }) {
     </svg>
   )
 }
+
+export function IconGraduationCap({ className = '' }) {
+  return (
+    <svg {...baseProps} className={className}>
+      <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+      <path d="M6 12v5c3 3 9 3 12 0v-5" />
+    </svg>
+  )
+}
+
+export function IconListOrdered({ className = '' }) {
+  return (
+    <svg {...baseProps} className={className}>
+      <line x1="10" x2="21" y1="6" y2="6" />
+      <line x1="10" x2="21" y1="12" y2="12" />
+      <line x1="10" x2="21" y1="18" y2="18" />
+      <path d="M4 6h1v4" />
+      <path d="M4 10h2" />
+      <path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1" />
+    </svg>
+  )
+}
+
+export function IconExternalLink({ className = '' }) {
+  return (
+    <svg {...baseProps} className={className}>
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" x2="21" y1="14" y2="3" />
+    </svg>
+  )
+}

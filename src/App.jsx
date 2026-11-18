@@ -26,8 +26,8 @@ const NAV_ITEMS = [
   {
     id: 'overview',
     path: '/',
-    shortLabel: 'Overview',
-    name: 'Overview',
+    shortLabel: 'Home',
+    name: 'Home',
     icon: IconLayoutGrid,
   },
   {
@@ -195,12 +195,18 @@ export default function App() {
 
   return (
     <div className="ck-app">
+      <div className="background" aria-hidden="true">
+        <i />
+        <i />
+        <i />
+      </div>
+
       <header className="ck-header">
         <div className="ck-shell ck-header-bar">
           <button
             type="button"
             className="ck-brand"
-            aria-label="ChemKit overview"
+            aria-label="ChemKit home"
             onClick={() => navigate('overview')}
           >
             <AtomMark className="ck-brand-mark" />
@@ -270,7 +276,7 @@ export default function App() {
           aria-labelledby={`tab-${activeId}`}
           className="ck-shell ck-panel-enter"
         >
-          {activeId === 'overview' && <Overview tools={TOOLS_ONLY} onOpenTool={navigate} />}
+          {activeId === 'overview' && <Overview onOpenTool={navigate} />}
           {activeId === 'elements' && <ElementExplorer onSendToMoleMate={handleSendToMoleMate} />}
           {activeId === 'moles' && (
             <MoleMate prefill={molePrefill} onConsumePrefill={consumeMolePrefill} />
