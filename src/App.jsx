@@ -115,8 +115,35 @@ function resolveRouteId() {
   return 'overview'
 }
 
+function usePlatformShortcut() {
+  const [shortcut, setShortcut] = useState({ label: 'Ctrl+K', isMobile: false })
+
+  useEffect(() => {
+    if (typeof navigator === 'undefined') return
+    const ua = navigator.userAgent || ''
+    const plat = navigator.userAgentData?.platform || navigator.platform || ''
+
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua) ||
+      (/Mac/i.test(plat) && navigator.maxTouchPoints > 1)
+
+    const isMac = !isMobile && (/Mac|iPhone|iPad|iPod/i.test(plat) || /Macintosh/i.test(ua))
+
+    if (isMobile) {
+      setShortcut({ label: '', isMobile: true })
+    } else if (isMac) {
+      setShortcut({ label: '⌘K', isMobile: false })
+    } else {
+      setShortcut({ label: 'Ctrl+K', isMobile: false })
+    }
+  }, [])
+
+  return shortcut
+}
+
 export default function App() {
   const [activeId, setActiveId] = useState(resolveRouteId)
+  const shortcut = usePlatformShortcut()
   const [molePrefill, setMolePrefill] = useState(null)
   const [stoichPrefill, setStoichPrefill] = useState(null)
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, ready: false })
@@ -267,12 +294,16 @@ export default function App() {
               type="button"
               className="ck-cmd-trigger"
               onClick={() => setPaletteOpen(true)}
-              title="Search tools or jump to formula (Cmd+K)"
+              title={
+                shortcut.isMobile
+                  ? 'Search tools or jump to formula'
+                  : `Search tools or jump to formula (${shortcut.label})`
+              }
               aria-label="Open Command Palette"
             >
               <IconSearch />
               <span className="ck-cmd-label">Quick Jump</span>
-              <kbd className="ck-kbd">⌘K</kbd>
+              {shortcut.label && <kbd className="ck-kbd">{shortcut.label}</kbd>}
             </button>
             <button
               type="button"

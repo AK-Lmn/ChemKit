@@ -2933,6 +2933,30 @@ button.ck-history-item:hover {
   color: var(--ink-2);
 }
 
+@media (max-width: 600px) {
+  .ck-cmd-trigger {
+    width: 38px;
+    padding: 0;
+    justify-content: center;
+  }
+  .ck-cmd-trigger .ck-cmd-label,
+  .ck-cmd-trigger .ck-kbd {
+    display: none;
+  }
+  .ck-modal-backdrop {
+    padding: 24px 12px 16px;
+  }
+  .ck-palette-dialog {
+    max-height: 85vh;
+  }
+  .ck-palette-body {
+    max-height: 55vh;
+  }
+  .ck-palette-footer {
+    display: none;
+  }
+}
+
 /* History Undo Banner */
 .ck-undo-banner {
   display: flex;
