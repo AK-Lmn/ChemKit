@@ -167,7 +167,7 @@ const WHY_CARDS = [
     icon: IconListOrdered,
     title: 'Shows the work',
     accent: '#00C853',
-    description: 'Every calculator displays the active formula and the conversion steps, so you can see how the number was calculated.',
+    description: 'Each tool displays formulas, balanced atom counts, or step-by-step math so you can see how the answer was reached.',
   },
 ]
 
@@ -201,12 +201,12 @@ export function Overview({ onOpenTool }) {
         <div className="hero-copy">
           <p className="eyebrow">Chemistry tools for problem sets</p>
           <h1>
-            Calculators for chemistry,
+            Chemistry tools,
             <br />
             built to get you unstuck.
           </h1>
           <p className="hero-text">
-            Solve molar mass, balance reactions, convert gas units, and check problem set answers without sign-ups or ads.
+            Explore elements, balance reactions, and solve calculations without sign-ups or ads.
           </p>
 
           <div className="button-row">
@@ -313,8 +313,8 @@ export function Overview({ onOpenTool }) {
       <section className="landing-section" id="toolkit">
         <div className="section-heading centered">
           <p className="eyebrow">The toolkit</p>
-          <h2>The calculators</h2>
-          <p>Seven focused tools that run directly in your browser.</p>
+          <h2>The tools</h2>
+          <p>Periodic table reference, reaction balancer, and five focused calculators.</p>
 
           <div className="chips" role="group" aria-label="Filter tools by category">
             {CATEGORIES.map((category) => (
