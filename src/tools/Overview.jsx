@@ -27,12 +27,12 @@ const TOOLS = [
     category: 'Elements',
     icon: LogoElementExplorer,
     accent: '#00C853',
-    description: 'A full interactive periodic table for browsing, searching, and studying every element at a glance.',
+    description: 'Interactive periodic table with atomic weights, electron configurations, and group properties.',
     features: [
-      'Search elements by name or symbol',
-      'Filter by category',
-      'Favorite elements for quick recall',
-      'View detailed atomic data',
+      'Search by element name or symbol',
+      'Filter by chemical category',
+      'Save favorites for quick access',
+      'View atomic mass and electron states',
     ],
     repoUrl: 'https://github.com/AK-Lmn/PeriodicTable',
   },
@@ -44,12 +44,12 @@ const TOOLS = [
     category: 'Calculations',
     icon: LogoMoleMate,
     accent: '#00C853',
-    description: 'A mole calculator that turns mass and molar mass into moles and particle counts in one step.',
+    description: 'Convert between sample mass, moles, and particle counts from any chemical formula.',
     features: [
-      'Calculates moles from mass and molar mass',
-      'Supports mg, g, and kg',
-      "Shows particle count via Avogadro's number",
-      'Saves calculation history locally',
+      'Calculates molar mass from formulas',
+      'Supports mg, g, and kg inputs',
+      "Particle counts using Avogadro's constant",
+      'Saves recent calculations locally',
     ],
     repoUrl: 'https://github.com/AK-Lmn/mole-calc',
   },
@@ -61,12 +61,12 @@ const TOOLS = [
     category: 'Calculations',
     icon: LogoGasLab,
     accent: '#00C853',
-    description: 'A guided gas laws calculator that walks you through the setup and shows the formula behind every answer.',
+    description: "Solve Boyle's, Charles's, Gay-Lussac's, Avogadro's, and Ideal Gas Law problems with unit conversions.",
     features: [
-      "Boyle's, Charles's, Gay-Lussac's and Avogadro's Laws",
-      'Ideal Gas Law included',
-      'Guided inputs with a formula card per law',
-      'Built-in validation and clean results',
+      'Select which variable to solve for',
+      'Ideal gas law (PV = nRT)',
+      'Converts pressure, volume, and temperature units',
+      'Formula reference for each law',
     ],
     repoUrl: 'https://github.com/AK-Lmn/GasLawCalc',
   },
@@ -78,12 +78,12 @@ const TOOLS = [
     category: 'Equations',
     icon: LogoChemBalancer,
     accent: '#00C853',
-    description: 'Balance chemical equations and compare atom counts without trial-and-error guessing.',
+    description: 'Balance reactions and compare atom counts across reactants and products.',
     features: [
-      'Supports common formulas and parentheses',
-      'Balances equations with exact whole-number coefficients',
-      'Shows coefficients and atom count tables',
-      'Saves recent equations locally',
+      'Handles parentheses and polyatomic ions',
+      'Finds smallest whole-number coefficients',
+      'Atom count comparison table',
+      'Saves balanced equations locally',
     ],
     repoUrl: 'https://github.com/AK-Lmn/Chem-Balancer',
   },
@@ -95,12 +95,12 @@ const TOOLS = [
     category: 'Equations',
     icon: LogoStoichiometry,
     accent: '#00C853',
-    description: 'Use balanced equations to convert between moles and grams with guided stoichiometry steps.',
+    description: 'Convert moles and grams between compounds using mole ratios from balanced equations.',
     features: [
-      'Supports mole-to-mole and gram-to-gram conversions',
-      'Calculates molar mass from formulas',
-      'Uses balanced-equation mole ratios',
-      'Shows step-by-step solutions',
+      'Mole-to-mole and gram-to-gram conversions',
+      'Auto-balances unbalanced inputs',
+      'Step-by-step dimensional analysis',
+      'Calculates intermediate molar masses',
     ],
     repoUrl: 'https://github.com/AK-Lmn/Stoichiometry-Solver',
   },
@@ -112,12 +112,12 @@ const TOOLS = [
     category: 'Solutions',
     icon: LogoPhCalculator,
     accent: '#00C853',
-    description: 'Move between pH, pOH, and ion concentration instantly with a focused calculator built for quick conversions.',
+    description: 'Convert between pH, pOH, [H+], and [OH-], or solve weak acid and base dissociation.',
     features: [
       'Convert between pH and pOH',
-      'Calculate hydrogen and hydroxide ion concentration',
-      'Clean, fast layout for quick checks',
-      'Built for classroom and lab use',
+      'Calculate [H+] and [OH-] concentrations',
+      'Weak acid and base dissociation using Ka and Kb',
+      'Visual acid-base scale readout',
     ],
     repoUrl: 'https://github.com/AK-Lmn/pH-Calculator',
   },
@@ -129,12 +129,12 @@ const TOOLS = [
     category: 'Solutions',
     icon: LogoSolutionLab,
     accent: '#00C853',
-    description: 'Solve common solution concentration problems including molarity, dilution, mass concentration, and percent concentration.',
+    description: 'Calculate molarity, dilution (M1V1 = M2V2), mass concentration, and percentage concentrations.',
     features: [
-      'Calculate molarity, moles, and volume',
-      'Solve dilution problems with M1V1 = M2V2',
-      'Work with g/L, % w/w, and % v/v',
-      'Includes validation, explanations, and recent history',
+      'Molarity from moles or mass and volume',
+      'Dilution solver for any unknown variable',
+      'Mass concentration (g/L), % w/w, and % v/v',
+      'Step-by-step calculation breakdown',
     ],
     repoUrl: 'https://github.com/AK-Lmn/Solution-Lab',
   },
@@ -153,21 +153,21 @@ const TOOL_GUIDE = [
 const WHY_CARDS = [
   {
     icon: IconGraduationCap,
-    title: 'Student-friendly',
+    title: 'Made for problem sets',
     accent: '#00C853',
-    description: "Written for the moment you are stuck on a problem set, not for people who already know the answer.",
+    description: 'Built to help when you are working through homework and need to check your work or see the steps.',
   },
   {
     icon: IconAtom,
-    title: 'Built from real study tools',
+    title: 'Tested in class',
     accent: '#00C853',
-    description: 'Each app started as something used to pass an actual chemistry class, then got refined into a product.',
+    description: 'These started as tools I wrote to get through high school chemistry, cleaned up so anyone can use them.',
   },
   {
     icon: IconListOrdered,
-    title: 'Clean UI, guided calculations',
+    title: 'Shows the work',
     accent: '#00C853',
-    description: 'Every calculator shows its formula and its steps, so the answer is never a black box.',
+    description: 'Every calculator displays the active formula and the conversion steps, so you can see how the number was calculated.',
   },
 ]
 
@@ -199,14 +199,14 @@ export function Overview({ onOpenTool }) {
       {/* Hero Section */}
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="eyebrow">A chemistry toolkit, not a textbook</p>
+          <p className="eyebrow">Chemistry tools for problem sets</p>
           <h1>
-            Chemistry feels <em>lighter</em>
+            Calculators for chemistry,
             <br />
-            with the right tools.
+            built to get you unstuck.
           </h1>
           <p className="hero-text">
-            ChemKit is a student-built chemistry toolkit for quick calculations, guided practice, and clean study support.
+            Solve molar mass, balance reactions, convert gas units, and check problem set answers without sign-ups or ads.
           </p>
 
           <div className="button-row">
@@ -275,7 +275,7 @@ export function Overview({ onOpenTool }) {
         <div className="section-heading">
           <p className="eyebrow">Find your tool</p>
           <h2>Which tool should I use?</h2>
-          <p>Start with what you need to solve. We will point you in the right direction.</p>
+          <p>Choose what you want to calculate.</p>
         </div>
 
         <div className="guide-grid">
@@ -313,12 +313,8 @@ export function Overview({ onOpenTool }) {
       <section className="landing-section" id="toolkit">
         <div className="section-heading centered">
           <p className="eyebrow">The toolkit</p>
-          <h2>
-            Seven tools. One goal:
-            <br />
-            get you unstuck.
-          </h2>
-          <p>Each one solves a single problem well: no clutter, no sign-up walls, no ads.</p>
+          <h2>The calculators</h2>
+          <p>Seven focused tools that run directly in your browser.</p>
 
           <div className="chips" role="group" aria-label="Filter tools by category">
             {CATEGORIES.map((category) => (
@@ -429,14 +425,14 @@ export function Overview({ onOpenTool }) {
       <section className="landing-section compact" id="roadmap">
         <div className="glass-panel future-panel">
           <div>
-            <p className="eyebrow">What is next</p>
-            <h2>Still growing</h2>
+            <p className="eyebrow">Roadmap</p>
+            <h2>Planned additions</h2>
             <p>
-              ChemKit will keep expanding with small, focused chemistry tools made for quick checks and guided practice.
+              More tools will be added based on what students need most in class.
             </p>
           </div>
           <div>
-            <span className="future-label">Potential future tools</span>
+            <span className="future-label">Upcoming tools</span>
             <ul>
               {FUTURE_TOOLS.map((tool) => (
                 <li key={tool}>

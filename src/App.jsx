@@ -39,7 +39,7 @@ const NAV_ITEMS = [
     path: '/elements',
     shortLabel: 'Elements',
     name: 'Element Explorer',
-    description: 'Interactive 18-column periodic table with search, category filters, favorites, and atomic properties.',
+    description: 'Periodic table with atomic masses, electron configurations, and group properties.',
     icon: LogoElementExplorer,
   },
   {
@@ -47,7 +47,7 @@ const NAV_ITEMS = [
     path: '/moles',
     shortLabel: 'Moles',
     name: 'MoleMate',
-    description: 'Formula molar mass calculator, mass-to-mole converter (mg, g, kg), and Avogadro particle counts.',
+    description: 'Calculate molar mass, moles, and particle counts from formulas and sample masses.',
     icon: LogoMoleMate,
   },
   {
@@ -55,7 +55,7 @@ const NAV_ITEMS = [
     path: '/gas-laws',
     shortLabel: 'Gas Laws',
     name: 'GasLab',
-    description: 'Guided Boyle, Charles, Gay-Lussac, Avogadro, and Ideal Gas Law solver with live unit conversions.',
+    description: 'Solve Boyle, Charles, Gay-Lussac, Avogadro, and Ideal Gas Law problems with unit conversions.',
     icon: LogoGasLab,
   },
   {
@@ -63,7 +63,7 @@ const NAV_ITEMS = [
     path: '/balancer',
     shortLabel: 'Balancer',
     name: 'Chemical Equation Balancer',
-    description: 'Balances equations into exact whole-number coefficients and verifies atom counts on both sides.',
+    description: 'Balance chemical reactions into whole-number coefficients and verify atom counts.',
     icon: LogoChemBalancer,
   },
   {
@@ -71,7 +71,7 @@ const NAV_ITEMS = [
     path: '/stoichiometry',
     shortLabel: 'Stoichiometry',
     name: 'Stoichiometry Solver',
-    description: 'Mole-to-mole and gram-to-gram conversions with auto-balancing and step-by-step dimensional analysis.',
+    description: 'Mole-to-mole and gram-to-gram conversions using balanced equation ratios.',
     icon: LogoStoichiometry,
   },
   {
@@ -79,7 +79,7 @@ const NAV_ITEMS = [
     path: '/ph',
     shortLabel: 'pH',
     name: 'pH Calculator',
-    description: 'Converts between pH, pOH, [H+], and [OH-] and solves monoprotic weak acid or weak base dissociation.',
+    description: 'Convert between pH, pOH, [H+], and [OH-], or calculate weak acid and base dissociation.',
     icon: LogoPhCalculator,
   },
   {
@@ -87,7 +87,7 @@ const NAV_ITEMS = [
     path: '/solutions',
     shortLabel: 'Solutions',
     name: 'SolutionLab',
-    description: 'Solves molarity, moles, volume, dilution (M1V1 = M2V2), mass concentration (g/L), % w/w, and % v/v.',
+    description: 'Calculate molarity, dilution (M1V1 = M2V2), mass concentration, and percentage concentrations.',
     icon: LogoSolutionLab,
   },
 ]
@@ -364,7 +364,7 @@ export default function App() {
 
       <footer className="ck-footer">
         <div className="ck-shell ck-footer-inner">
-          <span>ChemKit: unified browser suite for chemistry calculations. History stays in your browser.</span>
+          <span>ChemKit runs in your browser. Calculation history stays on your device.</span>
           <span>
             Built by{' '}
             <a href="https://github.com/AK-Lmn" target="_blank" rel="noreferrer">
