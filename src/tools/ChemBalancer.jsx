@@ -13,6 +13,7 @@ import {
   IconCopy,
   IconRotateCcw,
   IconTrash,
+  LogoChemBalancer,
 } from '../components/Icons.jsx'
 
 const EXAMPLES = [
@@ -83,11 +84,22 @@ export function ChemBalancer({ onSendToStoichiometry }) {
   return (
     <div className="ck-stack">
       <div className="ck-tool-header">
-        <h1 className="ck-tool-title">Chemical Equation Balancer</h1>
-        <p className="ck-tool-subtitle">
-          Enter an unbalanced chemical equation using -&gt;, --&gt;, =, or arrows to compute exact whole-number
-          coefficients and verify atom conservation.
-        </p>
+        <div className="ck-tool-header-identity">
+          <span className="ck-tool-header-mark" style={{ '--accent': '#ff8f70' }} aria-hidden="true">
+            <LogoChemBalancer />
+          </span>
+          <div>
+            <div className="ck-tool-badge-row">
+              <span className="ck-tool-badge-num">26</span>
+              <span className="ck-tool-badge-cat">Equations</span>
+            </div>
+            <h1 className="ck-tool-title">Chemical Equation Balancer</h1>
+            <p className="ck-tool-subtitle">
+              Enter an unbalanced chemical equation using -&gt;, --&gt;, =, or arrows to compute exact whole-number
+              coefficients and verify atom conservation.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="ck-grid-2">

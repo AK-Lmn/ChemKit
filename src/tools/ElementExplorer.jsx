@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { ELEMENTS, ELEMENT_CATEGORIES } from '../lib/elements.js'
 import { useLocalStorage } from '../hooks/useLocalStorage.js'
-import { IconArrowRight, IconSearch, IconStar, IconX } from '../components/Icons.jsx'
+import { IconArrowRight, IconSearch, IconStar, IconX, LogoElementExplorer } from '../components/Icons.jsx'
 
 const CATEGORY_CLASS = Object.freeze({
   'Alkali metal': 'ck-cat-alkali',
@@ -98,11 +98,20 @@ export function ElementExplorer({ onSendToMoleMate }) {
     <div className="ck-stack">
       <div className="ck-tool-header">
         <div className="ck-tool-header-row">
-          <div>
-            <h1 className="ck-tool-title">Element Explorer</h1>
-            <p className="ck-tool-subtitle">
-              Search all 118 elements by name, symbol, or atomic number. Star elements to keep a quick study list.
-            </p>
+          <div className="ck-tool-header-identity">
+            <span className="ck-tool-header-mark" style={{ '--accent': '#4dd8e8' }} aria-hidden="true">
+              <LogoElementExplorer />
+            </span>
+            <div>
+              <div className="ck-tool-badge-row">
+                <span className="ck-tool-badge-num">06</span>
+                <span className="ck-tool-badge-cat">Elements</span>
+              </div>
+              <h1 className="ck-tool-title">Element Explorer</h1>
+              <p className="ck-tool-subtitle">
+                Search all 118 elements by name, symbol, or atomic number. Star elements to keep a quick study list.
+              </p>
+            </div>
           </div>
           <div style={{ minWidth: '240px', flex: '0 1 300px' }}>
             <label htmlFor="element-search" className="ck-label" style={{ display: 'block', marginBottom: '6px' }}>

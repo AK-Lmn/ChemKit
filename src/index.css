@@ -333,7 +333,63 @@ button {
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 12px;
+  gap: 16px;
+}
+
+.ck-tool-header-identity {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.ck-tool-header-mark {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in srgb, var(--accent, var(--accent-primary)) 32%, transparent);
+  background: radial-gradient(100% 100% at 30% 30%, color-mix(in srgb, var(--accent, var(--accent-primary)) 18%, transparent), var(--bg-surface));
+  color: var(--accent, var(--accent-primary));
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  box-shadow: 0 8px 24px -12px var(--accent, var(--accent-primary));
+  transition: transform var(--dur-normal) var(--ease-out), box-shadow var(--dur-normal) var(--ease-out);
+}
+
+.ck-tool-header-mark:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 28px -10px var(--accent, var(--accent-primary));
+}
+
+.ck-tool-header-mark svg {
+  width: 24px;
+  height: 24px;
+}
+
+.ck-tool-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.ck-tool-badge-num {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.ck-tool-badge-cat {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent, var(--accent-primary));
+  border: 1px solid color-mix(in srgb, var(--accent, var(--accent-primary)) 24%, transparent);
+  background: color-mix(in srgb, var(--accent, var(--accent-primary)) 8%, transparent);
 }
 
 .ck-tool-title {
@@ -1356,15 +1412,24 @@ button.ck-history-item:hover {
   border-right: 0;
   border-top: 0;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background var(--dur-normal) var(--ease-out), transform var(--dur-normal) var(--ease-out);
 }
 
 .guide-item:hover {
   background: var(--bg-elevated);
 }
 
+.guide-item:hover .guide-item-icon {
+  transform: scale(1.08);
+  box-shadow: 0 4px 14px -4px var(--accent);
+}
+
+.guide-item:hover .guide-item-cta svg {
+  transform: translateX(3px);
+}
+
 .guide-item:active {
-  transform: scale(0.99);
+  transform: scale(0.98);
 }
 
 .guide-item:nth-child(odd) {
@@ -1397,6 +1462,24 @@ button.ck-history-item:hover {
   opacity: 0.85;
 }
 
+.guide-item-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.guide-item-icon svg {
+  width: 17px;
+  height: 17px;
+}
+
 .guide-item p {
   margin: 0;
   color: var(--text-muted);
@@ -1422,6 +1505,7 @@ button.ck-history-item:hover {
 .guide-item-cta svg {
   width: 14px;
   height: 14px;
+  transition: transform var(--dur-fast) var(--ease-out);
 }
 
 /* Category Filter Chips */
@@ -1495,6 +1579,11 @@ button.ck-history-item:hover {
   box-shadow: 0 25px 55px -36px var(--accent), inset 0 1px rgba(255, 255, 255, 0.06);
 }
 
+.tool-card:hover .tool-icon {
+  transform: translateY(-2px) scale(1.08);
+  box-shadow: 0 8px 24px -6px var(--accent);
+}
+
 .tools-grid > .tool-card:last-child {
   grid-column: 2;
 }
@@ -1531,6 +1620,8 @@ button.ck-history-item:hover {
   border-radius: 12px;
   color: var(--accent);
   background: color-mix(in srgb, var(--accent) 10%, transparent);
+  transition: transform var(--dur-normal) var(--ease-out), box-shadow var(--dur-normal) var(--ease-out),
+    border-color var(--dur-normal) var(--ease-out);
 }
 
 .tool-icon svg {

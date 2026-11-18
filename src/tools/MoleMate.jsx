@@ -7,8 +7,8 @@ import {
 } from '../lib/molar-mass.js'
 import { formatNumber, formatScientific, formatTimeAgo } from '../lib/format.js'
 import { useLocalStorage } from '../hooks/useLocalStorage.js'
-import { Select } from '../components/Select.jsx'
-import { IconAlertCircle, IconRotateCcw, IconTrash } from '../components/Icons.jsx'
+import { Combobox } from '../components/Select.jsx'
+import { IconAlertCircle, IconRotateCcw, IconTrash, LogoMoleMate } from '../components/Icons.jsx'
 
 const MASS_UNIT_OPTIONS = [
   { value: 'mg', label: 'mg', detail: 'milligrams' },
@@ -113,11 +113,22 @@ export function MoleMate({ prefill, onConsumePrefill }) {
   return (
     <div className="ck-stack">
       <div className="ck-tool-header">
-        <h1 className="ck-tool-title">MoleMate</h1>
-        <p className="ck-tool-subtitle">
-          Calculate molar mass from a chemical formula or enter a known molar mass to convert mass into moles and
-          particle counts.
-        </p>
+        <div className="ck-tool-header-identity">
+          <span className="ck-tool-header-mark" style={{ '--accent': '#a875ff' }} aria-hidden="true">
+            <LogoMoleMate />
+          </span>
+          <div>
+            <div className="ck-tool-badge-row">
+              <span className="ck-tool-badge-num">12</span>
+              <span className="ck-tool-badge-cat">Calculations</span>
+            </div>
+            <h1 className="ck-tool-title">MoleMate</h1>
+            <p className="ck-tool-subtitle">
+              Calculate molar mass from a chemical formula or enter a known molar mass to convert mass into moles and
+              particle counts.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="ck-grid-2">
@@ -182,7 +193,7 @@ export function MoleMate({ prefill, onConsumePrefill }) {
                   setCalcError('')
                 }}
               />
-              <Select
+              <Combobox
                 id="mm-mass-unit"
                 compact
                 ariaLabel="Mass unit"

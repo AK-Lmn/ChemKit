@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   AtomMark,
-  IconArrowLeftRight,
-  IconAtom,
-  IconDroplet,
-  IconFlaskConical,
-  IconGauge,
   IconGithub,
   IconLayoutGrid,
-  IconScale,
-  IconTable,
+  LogoChemBalancer,
+  LogoElementExplorer,
+  LogoGasLab,
+  LogoMoleMate,
+  LogoPhCalculator,
+  LogoSolutionLab,
+  LogoStoichiometry,
 } from './components/Icons.jsx'
 import { Overview } from './tools/Overview.jsx'
 import { ElementExplorer } from './tools/ElementExplorer.jsx'
@@ -36,7 +36,7 @@ const NAV_ITEMS = [
     shortLabel: 'Elements',
     name: 'Element Explorer',
     description: 'Interactive 18-column periodic table with search, category filters, favorites, and atomic properties.',
-    icon: IconTable,
+    icon: LogoElementExplorer,
   },
   {
     id: 'moles',
@@ -44,7 +44,7 @@ const NAV_ITEMS = [
     shortLabel: 'Moles',
     name: 'MoleMate',
     description: 'Formula molar mass calculator, mass-to-mole converter (mg, g, kg), and Avogadro particle counts.',
-    icon: IconAtom,
+    icon: LogoMoleMate,
   },
   {
     id: 'gas-laws',
@@ -52,7 +52,7 @@ const NAV_ITEMS = [
     shortLabel: 'Gas Laws',
     name: 'GasLab',
     description: 'Guided Boyle, Charles, Gay-Lussac, Avogadro, and Ideal Gas Law solver with live unit conversions.',
-    icon: IconGauge,
+    icon: LogoGasLab,
   },
   {
     id: 'balancer',
@@ -60,7 +60,7 @@ const NAV_ITEMS = [
     shortLabel: 'Balancer',
     name: 'Chemical Equation Balancer',
     description: 'Balances equations into exact whole-number coefficients and verifies atom counts on both sides.',
-    icon: IconScale,
+    icon: LogoChemBalancer,
   },
   {
     id: 'stoichiometry',
@@ -68,7 +68,7 @@ const NAV_ITEMS = [
     shortLabel: 'Stoichiometry',
     name: 'Stoichiometry Solver',
     description: 'Mole-to-mole and gram-to-gram conversions with auto-balancing and step-by-step dimensional analysis.',
-    icon: IconArrowLeftRight,
+    icon: LogoStoichiometry,
   },
   {
     id: 'ph',
@@ -76,7 +76,7 @@ const NAV_ITEMS = [
     shortLabel: 'pH',
     name: 'pH Calculator',
     description: 'Converts between pH, pOH, [H+], and [OH-] and solves monoprotic weak acid or weak base dissociation.',
-    icon: IconDroplet,
+    icon: LogoPhCalculator,
   },
   {
     id: 'solutions',
@@ -84,7 +84,7 @@ const NAV_ITEMS = [
     shortLabel: 'Solutions',
     name: 'SolutionLab',
     description: 'Solves molarity, moles, volume, dilution (M1V1 = M2V2), mass concentration (g/L), % w/w, and % v/v.',
-    icon: IconFlaskConical,
+    icon: LogoSolutionLab,
   },
 ]
 

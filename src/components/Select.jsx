@@ -8,7 +8,7 @@ const EXIT_MS = 160
  * Popover enters from trigger at 0.95 scale (200ms ease-out) and exits 20% faster (160ms).
  * Supports ArrowUp, ArrowDown, Home, End, Enter, Space, and Escape.
  */
-export function Select({
+export function Combobox({
   id,
   value,
   options,
@@ -183,3 +183,5 @@ export function Select({
     </div>
   )
 }
+
+export const Select = Combobox

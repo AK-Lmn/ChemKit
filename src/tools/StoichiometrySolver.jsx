@@ -6,13 +6,14 @@ import {
 } from '../lib/stoichiometry.js'
 import { formatFormulaSubscripts, formatNumber, formatTimeAgo } from '../lib/format.js'
 import { useLocalStorage } from '../hooks/useLocalStorage.js'
-import { Select } from '../components/Select.jsx'
+import { Combobox } from '../components/Select.jsx'
 import {
   IconAlertCircle,
   IconCheck,
   IconRotateCcw,
   IconSparkles,
   IconTrash,
+  LogoStoichiometry,
 } from '../components/Icons.jsx'
 
 const UNIT_OPTIONS = [
@@ -137,11 +138,22 @@ export function StoichiometrySolver({ prefill, onConsumePrefill }) {
   return (
     <div className="ck-stack">
       <div className="ck-tool-header">
-        <h1 className="ck-tool-title">Stoichiometry Solver</h1>
-        <p className="ck-tool-subtitle">
-          Convert between moles and grams across reactants and products using balanced mole ratios and IUPAC molar
-          masses.
-        </p>
+        <div className="ck-tool-header-identity">
+          <span className="ck-tool-header-mark" style={{ '--accent': '#d08cff' }} aria-hidden="true">
+            <LogoStoichiometry />
+          </span>
+          <div>
+            <div className="ck-tool-badge-row">
+              <span className="ck-tool-badge-num">07</span>
+              <span className="ck-tool-badge-cat">Equations</span>
+            </div>
+            <h1 className="ck-tool-title">Stoichiometry Solver</h1>
+            <p className="ck-tool-subtitle">
+              Convert between moles and grams across reactants and products using balanced mole ratios and IUPAC molar
+              masses.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="ck-grid-2">
@@ -236,7 +248,7 @@ export function StoichiometrySolver({ prefill, onConsumePrefill }) {
                 <label htmlFor="stoich-given-compound" className="ck-label">
                   Given compound
                 </label>
-                <Select
+                <Combobox
                   id="stoich-given-compound"
                   ariaLabel="Given compound"
                   value={givenFormula}
@@ -251,7 +263,7 @@ export function StoichiometrySolver({ prefill, onConsumePrefill }) {
                 <label htmlFor="stoich-target-compound" className="ck-label">
                   Target compound
                 </label>
-                <Select
+                <Combobox
                   id="stoich-target-compound"
                   ariaLabel="Target compound"
                   value={targetFormula}
@@ -289,7 +301,7 @@ export function StoichiometrySolver({ prefill, onConsumePrefill }) {
                 <label htmlFor="stoich-given-unit" className="ck-label">
                   Given unit
                 </label>
-                <Select
+                <Combobox
                   id="stoich-given-unit"
                   ariaLabel="Given unit"
                   value={givenUnit}
@@ -303,7 +315,7 @@ export function StoichiometrySolver({ prefill, onConsumePrefill }) {
                 <label htmlFor="stoich-target-unit" className="ck-label">
                   Target unit
                 </label>
-                <Select
+                <Combobox
                   id="stoich-target-unit"
                   ariaLabel="Target unit"
                   value={targetUnit}

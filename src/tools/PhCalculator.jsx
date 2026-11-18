@@ -7,8 +7,8 @@ import {
 } from '../lib/ph.js'
 import { formatNumber, formatTimeAgo } from '../lib/format.js'
 import { useLocalStorage } from '../hooks/useLocalStorage.js'
-import { Select } from '../components/Select.jsx'
-import { IconAlertCircle, IconTrash } from '../components/Icons.jsx'
+import { Combobox } from '../components/Select.jsx'
+import { IconAlertCircle, IconTrash, LogoPhCalculator } from '../components/Icons.jsx'
 
 const MODE_OPTIONS = PH_MODES.map((mode) => ({
   value: mode.id,
@@ -117,11 +117,22 @@ export function PhCalculator() {
   return (
     <div className="ck-stack">
       <div className="ck-tool-header">
-        <h1 className="ck-tool-title">pH Calculator</h1>
-        <p className="ck-tool-subtitle">
-          Convert between pH, pOH, [H+], and [OH-] at 25 C, or solve monoprotic weak acid and weak base dissociation
-          equilibria with exact quadratic roots.
-        </p>
+        <div className="ck-tool-header-identity">
+          <span className="ck-tool-header-mark" style={{ '--accent': '#7ce6c4' }} aria-hidden="true">
+            <LogoPhCalculator />
+          </span>
+          <div>
+            <div className="ck-tool-badge-row">
+              <span className="ck-tool-badge-num">01</span>
+              <span className="ck-tool-badge-cat">Solutions</span>
+            </div>
+            <h1 className="ck-tool-title">pH Calculator</h1>
+            <p className="ck-tool-subtitle">
+              Convert between pH, pOH, [H+], and [OH-] at 25 C, or solve monoprotic weak acid and weak base dissociation
+              equilibria with exact quadratic roots.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="ck-chip-row" role="group" aria-label="Calculator mode">
@@ -163,7 +174,7 @@ export function PhCalculator() {
               <label htmlFor="ph-mode" className="ck-label">
                 Conversion mode
               </label>
-              <Select
+              <Combobox
                 id="ph-mode"
                 ariaLabel="pH conversion mode"
                 value={modeId}

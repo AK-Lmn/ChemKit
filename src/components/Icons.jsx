@@ -250,3 +250,133 @@ export function IconExternalLink({ className = '' }) {
     </svg>
   )
 }
+
+/* ==========================================================================
+   ChemKit Domain-Specific Tool Logo Marks (Geometric Vector Identity System)
+   ========================================================================== */
+
+export function LogoElementExplorer({ className = '', ...props }) {
+  return (
+    <svg {...baseProps} {...props} className={className}>
+      {/* 18-column periodic lattice with stepped s/d/p blocks */}
+      <path d="M3 6h3v4h12V6h3v14H3V6z" />
+      <path d="M6 10v10" />
+      <path d="M18 10v10" />
+      <path d="M3 14h18" />
+      {/* Central highlighted element tile with active nucleus */}
+      <rect x="9.5" y="11.5" width="5" height="5" rx="1" fill="currentColor" fillOpacity="0.22" />
+      <circle cx="12" cy="14" r="1" fill="currentColor" />
+    </svg>
+  )
+}
+
+export function LogoMoleMate({ className = '', ...props }) {
+  return (
+    <svg {...baseProps} {...props} className={className}>
+      {/* Covalent bonds connecting central nucleus to 3 perimeter nodes */}
+      <line x1="12" y1="12" x2="12" y2="4" />
+      <line x1="12" y1="12" x2="4.5" y2="17.5" />
+      <line x1="12" y1="12" x2="19.5" y2="17.5" />
+      {/* Orbital electron cloud arc */}
+      <path d="M7 6.5a8 8 0 0 1 10 0" strokeDasharray="1.5 2" />
+      {/* Perimeter molecular atoms */}
+      <circle cx="12" cy="4" r="2.25" fill="currentColor" fillOpacity="0.25" />
+      <circle cx="4.5" cy="17.5" r="2.25" fill="currentColor" fillOpacity="0.25" />
+      <circle cx="19.5" cy="17.5" r="2.25" fill="currentColor" fillOpacity="0.25" />
+      {/* Central carbon nucleus */}
+      <circle cx="12" cy="12" r="2.75" fill="currentColor" />
+    </svg>
+  )
+}
+
+export function LogoGasLab({ className = '', ...props }) {
+  return (
+    <svg {...baseProps} {...props} className={className}>
+      {/* Gas compression cylinder */}
+      <path d="M5 4v14a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V4" />
+      {/* Piston rod and compression seal */}
+      <line x1="12" y1="2" x2="12" y2="7" />
+      <rect x="7" y="7" width="10" height="2.5" rx="1" fill="currentColor" fillOpacity="0.3" />
+      {/* Kinetic gas particle trajectories */}
+      <circle cx="9" cy="13" r="1.25" fill="currentColor" />
+      <path d="m9 13 2 2" />
+      <circle cx="15" cy="14" r="1.25" fill="currentColor" />
+      <path d="m15 14-2.5 1.5" />
+      <circle cx="11" cy="18" r="1.25" fill="currentColor" />
+    </svg>
+  )
+}
+
+export function LogoChemBalancer({ className = '', ...props }) {
+  return (
+    <svg {...baseProps} {...props} className={className}>
+      {/* Central column & stable footing */}
+      <line x1="12" y1="3" x2="12" y2="21" />
+      <path d="M8 21h8" />
+      {/* Balanced horizontal beam */}
+      <line x1="3" y1="7" x2="21" y2="7" />
+      {/* Fulcrum indicator pointer */}
+      <polygon points="12,4 10.5,7 13.5,7" fill="currentColor" />
+      {/* Reactant balance pan */}
+      <path d="m3 7 2 6h4l2-6" />
+      <path d="M4.5 13a2.5 2.5 0 0 0 5 0" fill="currentColor" fillOpacity="0.25" />
+      {/* Product balance pan */}
+      <path d="m13 7 2 6h4l2-6" />
+      <path d="M14.5 13a2.5 2.5 0 0 0 5 0" fill="currentColor" fillOpacity="0.25" />
+    </svg>
+  )
+}
+
+export function LogoStoichiometry({ className = '', ...props }) {
+  return (
+    <svg {...baseProps} {...props} className={className}>
+      {/* Reactant compound block */}
+      <rect x="3" y="8" width="6.5" height="8" rx="1.5" fill="currentColor" fillOpacity="0.18" />
+      <path d="M5.5 12h1.5" />
+      {/* Product compound block */}
+      <rect x="14.5" y="8" width="6.5" height="8" rx="1.5" fill="currentColor" fillOpacity="0.18" />
+      <path d="M17 12h1.5" />
+      {/* Forward molar conversion path */}
+      <path d="M7 6c1.5-2 3.5-3 5-3s3.5 1 5 3" />
+      <polyline points="15.5 6 17 6 17 4.5" />
+      {/* Reverse stoichiometric ratio path */}
+      <path d="M17 18c-1.5 2-3.5 3-5 3s-3.5-1-5-3" />
+      <polyline points="8.5 18 7 18 7 19.5" />
+      {/* Center mole ratio fulcrum */}
+      <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+    </svg>
+  )
+}
+
+export function LogoPhCalculator({ className = '', ...props }) {
+  return (
+    <svg {...baseProps} {...props} className={className}>
+      {/* Aqueous hydronium teardrop */}
+      <path d="M12 2.5C12 2.5 5 11 5 15.5a7 7 0 0 0 14 0C19 11 12 2.5 12 2.5Z" />
+      {/* Concentric logarithmic pH graduation rings */}
+      <path d="M8 14.5c1-1.5 2.5-2.5 4-2.5s3 1 4 2.5" />
+      <path d="M9.5 17c.7-.7 1.6-1 2.5-1s1.8.3 2.5 1" />
+      {/* Core proton hydronium nucleus */}
+      <circle cx="12" cy="15.5" r="1.25" fill="currentColor" />
+    </svg>
+  )
+}
+
+export function LogoSolutionLab({ className = '', ...props }) {
+  return (
+    <svg {...baseProps} {...props} className={className}>
+      {/* Volumetric Erlenmeyer flask rim and conical body */}
+      <path d="M9 2h6" />
+      <path d="M10 2v6L4.5 18.5A2 2 0 0 0 6.2 21.5h11.6a2 2 0 0 0 1.7-3L14 8V2" />
+      {/* Solution liquid meniscus */}
+      <path d="M7 14c1.5.8 3.5.8 5 0s3.5-.8 5 0" />
+      {/* Calibration graduation marks */}
+      <line x1="12.5" y1="5" x2="14" y2="5" />
+      <line x1="12" y1="7" x2="14" y2="7" />
+      {/* Dissolved solute crystals in solution */}
+      <circle cx="9" cy="18" r="1" fill="currentColor" />
+      <circle cx="14" cy="18.5" r="1" fill="currentColor" />
+      <circle cx="11.5" cy="16.5" r="1" fill="currentColor" />
+    </svg>
+  )
+}

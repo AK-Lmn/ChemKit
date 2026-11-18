@@ -7,8 +7,8 @@ import {
   calculateGasLawWithUnits,
 } from '../lib/gas-laws.js'
 import { formatNumber } from '../lib/format.js'
-import { Select } from '../components/Select.jsx'
-import { IconAlertCircle, IconRotateCcw } from '../components/Icons.jsx'
+import { Combobox } from '../components/Select.jsx'
+import { IconAlertCircle, IconRotateCcw, LogoGasLab } from '../components/Icons.jsx'
 
 function unitOptionsFor(kind) {
   if (kind === 'pressure') return PRESSURE_UNITS.map((u) => ({ value: u, label: u }))
@@ -86,11 +86,22 @@ export function GasLab() {
   return (
     <div className="ck-stack">
       <div className="ck-tool-header">
-        <h1 className="ck-tool-title">GasLab</h1>
-        <p className="ck-tool-subtitle">
-          Solve Boyle, Charles, Gay-Lussac, Avogadro, and Ideal Gas Law problems with automatic pressure, volume, and
-          temperature unit conversion.
-        </p>
+        <div className="ck-tool-header-identity">
+          <span className="ck-tool-header-mark" style={{ '--accent': '#5b9dff' }} aria-hidden="true">
+            <LogoGasLab />
+          </span>
+          <div>
+            <div className="ck-tool-badge-row">
+              <span className="ck-tool-badge-num">18</span>
+              <span className="ck-tool-badge-cat">Calculations</span>
+            </div>
+            <h1 className="ck-tool-title">GasLab</h1>
+            <p className="ck-tool-subtitle">
+              Solve Boyle, Charles, Gay-Lussac, Avogadro, and Ideal Gas Law problems with automatic pressure, volume, and
+              temperature unit conversion.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="ck-chip-row" role="group" aria-label="Choose gas law">
@@ -128,7 +139,7 @@ export function GasLab() {
             <label htmlFor="gas-solve-for" className="ck-label">
               Solve for
             </label>
-            <Select
+            <Combobox
               id="gas-solve-for"
               ariaLabel="Variable to solve for"
               value={String(solveIndex)}
@@ -173,7 +184,7 @@ export function GasLab() {
                       }}
                     />
                     {options.length > 1 ? (
-                      <Select
+                      <Combobox
                         id={`gas-unit-${variable.key}`}
                         compact
                         ariaLabel={`Unit for ${variable.label}`}

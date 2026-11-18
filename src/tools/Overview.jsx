@@ -2,16 +2,17 @@ import { useState } from 'react'
 import {
   IconArrowRight,
   IconAtom,
-  IconDroplet,
   IconExternalLink,
-  IconFlaskConical,
-  IconGauge,
   IconGithub,
   IconGraduationCap,
   IconListOrdered,
-  IconScale,
-  IconTable,
-  IconArrowLeftRight,
+  LogoChemBalancer,
+  LogoElementExplorer,
+  LogoGasLab,
+  LogoMoleMate,
+  LogoPhCalculator,
+  LogoSolutionLab,
+  LogoStoichiometry,
 } from '../components/Icons.jsx'
 
 const REPO_URL = 'https://github.com/AK-Lmn/ChemKit'
@@ -23,7 +24,7 @@ const TOOLS = [
     symbol: 'Ee',
     name: 'Element Explorer',
     category: 'Elements',
-    icon: IconTable,
+    icon: LogoElementExplorer,
     accent: '#4dd8e8',
     description: 'A full interactive periodic table for browsing, searching, and studying every element at a glance.',
     features: [
@@ -40,7 +41,7 @@ const TOOLS = [
     symbol: 'Mm',
     name: 'MoleMate',
     category: 'Calculations',
-    icon: IconAtom,
+    icon: LogoMoleMate,
     accent: '#a875ff',
     description: 'A mole calculator that turns mass and molar mass into moles and particle counts in one step.',
     features: [
@@ -57,7 +58,7 @@ const TOOLS = [
     symbol: 'Gl',
     name: 'GasLab',
     category: 'Calculations',
-    icon: IconGauge,
+    icon: LogoGasLab,
     accent: '#5b9dff',
     description: 'A guided gas laws calculator that walks you through the setup and shows the formula behind every answer.',
     features: [
@@ -74,7 +75,7 @@ const TOOLS = [
     symbol: 'Eb',
     name: 'Chemical Equation Balancer',
     category: 'Equations',
-    icon: IconScale,
+    icon: LogoChemBalancer,
     accent: '#ff8f70',
     description: 'Balance chemical equations and compare atom counts without trial-and-error guessing.',
     features: [
@@ -91,7 +92,7 @@ const TOOLS = [
     symbol: 'Ss',
     name: 'Stoichiometry Solver',
     category: 'Equations',
-    icon: IconArrowLeftRight,
+    icon: LogoStoichiometry,
     accent: '#d08cff',
     description: 'Use balanced equations to convert between moles and grams with guided stoichiometry steps.',
     features: [
@@ -108,7 +109,7 @@ const TOOLS = [
     symbol: 'pH',
     name: 'pH Calculator',
     category: 'Solutions',
-    icon: IconDroplet,
+    icon: LogoPhCalculator,
     accent: '#7ce6c4',
     description: 'Move between pH, pOH, and ion concentration instantly with a focused calculator built for quick conversions.',
     features: [
@@ -125,7 +126,7 @@ const TOOLS = [
     symbol: 'Sl',
     name: 'SolutionLab',
     category: 'Solutions',
-    icon: IconFlaskConical,
+    icon: LogoSolutionLab,
     accent: '#ffcf5a',
     description: 'Solve common solution concentration problems including molarity, dilution, mass concentration, and percent concentration.',
     features: [
@@ -139,13 +140,13 @@ const TOOLS = [
 ]
 
 const TOOL_GUIDE = [
-  { need: 'Need element data?', toolName: 'Element Explorer', toolId: 'elements' },
-  { need: 'Need moles or particles?', toolName: 'MoleMate', toolId: 'moles' },
-  { need: 'Need gas law variables?', toolName: 'GasLab', toolId: 'gas-laws' },
-  { need: 'Need to balance a chemical equation?', toolName: 'Chemical Equation Balancer', toolId: 'balancer' },
-  { need: 'Need mole or gram conversions from an equation?', toolName: 'Stoichiometry Solver', toolId: 'stoichiometry' },
-  { need: 'Need pH, pOH, or ion concentration?', toolName: 'pH Calculator', toolId: 'ph' },
-  { need: 'Need molarity, dilution, or percent concentration?', toolName: 'SolutionLab', toolId: 'solutions' },
+  { need: 'Need element data?', toolName: 'Element Explorer', toolId: 'elements', icon: LogoElementExplorer, accent: '#4dd8e8' },
+  { need: 'Need moles or particles?', toolName: 'MoleMate', toolId: 'moles', icon: LogoMoleMate, accent: '#a875ff' },
+  { need: 'Need gas law variables?', toolName: 'GasLab', toolId: 'gas-laws', icon: LogoGasLab, accent: '#5b9dff' },
+  { need: 'Need to balance a chemical equation?', toolName: 'Chemical Equation Balancer', toolId: 'balancer', icon: LogoChemBalancer, accent: '#ff8f70' },
+  { need: 'Need mole or gram conversions from an equation?', toolName: 'Stoichiometry Solver', toolId: 'stoichiometry', icon: LogoStoichiometry, accent: '#d08cff' },
+  { need: 'Need pH, pOH, or ion concentration?', toolName: 'pH Calculator', toolId: 'ph', icon: LogoPhCalculator, accent: '#7ce6c4' },
+  { need: 'Need molarity, dilution, or percent concentration?', toolName: 'SolutionLab', toolId: 'solutions', icon: LogoSolutionLab, accent: '#ffcf5a' },
 ]
 
 const WHY_CARDS = [
@@ -283,26 +284,33 @@ export function Overview({ onOpenTool }) {
         </div>
 
         <div className="guide-grid">
-          {TOOL_GUIDE.map((item, index) => (
-            <button
-              key={item.toolId}
-              type="button"
-              className="guide-item"
-              onClick={() => onOpenTool(item.toolId)}
-            >
-              <div className="guide-item-content">
-                <span className="guide-item-num">{String(index + 1).padStart(2, '0')}</span>
-                <p>
-                  <strong>{item.need}</strong>
-                  <br />
-                  Use {item.toolName}
-                </p>
-              </div>
-              <span className="guide-item-cta">
-                Open <IconArrowRight />
-              </span>
-            </button>
-          ))}
+          {TOOL_GUIDE.map((item, index) => {
+            const Icon = item.icon
+            return (
+              <button
+                key={item.toolId}
+                type="button"
+                className="guide-item"
+                style={{ '--accent': item.accent }}
+                onClick={() => onOpenTool(item.toolId)}
+              >
+                <div className="guide-item-content">
+                  <span className="guide-item-num">{String(index + 1).padStart(2, '0')}</span>
+                  <span className="guide-item-icon" aria-hidden="true">
+                    <Icon />
+                  </span>
+                  <p>
+                    <strong>{item.need}</strong>
+                    <br />
+                    Use {item.toolName}
+                  </p>
+                </div>
+                <span className="guide-item-cta">
+                  Open <IconArrowRight />
+                </span>
+              </button>
+            )
+          })}
         </div>
       </section>
 

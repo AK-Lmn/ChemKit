@@ -9,8 +9,8 @@ import {
 } from '../lib/solutions.js'
 import { formatNumber, formatTimeAgo } from '../lib/format.js'
 import { useLocalStorage } from '../hooks/useLocalStorage.js'
-import { Select } from '../components/Select.jsx'
-import { IconAlertCircle, IconRotateCcw, IconTrash } from '../components/Icons.jsx'
+import { Combobox } from '../components/Select.jsx'
+import { IconAlertCircle, IconRotateCcw, IconTrash, LogoSolutionLab } from '../components/Icons.jsx'
 
 const DILUTION_OPTIONS = DILUTION_VARS.map((v) => ({
   value: v.key,
@@ -123,11 +123,22 @@ export function SolutionLab() {
   return (
     <div className="ck-stack">
       <div className="ck-tool-header">
-        <h1 className="ck-tool-title">SolutionLab</h1>
-        <p className="ck-tool-subtitle">
-          Calculate molarity, moles, solution volume, dilutions (M1V1 = M2V2), mass concentration (g/L), and percent
-          concentrations (% w/w and % v/v).
-        </p>
+        <div className="ck-tool-header-identity">
+          <span className="ck-tool-header-mark" style={{ '--accent': '#ffcf5a' }} aria-hidden="true">
+            <LogoSolutionLab />
+          </span>
+          <div>
+            <div className="ck-tool-badge-row">
+              <span className="ck-tool-badge-num">20</span>
+              <span className="ck-tool-badge-cat">Solutions</span>
+            </div>
+            <h1 className="ck-tool-title">SolutionLab</h1>
+            <p className="ck-tool-subtitle">
+              Calculate molarity, moles, solution volume, dilutions (M1V1 = M2V2), mass concentration (g/L), and percent
+              concentrations (% w/w and % v/v).
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="ck-grid-sidebar">
@@ -176,7 +187,7 @@ export function SolutionLab() {
                 <label htmlFor="sol-dilution-solve" className="ck-label">
                   Unknown variable
                 </label>
-                <Select
+                <Combobox
                   id="sol-dilution-solve"
                   ariaLabel="Dilution variable to solve for"
                   value={dilutionSolveFor}
@@ -222,7 +233,7 @@ export function SolutionLab() {
                         autoComplete="off"
                       />
                       {hasUnitSelect ? (
-                        <Select
+                        <Combobox
                           id={`sol-unit-${field.key}`}
                           compact
                           ariaLabel={`Unit for ${field.label}`}
@@ -253,7 +264,7 @@ export function SolutionLab() {
                 <label htmlFor="sol-result-unit" className="ck-label">
                   Display volume result in
                 </label>
-                <Select
+                <Combobox
                   id="sol-result-unit"
                   ariaLabel="Volume result unit"
                   value={volumeResultUnit}
