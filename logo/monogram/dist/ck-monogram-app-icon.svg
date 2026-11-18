@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256"><title>ChemKit Monogram Catalyst</title><rect width="256" height="256" rx="57.6" fill="#111111"/><g transform="translate(-3.72 6.54) scale(0.964)" fill="none">
+  
+  <!-- Reaction Node (exact 45° angle) -->
+  <circle cx="201" cy="78" r="18" fill="#00C853" />
+  <!-- Stem of k -->
+  <line x1="145" y1="48" x2="145" y2="204" stroke="#00C853" stroke-width="26" stroke-linecap="round" />
+  <!-- Upper Branch (exact 45° angle) -->
+  <line x1="145" y1="134" x2="201" y2="78" stroke="#00C853" stroke-width="24" stroke-linecap="round" />
+  <!-- Lower Branch (exact 45° angle) -->
+  <line x1="145" y1="146" x2="203" y2="204" stroke="#00C853" stroke-width="24" stroke-linecap="round" />
+  <!-- Lowercase c Bowl -->
+  <path
+    d="M 123 100 A 46 46 0 1 0 123 180"
+    stroke="#00C853"
+    stroke-width="26"
+    stroke-linecap="round"
+  />
+  <!-- Catalyst Droplet -->
+  <circle cx="83" cy="140" r="16" fill="#00C853" />
+  <!-- Bond Connector -->
+  <line x1="121" y1="140" x2="145" y2="140" stroke="#00C853" stroke-width="18" stroke-linecap="round" />
+</g></svg>

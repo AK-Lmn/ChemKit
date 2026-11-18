@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" fill="none"><title>ChemKit Monogram Catalyst</title>
+  
+  <!-- Molecular Reaction Node on upper-k arm (Catalyst Emerald) -->
+  <circle cx="200" cy="74" r="16" fill="#00c853" />
+  <!-- Stem of lowercase k / Test Tube Neck -->
+  <line x1="140" y1="46" x2="140" y2="206" stroke="#00c853" stroke-width="22" stroke-linecap="round" />
+  <!-- Upper Branch of k (Reaction Bond) -->
+  <line x1="140" y1="134" x2="196" y2="78" stroke="#00c853" stroke-width="20" stroke-linecap="round" />
+  <!-- Lower Branch of k (Ground Leg) -->
+  <line x1="140" y1="146" x2="200" y2="206" stroke="#00c853" stroke-width="20" stroke-linecap="round" />
+  <!-- Lowercase c (Orbital Meniscus Bowl) -->
+  <path
+    d="M 116 104 A 46 46 0 1 0 116 176"
+    stroke="#00c853"
+    stroke-width="22"
+    stroke-linecap="round"
+  />
+  <!-- Chemistry Droplet / Catalyst Core inside c -->
+  <circle cx="80" cy="140" r="14" fill="#00c853" />
+  <!-- Bond Connector between c and k -->
+  <line x1="120" y1="140" x2="140" y2="140" stroke="#00c853" stroke-width="14" stroke-linecap="round" />
+</svg>

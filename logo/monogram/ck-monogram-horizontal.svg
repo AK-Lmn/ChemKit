@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 120" width="540" height="120" fill="none">
+  <title>ChemKit Monogram Catalyst Horizontal Lockup</title>
+  <!-- Monogram Symbol -->
+  <g transform="translate(14, 10) scale(0.39)">
+    <circle cx="200" cy="74" r="16" fill="#00C853" />
+    <line x1="140" y1="46" x2="140" y2="206" stroke="#111111" stroke-width="22" stroke-linecap="round" />
+    <line x1="140" y1="134" x2="196" y2="78" stroke="#00C853" stroke-width="20" stroke-linecap="round" />
+    <line x1="140" y1="146" x2="200" y2="206" stroke="#111111" stroke-width="20" stroke-linecap="round" />
+    <path d="M 116 104 A 46 46 0 1 0 116 176" stroke="#111111" stroke-width="22" stroke-linecap="round" />
+    <circle cx="80" cy="140" r="14" fill="#00C853" />
+    <line x1="120" y1="140" x2="140" y2="140" stroke="#111111" stroke-width="14" stroke-linecap="round" />
+  </g>
+  <!-- Wordmark -->
+  <text x="132" y="66" fill="#111111" font-family="'Archivo', 'Plus Jakarta Sans', system-ui, sans-serif" font-size="44" font-weight="900" letter-spacing="-1">Chem<tspan fill="#00C853">Kit</tspan></text>
+  <text x="134" y="90" fill="#666666" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="3.5">CHEMISTRY TOOLKIT</text>
+</svg>

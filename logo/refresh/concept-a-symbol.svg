@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" fill="none">
+  <title>ChemKit - Concept A: The Buoyant Flask</title>
+  <!-- Eureka Reaction Spark -->
+  <path
+    d="M 128 26 Q 128 44 146 44 Q 128 44 128 62 Q 128 44 110 44 Q 128 44 128 26 Z"
+    fill="#111111"
+  />
+  <!-- Flask Neck Lip -->
+  <path
+    d="M 106 78 L 150 78"
+    stroke="#111111"
+    stroke-width="16"
+    stroke-linecap="round"
+  />
+  <!-- Flask Body Outline (exact 60°/120° geometric cone) -->
+  <path
+    d="M 114 78 L 114 104 L 61 196 C 55 206 61 218 75 218 L 181 218 C 195 218 201 206 195 196 L 142 104 L 142 78"
+    stroke="#111111"
+    stroke-width="16"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <!-- Smiling Liquid Meniscus -->
+  <path
+    d="M 76 166 Q 128 186 180 166 L 188 188 C 193 198 189 206 178 206 L 78 206 C 67 206 63 198 68 188 Z"
+    fill="#111111"
+  />
+  <!-- Friendly Rising Bubble -->
+  <circle cx="128" cy="128" r="10" fill="#111111" />
+</svg>

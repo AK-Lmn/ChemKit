@@ -1,0 +1,30 @@
+{
+  "brand": "ChemKit",
+  "tagline": "The Chemistry Toolkit for STEM Students",
+  "brief": "A set of interactive tools for incoming STEM and chemistry students that feels fun, empowering, and helpful.",
+  "adjectives": ["fun", "helpful", "accessible", "modern", "energetic"],
+  "industry": "software",
+  "mockups": ["readme", "terminal", "app-icon", "website", "sticker", "badge"],
+  "nav": ["Elements", "Moles", "Gas Laws", "Balancer", "Stoichiometry"],
+  "brand_color": "#00C853",
+  "tile_color": "#111111",
+  "greyscale": false,
+  "final": true,
+  "round": 1,
+  "concepts": [
+    {
+      "name": "Monogram Catalyst (Ck)",
+      "symbol": "ck-monogram-symbol.svg",
+      "lockup": "ck-monogram-horizontal.svg",
+      "stacked": "ck-monogram-stacked.svg",
+      "avatar": "ck-monogram-symbol-small.svg",
+      "idea": "Interlocking lowercase Ck letterforms where the k branches into an energetic molecular bond node.",
+      "rationale": [
+        "Instant recognition as a developer-grade STEM tool rather than a generic clip-art beaker.",
+        "The c forms a smiling meniscus bowl while the k ascender acts as a test tube with a 45° catalytic bond node.",
+        "Engineered for sub-16px resilience on favicons, stickers, and mobile app home screens."
+      ]
+    }
+  ],
+  "recommendation": "Concept B (Monogram Catalyst) establishes ChemKit as a premier, modern scientific utility with an iconic Ck monogram that students will proudly stick on laptops and notebooks."
+}

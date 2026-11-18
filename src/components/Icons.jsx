@@ -15,27 +15,25 @@ export function ChemKitMark({ className = '' }) {
     <svg viewBox="0 0 256 256" className={className} fill="none" aria-hidden="true">
       <rect width="256" height="256" rx="56" fill="var(--surface, #1E1E1E)" stroke="var(--border-strong, #111111)" strokeWidth="8" />
       <g transform="translate(18 16) scale(0.86)">
-        {/* Flask Conical Body */}
+        {/* Molecular Reaction Node on upper-k arm (Catalyst Emerald) */}
+        <circle cx="200" cy="74" r="16" fill="var(--accent, #00C853)" />
+        {/* Stem of lowercase k / Test Tube Neck */}
+        <line x1="140" y1="46" x2="140" y2="206" stroke="var(--ink, #111111)" strokeWidth="22" strokeLinecap="round" />
+        {/* Upper Branch of k (Reaction Bond) */}
+        <line x1="140" y1="134" x2="196" y2="78" stroke="var(--accent, #00C853)" strokeWidth="20" strokeLinecap="round" />
+        {/* Lower Branch of k (Ground Leg) */}
+        <line x1="140" y1="146" x2="200" y2="206" stroke="var(--ink, #111111)" strokeWidth="20" strokeLinecap="round" />
+        {/* Lowercase c (Orbital Meniscus Bowl) */}
         <path
-          d="M 104 32 L 152 32 M 112 32 L 112 80 L 48 190.85 C 44 197.78 44 206 50 216.39 C 56 224 66 224 76 224 L 180 224 C 190 224 200 224 206 216.39 C 212 206 212 197.78 208 190.85 L 144 80 L 144 32"
-          stroke="var(--accent, #00C853)"
-          strokeWidth="16"
+          d="M 116 104 A 46 46 0 1 0 116 176"
+          stroke="var(--ink, #111111)"
+          strokeWidth="22"
           strokeLinecap="round"
-          strokeLinejoin="round"
         />
-        {/* Liquid Meniscus */}
-        <path
-          d="M 74 156 C 96 148 120 162 148 156 C 166 152 176 154 182 156 L 198 184 C 204 196 196 208 182 208 L 74 208 C 60 208 52 196 58 184 Z"
-          fill="var(--accent, #00C853)"
-        />
-        {/* Rising Reaction Bubbles */}
-        <circle cx="128" cy="112" r="12" fill="var(--accent, #00C853)" />
-        <circle cx="140" cy="70" r="8" fill="var(--accent, #00C853)" />
-        <circle cx="116" cy="140" r="6" fill="#FFFFFF" />
-        {/* Graduation Measurement Marks */}
-        <line x1="86" y1="180" x2="106" y2="180" stroke="#FFFFFF" strokeWidth="6" strokeLinecap="round" />
-        <line x1="96" y1="156" x2="116" y2="156" stroke="var(--accent, #00C853)" strokeWidth="6" strokeLinecap="round" />
-        <line x1="106" y1="132" x2="122" y2="132" stroke="var(--accent, #00C853)" strokeWidth="6" strokeLinecap="round" />
+        {/* Chemistry Droplet / Catalyst Core inside c */}
+        <circle cx="80" cy="140" r="14" fill="var(--accent, #00C853)" />
+        {/* Bond Connector between c and k */}
+        <line x1="120" y1="140" x2="140" y2="140" stroke="var(--ink, #111111)" strokeWidth="14" strokeLinecap="round" />
       </g>
     </svg>
   )
