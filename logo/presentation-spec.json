@@ -1,0 +1,37 @@
+{
+  "brand": "ChemKit",
+  "tagline": "Chemistry feels lighter with the right tools",
+  "brief": "A modern, student-built chemistry toolkit unifying seven interactive calculators (Element Explorer, MoleMate, GasLab, Equation Balancer, Stoichiometry, pH Calculator, SolutionLab) into one fast, accessible web suite.",
+  "adjectives": ["precise", "weightless", "scientific", "modern", "accessible"],
+  "criteria": "Success: immediate chemistry recognisability down to 16px, distinctive from generic textbook clip-art, scalable across dark & light surfaces, cohesive foundation for tool sub-marks.",
+  "industry": "software",
+  "nav": ["Elements", "Moles", "Gas Laws", "Balancer", "Solutions"],
+  "brand_color": "#38d9e8",
+  "tile_color": "#080d16",
+  "greyscale": false,
+  "final": true,
+  "round": 2,
+  "concepts": [
+    {
+      "name": "Kinetic Orbitals",
+      "symbol": "final/chemkit-symbol.svg",
+      "lockup": "final/chemkit-horizontal.svg",
+      "stacked": "final/chemkit-stacked.svg",
+      "symbol_on_dark": "final/dist/chemkit-symbol-mono-38d9e8.svg",
+      "lockup_on_dark": "final/dist/chemkit-horizontal-mono-38d9e8.svg",
+      "idea": "A dense central carbon nucleus encircled by triple intersecting orbital energy shells with symmetric orbital nodes.",
+      "rationale": [
+        "Direct homage to Carbon (atomic number 06, element symbol Ck), the foundational backbone of organic chemistry.",
+        "Perfect rotational symmetry at 0, 60, and 120 degrees provides instant recognition.",
+        "Engineered with a dedicated small-size cut that remains tack-sharp at 16px and 32px favicon scales.",
+        "Harmonizes naturally with the seven domain-specific tool sub-marks across the ChemKit suite."
+      ]
+    }
+  ],
+  "recommendation": "Kinetic Orbitals — the strongest, most timeless scientific mark. Distinctive on dark mode, clean in monochrome, and scales effortlessly from 16px tab favicon to large-format signage.",
+  "next_steps": [
+    "Integrated live into ChemKit web app header, landing page, and PWA manifest",
+    "Production brand assets exported to logo/final/dist/",
+    "Brand guidelines documented in logo/BRAND_GUIDELINES.md"
+  ]
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" fill="none">
+  <title>ChemKit Logo Small Size Cut</title>
+  <!-- Bold Nucleus Core for 16-32px scale -->
+  <circle cx="128" cy="128" r="36" fill="#000000" />
+  <!-- Two High-Contrast Orbital Rings (60 and 120 deg) with heavy 22px stroke -->
+  <ellipse cx="128" cy="128" rx="92" ry="46" stroke="#000000" stroke-width="22" />
+  <ellipse cx="128" cy="128" rx="92" ry="46" transform="rotate(90 128 128)" stroke="#000000" stroke-width="22" />
+  <!-- Prominent Cardinal Nodes -->
+  <circle cx="220" cy="128" r="18" fill="#000000" />
+  <circle cx="36" cy="128" r="18" fill="#000000" />
+  <circle cx="128" cy="36" r="18" fill="#000000" />
+  <circle cx="128" cy="220" r="18" fill="#000000" />
+</svg>
