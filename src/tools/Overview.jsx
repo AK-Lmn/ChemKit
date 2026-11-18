@@ -26,7 +26,7 @@ const TOOLS = [
     name: 'Element Explorer',
     category: 'Elements',
     icon: LogoElementExplorer,
-    accent: '#00C853',
+    accent: 'var(--tool-elements-accent, #00C853)',
     description: 'Interactive periodic table with atomic weights, electron configurations, and group properties.',
     features: [
       'Search by element name or symbol',
@@ -43,7 +43,7 @@ const TOOLS = [
     name: 'MoleMate',
     category: 'Calculations',
     icon: LogoMoleMate,
-    accent: '#00C853',
+    accent: 'var(--tool-moles-accent, #D500F9)',
     description: 'Convert between sample mass, moles, and particle counts from any chemical formula.',
     features: [
       'Calculates molar mass from formulas',
@@ -60,7 +60,7 @@ const TOOLS = [
     name: 'GasLab',
     category: 'Calculations',
     icon: LogoGasLab,
-    accent: '#00C853',
+    accent: 'var(--tool-gas-accent, #FF9100)',
     description: "Solve Boyle's, Charles's, Gay-Lussac's, Avogadro's, and Ideal Gas Law problems with unit conversions.",
     features: [
       'Select which variable to solve for',
@@ -77,7 +77,7 @@ const TOOLS = [
     name: 'Chemical Equation Balancer',
     category: 'Equations',
     icon: LogoChemBalancer,
-    accent: '#00C853',
+    accent: 'var(--tool-balancer-accent, #2979FF)',
     description: 'Balance reactions and compare atom counts across reactants and products.',
     features: [
       'Handles parentheses and polyatomic ions',
@@ -94,7 +94,7 @@ const TOOLS = [
     name: 'Stoichiometry Solver',
     category: 'Equations',
     icon: LogoStoichiometry,
-    accent: '#00C853',
+    accent: 'var(--tool-stoich-accent, #FFD600)',
     description: 'Convert moles and grams between compounds using mole ratios from balanced equations.',
     features: [
       'Mole-to-mole and gram-to-gram conversions',
@@ -111,7 +111,7 @@ const TOOLS = [
     name: 'pH Calculator',
     category: 'Solutions',
     icon: LogoPhCalculator,
-    accent: '#00C853',
+    accent: 'var(--tool-ph-accent, #FF4081)',
     description: 'Convert between pH, pOH, [H+], and [OH-], or solve weak acid and base dissociation.',
     features: [
       'Convert between pH and pOH',
@@ -128,7 +128,7 @@ const TOOLS = [
     name: 'SolutionLab',
     category: 'Solutions',
     icon: LogoSolutionLab,
-    accent: '#00C853',
+    accent: 'var(--tool-solution-accent, #00E5FF)',
     description: 'Calculate molarity, dilution (M1V1 = M2V2), mass concentration, and percentage concentrations.',
     features: [
       'Molarity from moles or mass and volume',
@@ -141,13 +141,13 @@ const TOOLS = [
 ]
 
 const TOOL_GUIDE = [
-  { need: 'Need element data?', toolName: 'Element Explorer', toolId: 'elements', icon: LogoElementExplorer, accent: '#00C853' },
-  { need: 'Need moles or particles?', toolName: 'MoleMate', toolId: 'moles', icon: LogoMoleMate, accent: '#00C853' },
-  { need: 'Need gas law variables?', toolName: 'GasLab', toolId: 'gas-laws', icon: LogoGasLab, accent: '#00C853' },
-  { need: 'Need to balance a chemical equation?', toolName: 'Chemical Equation Balancer', toolId: 'balancer', icon: LogoChemBalancer, accent: '#00C853' },
-  { need: 'Need mole or gram conversions from an equation?', toolName: 'Stoichiometry Solver', toolId: 'stoichiometry', icon: LogoStoichiometry, accent: '#00C853' },
-  { need: 'Need pH, pOH, or ion concentration?', toolName: 'pH Calculator', toolId: 'ph', icon: LogoPhCalculator, accent: '#00C853' },
-  { need: 'Need molarity, dilution, or percent concentration?', toolName: 'SolutionLab', toolId: 'solutions', icon: LogoSolutionLab, accent: '#00C853' },
+  { need: 'Need element data?', toolName: 'Element Explorer', toolId: 'elements', icon: LogoElementExplorer, accent: 'var(--tool-elements-accent, #00C853)' },
+  { need: 'Need moles or particles?', toolName: 'MoleMate', toolId: 'moles', icon: LogoMoleMate, accent: 'var(--tool-moles-accent, #D500F9)' },
+  { need: 'Need gas law variables?', toolName: 'GasLab', toolId: 'gas-laws', icon: LogoGasLab, accent: 'var(--tool-gas-accent, #FF9100)' },
+  { need: 'Need to balance a chemical equation?', toolName: 'Chemical Equation Balancer', toolId: 'balancer', icon: LogoChemBalancer, accent: 'var(--tool-balancer-accent, #2979FF)' },
+  { need: 'Need mole or gram conversions from an equation?', toolName: 'Stoichiometry Solver', toolId: 'stoichiometry', icon: LogoStoichiometry, accent: 'var(--tool-stoich-accent, #FFD600)' },
+  { need: 'Need pH, pOH, or ion concentration?', toolName: 'pH Calculator', toolId: 'ph', icon: LogoPhCalculator, accent: 'var(--tool-ph-accent, #FF4081)' },
+  { need: 'Need molarity, dilution, or percent concentration?', toolName: 'SolutionLab', toolId: 'solutions', icon: LogoSolutionLab, accent: 'var(--tool-solution-accent, #00E5FF)' },
 ]
 
 const WHY_CARDS = [
@@ -349,7 +349,7 @@ export function Overview({ onOpenTool }) {
                 </div>
 
                 <div className="card-identity">
-                  <div className="tool-icon">
+                  <div className={`tool-icon tool-icon-${tool.id}`}>
                     <Icon />
                   </div>
                   <strong>{tool.symbol}</strong>

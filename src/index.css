@@ -76,6 +76,56 @@
   --story-sub: #333333;
   --story-eyebrow: #007A33;
 
+  /* Tool Domain Color System (Dark Mode - Neon Luminescence) */
+  --tool-elements-accent: #00E676;
+  --tool-elements-sec: #00E5FF;
+  --tool-elements-base: #FFFFFF;
+  --tool-elements-bg: rgba(0, 230, 118, 0.12);
+  --tool-elements-border: rgba(0, 230, 118, 0.35);
+  --tool-elements-glow: rgba(0, 230, 118, 0.35);
+
+  --tool-moles-accent: #E040FB;
+  --tool-moles-sec: #7C4DFF;
+  --tool-moles-base: #FFFFFF;
+  --tool-moles-bg: rgba(224, 64, 251, 0.12);
+  --tool-moles-border: rgba(224, 64, 251, 0.35);
+  --tool-moles-glow: rgba(224, 64, 251, 0.35);
+
+  --tool-gas-accent: #FF9100;
+  --tool-gas-sec: #FF5252;
+  --tool-gas-base: #FFFFFF;
+  --tool-gas-bg: rgba(255, 145, 0, 0.12);
+  --tool-gas-border: rgba(255, 145, 0, 0.35);
+  --tool-gas-glow: rgba(255, 145, 0, 0.35);
+
+  --tool-balancer-accent: #2979FF;
+  --tool-balancer-sec: #00E5FF;
+  --tool-balancer-base: #FFFFFF;
+  --tool-balancer-bg: rgba(41, 121, 255, 0.12);
+  --tool-balancer-border: rgba(41, 121, 255, 0.35);
+  --tool-balancer-glow: rgba(41, 121, 255, 0.35);
+
+  --tool-stoich-accent: #FFD600;
+  --tool-stoich-sec: #FF6D00;
+  --tool-stoich-base: #FFFFFF;
+  --tool-stoich-bg: rgba(255, 214, 0, 0.12);
+  --tool-stoich-border: rgba(255, 214, 0, 0.35);
+  --tool-stoich-glow: rgba(255, 214, 0, 0.35);
+
+  --tool-ph-accent: #FF4081;
+  --tool-ph-sec: #7C4DFF;
+  --tool-ph-base: #FFFFFF;
+  --tool-ph-bg: rgba(255, 64, 129, 0.12);
+  --tool-ph-border: rgba(255, 64, 129, 0.35);
+  --tool-ph-glow: rgba(255, 64, 129, 0.35);
+
+  --tool-solution-accent: #00E5FF;
+  --tool-solution-sec: #00E676;
+  --tool-solution-base: #FFFFFF;
+  --tool-solution-bg: rgba(0, 229, 255, 0.12);
+  --tool-solution-border: rgba(0, 229, 255, 0.35);
+  --tool-solution-glow: rgba(0, 229, 255, 0.35);
+
   /* Spacing & Radii */
   --radius-sm: 6px;
   --radius-md: 11px;
@@ -172,6 +222,56 @@
   --story-ink: #FFFFFF;
   --story-sub: #D6D6D6;
   --story-eyebrow: #00C853;
+
+  /* Tool Domain Color System (Light Mode - Rich Laboratory Pigments) */
+  --tool-elements-accent: #008744;
+  --tool-elements-sec: #0077B6;
+  --tool-elements-base: #1E293B;
+  --tool-elements-bg: #E6F9F0;
+  --tool-elements-border: rgba(0, 135, 68, 0.3);
+  --tool-elements-glow: rgba(0, 135, 68, 0.18);
+
+  --tool-moles-accent: #8E24AA;
+  --tool-moles-sec: #5E35B1;
+  --tool-moles-base: #1E293B;
+  --tool-moles-bg: #F5E8FB;
+  --tool-moles-border: rgba(142, 36, 170, 0.3);
+  --tool-moles-glow: rgba(142, 36, 170, 0.18);
+
+  --tool-gas-accent: #E65100;
+  --tool-gas-sec: #C62828;
+  --tool-gas-base: #1E293B;
+  --tool-gas-bg: #FFF3E0;
+  --tool-gas-border: rgba(230, 81, 0, 0.3);
+  --tool-gas-glow: rgba(230, 81, 0, 0.18);
+
+  --tool-balancer-accent: #1565C0;
+  --tool-balancer-sec: #00838F;
+  --tool-balancer-base: #1E293B;
+  --tool-balancer-bg: #E3F2FD;
+  --tool-balancer-border: rgba(21, 101, 192, 0.3);
+  --tool-balancer-glow: rgba(21, 101, 192, 0.18);
+
+  --tool-stoich-accent: #B27B00;
+  --tool-stoich-sec: #D84315;
+  --tool-stoich-base: #1E293B;
+  --tool-stoich-bg: #FFFDE7;
+  --tool-stoich-border: rgba(178, 123, 0, 0.32);
+  --tool-stoich-glow: rgba(178, 123, 0, 0.18);
+
+  --tool-ph-accent: #C2185B;
+  --tool-ph-sec: #512DA8;
+  --tool-ph-base: #1E293B;
+  --tool-ph-bg: #FCE4EC;
+  --tool-ph-border: rgba(194, 24, 91, 0.3);
+  --tool-ph-glow: rgba(194, 24, 91, 0.18);
+
+  --tool-solution-accent: #00838F;
+  --tool-solution-sec: #2E7D32;
+  --tool-solution-base: #1E293B;
+  --tool-solution-bg: #E0F7FA;
+  --tool-solution-border: rgba(0, 131, 143, 0.3);
+  --tool-solution-glow: rgba(0, 131, 143, 0.18);
 }
 
 * {
@@ -451,8 +551,8 @@ button {
 }
 
 .ck-tab svg {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
 }
 
@@ -497,27 +597,27 @@ button {
 }
 
 .ck-tool-header-mark {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   border-radius: var(--radius-lg);
-  border: 1px solid color-mix(in srgb, var(--accent, var(--accent-primary)) 32%, transparent);
-  background: radial-gradient(100% 100% at 30% 30%, color-mix(in srgb, var(--accent, var(--accent-primary)) 18%, transparent), var(--bg-surface));
-  color: var(--accent, var(--accent-primary));
+  border: 1.5px solid var(--tool-border, color-mix(in srgb, var(--accent, var(--accent-primary)) 32%, transparent));
+  background: var(--tool-bg, radial-gradient(100% 100% at 30% 30%, color-mix(in srgb, var(--accent, var(--accent-primary)) 18%, transparent), var(--bg-surface)));
+  color: var(--tool-accent, var(--accent, var(--accent-primary)));
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  box-shadow: 0 8px 24px -12px var(--accent, var(--accent-primary));
+  box-shadow: 0 8px 24px -10px var(--tool-glow, var(--accent, var(--accent-primary)));
   transition: transform var(--dur-normal) var(--ease-out), box-shadow var(--dur-normal) var(--ease-out);
 }
 
 .ck-tool-header-mark:hover {
   transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 12px 28px -10px var(--accent, var(--accent-primary));
+  box-shadow: 0 12px 28px -8px var(--tool-glow, var(--accent, var(--accent-primary)));
 }
 
 .ck-tool-header-mark svg {
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
 }
 
 .ck-tool-badge-row {
@@ -1684,12 +1784,12 @@ button.ck-history-item:hover {
 }
 
 .guide-item-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-sm);
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-  background: color-mix(in srgb, var(--accent) 10%, transparent);
-  color: var(--accent);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--tool-border, color-mix(in srgb, var(--accent) 30%, transparent));
+  background: var(--tool-bg, color-mix(in srgb, var(--accent) 10%, transparent));
+  color: var(--tool-accent, var(--accent));
   display: grid;
   place-items: center;
   flex-shrink: 0;
@@ -1697,8 +1797,8 @@ button.ck-history-item:hover {
 }
 
 .guide-item-icon svg {
-  width: 17px;
-  height: 17px;
+  width: 26px;
+  height: 26px;
 }
 
 .guide-item p {
@@ -1790,7 +1890,8 @@ button.ck-history-item:hover {
 }
 
 .tool-card:hover .tool-icon {
-  transform: translateY(-2px) scale(1.08);
+  transform: translateY(-4px) scale(1.06);
+  box-shadow: 0 10px 28px -6px var(--tool-glow, rgba(0, 200, 83, 0.45));
 }
 
 .card-top,
@@ -1818,20 +1919,22 @@ button.ck-history-item:hover {
 }
 
 .tool-icon {
-  width: 48px;
-  height: 48px;
+  width: 72px;
+  height: 72px;
   display: grid;
   place-items: center;
-  border: 2px solid var(--border-strong);
-  border-radius: 12px;
-  color: var(--bg);
-  background: var(--ink);
-  transition: transform var(--dur-normal) var(--ease-out), box-shadow var(--dur-normal) var(--ease-out);
+  border: 1.5px solid var(--tool-border, var(--border));
+  border-radius: 18px;
+  background: var(--tool-bg, var(--surface-2));
+  color: var(--tool-accent, var(--accent));
+  box-shadow: 0 4px 18px -4px var(--tool-glow, rgba(0, 0, 0, 0.4));
+  transition: transform var(--dur-normal) var(--ease-out), box-shadow var(--dur-normal) var(--ease-out),
+    background-color 200ms, border-color 200ms;
 }
 
 .tool-icon svg {
-  width: 22px;
-  height: 22px;
+  width: 42px;
+  height: 42px;
 }
 
 .card-identity > strong {
@@ -2998,6 +3101,178 @@ button.ck-history-item:hover {
 }
 
 /* ==========================================================================
+   Tool Domain Dynamic Theme & Color Binding System
+   ========================================================================== */
+
+/* 1. Element Explorer */
+:is(
+  .tool-icon-elements,
+  .ck-tool-elements,
+  .tool-icon:has(.ck-icon-explorer),
+  .ck-tool-header-mark:has(.ck-icon-explorer),
+  .ck-tab:has(.ck-icon-explorer),
+  .ck-palette-item:has(.ck-icon-explorer),
+  .guide-item:has(.ck-icon-explorer)
+) {
+  --tool-accent: var(--tool-elements-accent);
+  --tool-sec: var(--tool-elements-sec);
+  --tool-base: var(--tool-elements-base);
+  --tool-bg: var(--tool-elements-bg);
+  --tool-border: var(--tool-elements-border);
+  --tool-glow: var(--tool-elements-glow);
+}
+
+.ck-icon-explorer {
+  --tool-accent: var(--tool-elements-accent);
+  --tool-sec: var(--tool-elements-sec);
+  --tool-base: var(--tool-elements-base);
+}
+
+/* 2. MoleMate */
+:is(
+  .tool-icon-moles,
+  .ck-tool-moles,
+  .tool-icon:has(.ck-icon-molemate),
+  .ck-tool-header-mark:has(.ck-icon-molemate),
+  .ck-tab:has(.ck-icon-molemate),
+  .ck-palette-item:has(.ck-icon-molemate),
+  .guide-item:has(.ck-icon-molemate)
+) {
+  --tool-accent: var(--tool-moles-accent);
+  --tool-sec: var(--tool-moles-sec);
+  --tool-base: var(--tool-moles-base);
+  --tool-bg: var(--tool-moles-bg);
+  --tool-border: var(--tool-moles-border);
+  --tool-glow: var(--tool-moles-glow);
+}
+
+.ck-icon-molemate {
+  --tool-accent: var(--tool-moles-accent);
+  --tool-sec: var(--tool-moles-sec);
+  --tool-base: var(--tool-moles-base);
+}
+
+/* 3. GasLab */
+:is(
+  .tool-icon-gas-laws,
+  .ck-tool-gas-laws,
+  .tool-icon:has(.ck-icon-gaslab),
+  .ck-tool-header-mark:has(.ck-icon-gaslab),
+  .ck-tab:has(.ck-icon-gaslab),
+  .ck-palette-item:has(.ck-icon-gaslab),
+  .guide-item:has(.ck-icon-gaslab)
+) {
+  --tool-accent: var(--tool-gas-accent);
+  --tool-sec: var(--tool-gas-sec);
+  --tool-base: var(--tool-gas-base);
+  --tool-bg: var(--tool-gas-bg);
+  --tool-border: var(--tool-gas-border);
+  --tool-glow: var(--tool-gas-glow);
+}
+
+.ck-icon-gaslab {
+  --tool-accent: var(--tool-gas-accent);
+  --tool-sec: var(--tool-gas-sec);
+  --tool-base: var(--tool-gas-base);
+}
+
+/* 4. ChemBalancer */
+:is(
+  .tool-icon-balancer,
+  .ck-tool-balancer,
+  .tool-icon:has(.ck-icon-balancer),
+  .ck-tool-header-mark:has(.ck-icon-balancer),
+  .ck-tab:has(.ck-icon-balancer),
+  .ck-palette-item:has(.ck-icon-balancer),
+  .guide-item:has(.ck-icon-balancer)
+) {
+  --tool-accent: var(--tool-balancer-accent);
+  --tool-sec: var(--tool-balancer-sec);
+  --tool-base: var(--tool-balancer-base);
+  --tool-bg: var(--tool-balancer-bg);
+  --tool-border: var(--tool-balancer-border);
+  --tool-glow: var(--tool-balancer-glow);
+}
+
+.ck-icon-balancer {
+  --tool-accent: var(--tool-balancer-accent);
+  --tool-sec: var(--tool-balancer-sec);
+  --tool-base: var(--tool-balancer-base);
+}
+
+/* 5. Stoichiometry Solver */
+:is(
+  .tool-icon-stoichiometry,
+  .ck-tool-stoichiometry,
+  .tool-icon:has(.ck-icon-stoich),
+  .ck-tool-header-mark:has(.ck-icon-stoich),
+  .ck-tab:has(.ck-icon-stoich),
+  .ck-palette-item:has(.ck-icon-stoich),
+  .guide-item:has(.ck-icon-stoich)
+) {
+  --tool-accent: var(--tool-stoich-accent);
+  --tool-sec: var(--tool-stoich-sec);
+  --tool-base: var(--tool-stoich-base);
+  --tool-bg: var(--tool-stoich-bg);
+  --tool-border: var(--tool-stoich-border);
+  --tool-glow: var(--tool-stoich-glow);
+}
+
+.ck-icon-stoich {
+  --tool-accent: var(--tool-stoich-accent);
+  --tool-sec: var(--tool-stoich-sec);
+  --tool-base: var(--tool-stoich-base);
+}
+
+/* 6. pH Calculator */
+:is(
+  .tool-icon-ph,
+  .ck-tool-ph,
+  .tool-icon:has(.ck-icon-ph),
+  .ck-tool-header-mark:has(.ck-icon-ph),
+  .ck-tab:has(.ck-icon-ph),
+  .ck-palette-item:has(.ck-icon-ph),
+  .guide-item:has(.ck-icon-ph)
+) {
+  --tool-accent: var(--tool-ph-accent);
+  --tool-sec: var(--tool-ph-sec);
+  --tool-base: var(--tool-ph-base);
+  --tool-bg: var(--tool-ph-bg);
+  --tool-border: var(--tool-ph-border);
+  --tool-glow: var(--tool-ph-glow);
+}
+
+.ck-icon-ph {
+  --tool-accent: var(--tool-ph-accent);
+  --tool-sec: var(--tool-ph-sec);
+  --tool-base: var(--tool-ph-base);
+}
+
+/* 7. SolutionLab */
+:is(
+  .tool-icon-solutions,
+  .ck-tool-solutions,
+  .tool-icon:has(.ck-icon-solution),
+  .ck-tool-header-mark:has(.ck-icon-solution),
+  .ck-tab:has(.ck-icon-solution),
+  .ck-palette-item:has(.ck-icon-solution),
+  .guide-item:has(.ck-icon-solution)
+) {
+  --tool-accent: var(--tool-solution-accent);
+  --tool-sec: var(--tool-solution-sec);
+  --tool-base: var(--tool-solution-base);
+  --tool-bg: var(--tool-solution-bg);
+  --tool-border: var(--tool-solution-border);
+  --tool-glow: var(--tool-solution-glow);
+}
+
+.ck-icon-solution {
+  --tool-accent: var(--tool-solution-accent);
+  --tool-sec: var(--tool-solution-sec);
+  --tool-base: var(--tool-solution-base);
+}
+
+/* ==========================================================================
    Tool Micro-Animations & Interactive Icon Physics
    ========================================================================== */
 
@@ -3020,7 +3295,7 @@ button.ck-history-item:hover {
   }
   50% {
     transform: scale(1.3);
-    filter: drop-shadow(0 0 3px var(--accent));
+    filter: drop-shadow(0 0 4px var(--tool-sec));
   }
 }
 
@@ -3149,13 +3424,13 @@ button.ck-history-item:hover {
 
 /* 5. Stoichiometry Solver: Reactant to product energy transfer */
 @keyframes ck-compound-flash-left {
-  0%, 100% { opacity: 0.18; }
-  50% { opacity: 0.5; fill: var(--accent); }
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.65; fill: var(--tool-sec); }
 }
 
 @keyframes ck-compound-flash-right {
-  0%, 100% { opacity: 0.18; }
-  50% { opacity: 0.5; fill: var(--cat-transition); }
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.65; fill: var(--tool-accent); }
 }
 
 @keyframes ck-arrow-glide-top {
