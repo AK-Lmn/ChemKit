@@ -28,6 +28,7 @@ export function MoleMate({ prefill, onConsumePrefill }) {
   const [calcError, setCalcError] = useState('')
   const [result, setResult] = useState(null)
   const [history, setHistory] = useLocalStorage('chemkit-molemate-history', [])
+  const [undoHistory, setUndoHistory] = useState(null)
 
   useEffect(() => {
     if (!prefill) return
@@ -48,9 +49,11 @@ export function MoleMate({ prefill, onConsumePrefill }) {
   }, [prefill, onConsumePrefill])
 
   const applyFormula = (nextFormula) => {
-    setFormula(nextFormula)
+    // Helpful auto-normalization: convert * to middle dot ·
+    const normalized = nextFormula.replace(/([A-Za-z0-9\)])\s*[\*]\s*(\d*)/g, '$1·$2')
+    setFormula(normalized)
     setFormulaError('')
-    const trimmed = nextFormula.trim()
+    const trimmed = normalized.trim()
     if (!trimmed) {
       setBreakdown(null)
       return
@@ -61,7 +64,27 @@ export function MoleMate({ prefill, onConsumePrefill }) {
       setMolarMass(String(Number(info.totalMass.toFixed(4))))
     } catch (error) {
       setBreakdown(null)
-      setFormulaError(error.message)
+      let msg = error.message
+      if (msg.includes('parenthes') || msg.includes('bracket')) {
+        msg = 'Check your parentheses: make sure every "(" has a matching ")". Example: Ca(OH)2'
+      } else if (msg.includes('element')) {
+        msg = 'Unknown element symbol: capitalize the first letter (e.g. Cl not cl, Na not NA).'
+      } else if (msg.includes('hydrate')) {
+        msg = 'Hydrate format: use a middle dot (·) before hydrate waters, e.g. CuSO4·5H2O'
+      }
+      setFormulaError(msg)
+    }
+  }
+
+  const handleClearHistory = () => {
+    setUndoHistory(history)
+    setHistory([])
+  }
+
+  const handleUndoHistory = () => {
+    if (undoHistory) {
+      setHistory(undoHistory)
+      setUndoHistory(null)
     }
   }
 
@@ -141,9 +164,31 @@ export function MoleMate({ prefill, onConsumePrefill }) {
           </div>
 
           <div className="ck-field">
-            <label htmlFor="mm-formula" className="ck-label">
-              Chemical formula (optional, auto-fills molar mass)
-            </label>
+            <div className="ck-label-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <label htmlFor="mm-formula" className="ck-label" style={{ marginBottom: 0 }}>
+                Chemical formula (optional, auto-fills molar mass)
+              </label>
+              <div className="ck-symbol-helpers" style={{ display: 'flex', gap: '4px' }}>
+                <button
+                  type="button"
+                  className="ck-btn ck-btn--ghost ck-btn--sm"
+                  style={{ minHeight: '26px', height: '26px', padding: '0 8px', fontSize: '11px', fontFamily: 'var(--font-mono)' }}
+                  onClick={() => applyFormula(formula + '·')}
+                  title="Insert Hydrate Dot (·)"
+                >
+                  + ·
+                </button>
+                <button
+                  type="button"
+                  className="ck-btn ck-btn--ghost ck-btn--sm"
+                  style={{ minHeight: '26px', height: '26px', padding: '0 8px', fontSize: '11px', fontFamily: 'var(--font-mono)' }}
+                  onClick={() => applyFormula(formula + '()')}
+                  title="Insert Parentheses ()"
+                >
+                  ( )
+                </button>
+              </div>
+            </div>
             <input
               id="mm-formula"
               type="text"
@@ -320,16 +365,26 @@ export function MoleMate({ prefill, onConsumePrefill }) {
                 <button
                   type="button"
                   className="ck-btn ck-btn--ghost ck-btn--sm"
-                  onClick={() => setHistory([])}
+                  onClick={handleClearHistory}
                 >
                   <IconTrash />
                   Clear
                 </button>
               )}
             </div>
-            {history.length === 0 ? (
+            {undoHistory && history.length === 0 && (
+              <div className="ck-undo-banner" role="status">
+                <span>History cleared.</span>
+                <button type="button" className="ck-undo-btn" onClick={handleUndoHistory}>
+                  <IconRotateCcw />
+                  Undo
+                </button>
+              </div>
+            )}
+            {history.length === 0 && !undoHistory ? (
               <p className="ck-empty">Saved mole conversions appear here.</p>
-            ) : (
+            ) : null}
+            {history.length > 0 && (
               <ul className="ck-history-list">
                 {history.map((entry, index) => (
                   <li key={`${entry.time}-${index}`}>

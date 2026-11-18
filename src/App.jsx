@@ -4,6 +4,7 @@ import {
   IconGithub,
   IconLayoutGrid,
   IconMoon,
+  IconSearch,
   IconSun,
   LogoChemBalancer,
   LogoElementExplorer,
@@ -13,6 +14,7 @@ import {
   LogoSolutionLab,
   LogoStoichiometry,
 } from './components/Icons.jsx'
+import { CommandPalette } from './components/CommandPalette.jsx'
 import { Overview } from './tools/Overview.jsx'
 import { ElementExplorer } from './tools/ElementExplorer.jsx'
 import { MoleMate } from './tools/MoleMate.jsx'
@@ -118,6 +120,7 @@ export default function App() {
   const [molePrefill, setMolePrefill] = useState(null)
   const [stoichPrefill, setStoichPrefill] = useState(null)
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, ready: false })
+  const [paletteOpen, setPaletteOpen] = useState(false)
   const [theme, setTheme] = useState(() => {
     try {
       const saved = localStorage.getItem('chemkit-theme')
@@ -171,6 +174,31 @@ export default function App() {
     window.addEventListener('popstate', onPopState)
     return () => window.removeEventListener('popstate', onPopState)
   }, [])
+
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault()
+        setPaletteOpen((prev) => !prev)
+        return
+      }
+      if (e.key === 'Escape' && paletteOpen) {
+        e.preventDefault()
+        setPaletteOpen(false)
+        return
+      }
+      const tag = document.activeElement?.tagName?.toLowerCase()
+      if (tag === 'input' || tag === 'textarea' || tag === 'select') return
+
+      const num = Number.parseInt(e.key, 10)
+      if (num >= 1 && num <= NAV_ITEMS.length) {
+        e.preventDefault()
+        navigate(NAV_ITEMS[num - 1].id)
+      }
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [navigate, paletteOpen])
 
   useEffect(() => {
     const activeItem = NAV_ITEMS.find((item) => item.id === activeId) || NAV_ITEMS[0]
@@ -235,6 +263,17 @@ export default function App() {
           </button>
 
           <div className="ck-header-right">
+            <button
+              type="button"
+              className="ck-cmd-trigger"
+              onClick={() => setPaletteOpen(true)}
+              title="Search tools or jump to formula (Cmd+K)"
+              aria-label="Open Command Palette"
+            >
+              <IconSearch />
+              <span className="ck-cmd-label">Quick Jump</span>
+              <kbd className="ck-kbd">⌘K</kbd>
+            </button>
             <button
               type="button"
               className="ck-theme-toggle"
@@ -334,6 +373,14 @@ export default function App() {
           </span>
         </div>
       </footer>
+
+      <CommandPalette
+        isOpen={paletteOpen}
+        onClose={() => setPaletteOpen(false)}
+        onSelect={(id) => navigate(id)}
+        navItems={NAV_ITEMS}
+        activeId={activeId}
+      />
     </div>
   )
 }

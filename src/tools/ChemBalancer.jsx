@@ -30,6 +30,19 @@ export function ChemBalancer({ onSendToStoichiometry }) {
   const [error, setError] = useState('')
   const [copied, setCopied] = useState(false)
   const [history, setHistory] = useLocalStorage('chemkit-balancer-history', [])
+  const [undoHistory, setUndoHistory] = useState(null)
+
+  const handleClearHistory = () => {
+    setUndoHistory(history)
+    setHistory([])
+  }
+
+  const handleUndoHistory = () => {
+    if (undoHistory) {
+      setHistory(undoHistory)
+      setUndoHistory(null)
+    }
+  }
 
   const runBalance = (rawText) => {
     const source = rawText !== undefined ? rawText : equationInput
@@ -65,7 +78,15 @@ export function ChemBalancer({ onSendToStoichiometry }) {
         return [{ equation: solution.equation, time: Date.now() }, ...deduped].slice(0, 8)
       })
     } catch (err) {
-      setError(err.message || 'Could not balance that equation. Check the formulas and try again.')
+      let msg = err.message || 'Could not balance that equation. Check the formulas and try again.'
+      if (msg.includes('parenthes') || msg.includes('bracket')) {
+        msg = 'Check your parentheses: make sure every "(" has a matching ")". Example: Ca(OH)2'
+      } else if (msg.includes('element')) {
+        msg = 'Check element symbols: capitalize the first letter (e.g. Cl not cl, Na not NA).'
+      } else if (msg.includes('both sides') || msg.includes('Reactant') || msg.includes('product')) {
+        msg = 'Every element must appear on both sides of the reaction arrow (->).'
+      }
+      setError(msg)
       setResult(null)
     }
   }
@@ -113,9 +134,40 @@ export function ChemBalancer({ onSendToStoichiometry }) {
             noValidate
           >
             <div className="ck-field">
-              <label htmlFor="balancer-input" className="ck-label">
-                Chemical equation
-              </label>
+              <div className="ck-label-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <label htmlFor="balancer-input" className="ck-label" style={{ marginBottom: 0 }}>
+                  Chemical equation
+                </label>
+                <div className="ck-symbol-helpers" style={{ display: 'flex', gap: '4px' }}>
+                  <button
+                    type="button"
+                    className="ck-btn ck-btn--ghost ck-btn--sm"
+                    style={{ minHeight: '26px', height: '26px', padding: '0 8px', fontSize: '11px', fontFamily: 'var(--font-mono)' }}
+                    onClick={() => setEquationInput(equationInput ? `${equationInput.trim()} -> ` : ' -> ')}
+                    title="Insert Reaction Arrow (->)"
+                  >
+                    + -&gt;
+                  </button>
+                  <button
+                    type="button"
+                    className="ck-btn ck-btn--ghost ck-btn--sm"
+                    style={{ minHeight: '26px', height: '26px', padding: '0 8px', fontSize: '11px', fontFamily: 'var(--font-mono)' }}
+                    onClick={() => setEquationInput(equationInput ? `${equationInput.trim()} + ` : ' + ')}
+                    title="Insert Plus (+)"
+                  >
+                    + +
+                  </button>
+                  <button
+                    type="button"
+                    className="ck-btn ck-btn--ghost ck-btn--sm"
+                    style={{ minHeight: '26px', height: '26px', padding: '0 8px', fontSize: '11px', fontFamily: 'var(--font-mono)' }}
+                    onClick={() => setEquationInput(`${equationInput}()`)}
+                    title="Insert Parentheses ()"
+                  >
+                    ( )
+                  </button>
+                </div>
+              </div>
               <input
                 id="balancer-input"
                 type="text"
@@ -271,16 +323,26 @@ export function ChemBalancer({ onSendToStoichiometry }) {
               <button
                 type="button"
                 className="ck-btn ck-btn--ghost ck-btn--sm"
-                onClick={() => setHistory([])}
+                onClick={handleClearHistory}
               >
                 <IconTrash />
                 Clear
               </button>
             )}
           </div>
-          {history.length === 0 ? (
+          {undoHistory && history.length === 0 && (
+            <div className="ck-undo-banner" role="status">
+              <span>Equation history cleared.</span>
+              <button type="button" className="ck-undo-btn" onClick={handleUndoHistory}>
+                <IconRotateCcw />
+                Undo
+              </button>
+            </div>
+          )}
+          {history.length === 0 && !undoHistory ? (
             <p className="ck-empty">Balanced equations are saved locally and listed here.</p>
-          ) : (
+          ) : null}
+          {history.length > 0 && (
             <ul className="ck-history-list">
               {history.map((item, index) => (
                 <li key={`${item.equation}-${index}`}>
