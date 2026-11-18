@@ -318,7 +318,7 @@ export function LogoElementExplorer({ className = '', ...props }) {
         height="6"
         rx="1.2"
         fill="var(--tool-accent, var(--accent))"
-        fillOpacity="0.25"
+        fillOpacity="var(--tool-fill-opacity, 0.35)"
         stroke="var(--tool-accent, var(--accent))"
         strokeWidth="1.5"
       />
@@ -400,7 +400,7 @@ export function LogoMoleMate({ className = '', ...props }) {
         cy="4.5"
         r="2.5"
         fill="var(--tool-sec, #7C4DFF)"
-        fillOpacity="0.35"
+        fillOpacity="var(--tool-fill-opacity, 0.35)"
         stroke="var(--tool-sec, #7C4DFF)"
         strokeWidth="1.5"
       />
@@ -410,7 +410,7 @@ export function LogoMoleMate({ className = '', ...props }) {
         cy="17.5"
         r="2.5"
         fill="var(--tool-accent, var(--accent))"
-        fillOpacity="0.35"
+        fillOpacity="var(--tool-fill-opacity, 0.35)"
         stroke="var(--tool-accent, var(--accent))"
         strokeWidth="1.5"
       />
@@ -420,7 +420,7 @@ export function LogoMoleMate({ className = '', ...props }) {
         cy="17.5"
         r="2.5"
         fill="var(--tool-accent, var(--accent))"
-        fillOpacity="0.35"
+        fillOpacity="var(--tool-fill-opacity, 0.35)"
         stroke="var(--tool-accent, var(--accent))"
         strokeWidth="1.5"
       />
@@ -474,7 +474,7 @@ export function LogoGasLab({ className = '', ...props }) {
           height="2.75"
           rx="1"
           fill="var(--tool-sec, #FF5252)"
-          fillOpacity="0.35"
+          fillOpacity="var(--tool-fill-opacity, 0.35)"
           stroke="var(--tool-sec, #FF5252)"
           strokeWidth="1.5"
         />
@@ -567,7 +567,7 @@ export function LogoChemBalancer({ className = '', ...props }) {
           <path
             d="M4.5 13a2.5 2.5 0 0 0 5 0"
             fill="var(--tool-accent, #2979FF)"
-            fillOpacity="0.3"
+            fillOpacity="var(--tool-fill-opacity, 0.35)"
             stroke="var(--tool-accent, #2979FF)"
             strokeWidth="1.5"
           />
@@ -593,7 +593,7 @@ export function LogoChemBalancer({ className = '', ...props }) {
           <path
             d="M14.5 13a2.5 2.5 0 0 0 5 0"
             fill="var(--tool-sec, #00E5FF)"
-            fillOpacity="0.3"
+            fillOpacity="var(--tool-fill-opacity, 0.35)"
             stroke="var(--tool-sec, #00E5FF)"
             strokeWidth="1.5"
           />
@@ -622,7 +622,7 @@ export function LogoStoichiometry({ className = '', ...props }) {
         height="9"
         rx="1.75"
         fill="var(--tool-sec, #FF6D00)"
-        fillOpacity="0.25"
+        fillOpacity="var(--tool-fill-opacity, 0.35)"
         stroke="var(--tool-sec, #FF6D00)"
         strokeWidth="1.75"
       />
@@ -641,7 +641,7 @@ export function LogoStoichiometry({ className = '', ...props }) {
         height="9"
         rx="1.75"
         fill="var(--tool-accent, #FFD600)"
-        fillOpacity="0.25"
+        fillOpacity="var(--tool-fill-opacity, 0.35)"
         stroke="var(--tool-accent, #FFD600)"
         strokeWidth="1.75"
       />
@@ -705,7 +705,7 @@ export function LogoPhCalculator({ className = '', ...props }) {
         className="ck-anim-droplet"
         d="M12 2.5C12 2.5 5 11 5 15.5a7 7 0 0 0 14 0C19 11 12 2.5 12 2.5Z"
         fill="var(--tool-accent, #FF4081)"
-        fillOpacity="0.22"
+        fillOpacity="var(--tool-fill-opacity, 0.35)"
         stroke="var(--tool-accent, #FF4081)"
         strokeWidth="1.75"
         strokeLinejoin="round"
@@ -759,7 +759,7 @@ export function LogoSolutionLab({ className = '', ...props }) {
       <path
         d="M7 14.5 C 9 13.8, 11 15.2, 13 14.5 C 15 13.8, 16 14.2, 17 14.8 L 17.8 18.5 A 2 2 0 0 1 16.2 21.5 H 6.2 A 2 2 0 0 1 4.5 18.5 Z"
         fill="var(--tool-accent, #00E5FF)"
-        fillOpacity="0.25"
+        fillOpacity="var(--tool-fill-opacity, 0.35)"
       />
       {/* Solution liquid meniscus wave */}
       <path
