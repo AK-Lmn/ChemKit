@@ -1,8 +1,28 @@
 {
   "name": "chemkit",
-  "private": true,
   "version": "1.0.0",
+  "description": "Interactive browser-based chemistry suite with 7 solvers, IUPAC atomic data, live physics simulations, and keyboard-first navigation.",
+  "private": true,
   "type": "module",
+  "homepage": "https://chemkit.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AK-Lmn/ChemKit.git"
+  },
+  "author": "AK-Lmn",
+  "license": "MIT",
+  "keywords": [
+    "chemistry",
+    "chemistry-tools",
+    "periodic-table",
+    "stoichiometry",
+    "gas-laws",
+    "molar-mass",
+    "ph-calculator",
+    "chemical-equations",
+    "react",
+    "vite"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",

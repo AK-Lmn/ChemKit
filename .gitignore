@@ -3,3 +3,5 @@ node_modules/
 .vite/
 .vercel/
 *.local
+_legacy-repos/
+.impeccable/
