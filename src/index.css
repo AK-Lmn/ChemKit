@@ -198,7 +198,7 @@ body {
 }
 
 ::selection {
-  background: rgba(56, 217, 232, 0.28);
+  background: rgba(0, 200, 83, 0.28);
   color: var(--text-primary);
 }
 
@@ -830,7 +830,7 @@ button {
 
 .ck-select-trigger.is-open {
   border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px rgba(56, 217, 232, 0.16);
+  box-shadow: 0 0 0 3px rgba(0, 200, 83, 0.2);
 }
 
 .ck-select-trigger:disabled {
@@ -1214,10 +1214,7 @@ button.ck-history-item:hover {
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background-image: linear-gradient(rgba(0, 200, 83, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 200, 83, 0.035) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: linear-gradient(to bottom, #000, transparent 88%);
+  background: transparent;
   pointer-events: none;
 }
 
@@ -1768,7 +1765,7 @@ button.ck-history-item:hover {
 /* Tools Showcase Grid */
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 20px;
   align-items: stretch;
 }
@@ -1794,10 +1791,6 @@ button.ck-history-item:hover {
 
 .tool-card:hover .tool-icon {
   transform: translateY(-2px) scale(1.08);
-}
-
-.tools-grid > .tool-card:last-child {
-  grid-column: 2;
 }
 
 .card-top,
@@ -2097,13 +2090,7 @@ button.ck-history-item:hover {
   }
 
   .tools-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .tools-grid > .tool-card:last-child {
-    grid-column: 1 / -1;
-    width: calc(50% - 10px);
-    justify-self: center;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 
   .why-grid {
@@ -2174,11 +2161,6 @@ button.ck-history-item:hover {
     grid-template-columns: 1fr;
   }
 
-  .tools-grid > .tool-card:last-child {
-    grid-column: auto;
-    width: auto;
-  }
-
   .tool-card {
     min-height: 0;
   }
@@ -2230,7 +2212,7 @@ button.ck-history-item:hover {
 
 .ck-el-tile.is-selected {
   border-color: var(--el-color, var(--accent-primary));
-  box-shadow: 0 0 0 2px rgba(56, 217, 232, 0.25);
+  box-shadow: 0 0 0 2px rgba(0, 200, 83, 0.35);
 }
 
 .ck-el-top {
@@ -2674,7 +2656,7 @@ button.ck-history-item:hover {
 @keyframes ck-success-pulse {
   0% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(56, 217, 232, 0.35);
+    box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.45);
   }
   45% {
     transform: scale(1.008);

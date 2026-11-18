@@ -8,7 +8,7 @@ import {
 import { formatNumber, formatScientific, formatTimeAgo } from '../lib/format.js'
 import { useLocalStorage } from '../hooks/useLocalStorage.js'
 import { Combobox } from '../components/Select.jsx'
-import { IconAlertCircle, IconRotateCcw, IconTrash, LogoMoleMate } from '../components/Icons.jsx'
+import { IconAlertCircle, IconCheck, IconCopy, IconRotateCcw, IconTrash, LogoMoleMate } from '../components/Icons.jsx'
 
 const MASS_UNIT_OPTIONS = [
   { value: 'mg', label: 'mg', detail: 'milligrams' },
@@ -29,6 +29,7 @@ export function MoleMate({ prefill, onConsumePrefill }) {
   const [result, setResult] = useState(null)
   const [history, setHistory] = useLocalStorage('chemkit-molemate-history', [])
   const [undoHistory, setUndoHistory] = useState(null)
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
     if (!prefill) return
@@ -131,6 +132,16 @@ export function MoleMate({ prefill, onConsumePrefill }) {
     setFormulaError('')
     setCalcError('')
     setResult(null)
+  }
+
+  const handleCopy = async () => {
+    if (!result) return
+    const text = `${formatNumber(result.moles)} mol (${formatNumber(result.mass)} ${result.massUnit}${result.formula ? ` of ${result.formula}` : ''} at ${formatNumber(result.molarMass)} g/mol)`
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {}
   }
 
   return (
@@ -292,7 +303,24 @@ export function MoleMate({ prefill, onConsumePrefill }) {
 
         <div className="ck-stack">
           <section className="ck-panel ck-stack" aria-live="polite">
-            <h2 className="ck-panel-title">Results</h2>
+            <div className="ck-panel-head" style={{ marginBottom: 0 }}>
+              <h2 className="ck-panel-title">Results</h2>
+              {result && (
+                <button
+                  type="button"
+                  className={`ck-btn ck-btn--secondary ck-btn--sm ${copied ? 'ck-success-pulse' : ''}`}
+                  onClick={handleCopy}
+                  title="Copy calculated moles to clipboard"
+                  aria-label="Copy calculated moles"
+                >
+                  <span className="ck-icon-swap" aria-hidden="true">
+                    <IconCopy data-active={!copied} />
+                    <IconCheck data-active={copied} />
+                  </span>
+                  {copied ? 'Copied' : 'Copy'}
+                </button>
+              )}
+            </div>
             {result ? (
               <>
                 <div key={result.time} className="ck-readout ck-mask-reveal ck-success-pulse">

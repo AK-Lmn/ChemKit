@@ -8,7 +8,7 @@ import {
 } from '../lib/gas-laws.js'
 import { formatNumber } from '../lib/format.js'
 import { Combobox } from '../components/Select.jsx'
-import { IconAlertCircle, IconRotateCcw, LogoGasLab } from '../components/Icons.jsx'
+import { IconAlertCircle, IconCheck, IconCopy, IconRotateCcw, LogoGasLab } from '../components/Icons.jsx'
 
 function unitOptionsFor(kind) {
   if (kind === 'pressure') return PRESSURE_UNITS.map((u) => ({ value: u, label: u }))
@@ -22,6 +22,7 @@ export function GasLab() {
   const [solveIndex, setSolveIndex] = useState(0)
   const [rawInputs, setRawInputs] = useState(['', '', '', ''])
   const [units, setUnits] = useState(() => GAS_LAWS[0].variables.map((v) => v.defaultUnit))
+  const [copied, setCopied] = useState(false)
 
   const law = useMemo(() => GAS_LAWS.find((item) => item.id === lawId) || GAS_LAWS[0], [lawId])
 
@@ -82,6 +83,16 @@ export function GasLab() {
 
   const targetVar = law.variables[solveIndex]
   const targetUnit = units[solveIndex] || targetVar.defaultUnit
+
+  const handleCopy = async () => {
+    if (calculation.status !== 'ok') return
+    const text = `${targetVar.label} = ${formatNumber(calculation.value)} ${targetUnit} (${law.name}: ${law.formula})`
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {}
+  }
 
   return (
     <div className="ck-stack">
@@ -215,7 +226,24 @@ export function GasLab() {
 
         <div className="ck-stack">
           <section className="ck-panel ck-stack" aria-live="polite">
-            <h2 className="ck-panel-title">Calculated result</h2>
+            <div className="ck-panel-head" style={{ marginBottom: 0 }}>
+              <h2 className="ck-panel-title">Calculated result</h2>
+              {calculation.status === 'ok' && (
+                <button
+                  type="button"
+                  className={`ck-btn ck-btn--secondary ck-btn--sm ${copied ? 'ck-success-pulse' : ''}`}
+                  onClick={handleCopy}
+                  title="Copy calculated value to clipboard"
+                  aria-label="Copy calculated value"
+                >
+                  <span className="ck-icon-swap" aria-hidden="true">
+                    <IconCopy data-active={!copied} />
+                    <IconCheck data-active={copied} />
+                  </span>
+                  {copied ? 'Copied' : 'Copy'}
+                </button>
+              )}
+            </div>
             {calculation.status === 'ok' ? (
               <div
                 key={`${law.id}-${solveIndex}-${formatNumber(calculation.value)}-${targetUnit}`}

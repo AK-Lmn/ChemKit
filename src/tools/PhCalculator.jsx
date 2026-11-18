@@ -8,7 +8,7 @@ import {
 import { formatNumber, formatTimeAgo } from '../lib/format.js'
 import { useLocalStorage } from '../hooks/useLocalStorage.js'
 import { Combobox } from '../components/Select.jsx'
-import { IconAlertCircle, IconTrash, LogoPhCalculator } from '../components/Icons.jsx'
+import { IconAlertCircle, IconCheck, IconCopy, IconTrash, LogoPhCalculator } from '../components/Icons.jsx'
 
 const MODE_OPTIONS = PH_MODES.map((mode) => ({
   value: mode.id,
@@ -32,8 +32,19 @@ export function PhCalculator() {
   const [error, setError] = useState('')
   const [result, setResult] = useState(null)
   const [markerMoving, setMarkerMoving] = useState(false)
-  const markerTimerRef = useRef(null)
+  const [markerTimerRef] = [useRef(null)]
   const [history, setHistory] = useLocalStorage('chemkit-ph-calculator-history', [])
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = async () => {
+    if (!result) return
+    const text = `pH ${formatNumber(result.data.pH)}, pOH ${formatNumber(result.data.pOH)}, [H+] ${formatIonConcentration(result.data.hConcentration)} M, [OH-] ${formatIonConcentration(result.data.ohConcentration)} M (${result.data.classification})`
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {}
+  }
 
   const triggerMarkerStretch = () => {
     setMarkerMoving(true)
@@ -316,7 +327,24 @@ export function PhCalculator() {
 
         <div className="ck-stack">
           <section className="ck-panel ck-stack" aria-live="polite">
-            <h2 className="ck-panel-title">Equilibrium readout</h2>
+            <div className="ck-panel-head" style={{ marginBottom: 0 }}>
+              <h2 className="ck-panel-title">Equilibrium readout</h2>
+              {result && (
+                <button
+                  type="button"
+                  className={`ck-btn ck-btn--secondary ck-btn--sm ${copied ? 'ck-success-pulse' : ''}`}
+                  onClick={handleCopy}
+                  title="Copy pH values to clipboard"
+                  aria-label="Copy pH values"
+                >
+                  <span className="ck-icon-swap" aria-hidden="true">
+                    <IconCopy data-active={!copied} />
+                    <IconCheck data-active={copied} />
+                  </span>
+                  {copied ? 'Copied' : 'Copy'}
+                </button>
+              )}
+            </div>
             {result ? (
               <>
                 <div key={result.id} className="ck-readout ck-mask-reveal ck-success-pulse">

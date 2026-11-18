@@ -10,7 +10,7 @@ import {
 import { formatNumber, formatTimeAgo } from '../lib/format.js'
 import { useLocalStorage } from '../hooks/useLocalStorage.js'
 import { Combobox } from '../components/Select.jsx'
-import { IconAlertCircle, IconRotateCcw, IconTrash, LogoSolutionLab } from '../components/Icons.jsx'
+import { IconAlertCircle, IconCheck, IconCopy, IconRotateCcw, IconTrash, LogoSolutionLab } from '../components/Icons.jsx'
 
 const DILUTION_OPTIONS = DILUTION_VARS.map((v) => ({
   value: v.key,
@@ -32,6 +32,7 @@ export function SolutionLab() {
   const [generalError, setGeneralError] = useState('')
   const [result, setResult] = useState(null)
   const [history, setHistory] = useLocalStorage('solutionlab-history', [])
+  const [copied, setCopied] = useState(false)
 
   const mode = useMemo(
     () => SOLUTION_MODES.find((item) => item.id === modeId) || SOLUTION_MODES[0],
@@ -118,6 +119,16 @@ export function SolutionLab() {
       }
       setResult(null)
     }
+  }
+
+  const handleCopy = async () => {
+    if (!result) return
+    const text = `${result.label}: ${formatNumber(result.value)} ${result.unit} (${result.formula})`
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {}
   }
 
   return (
@@ -287,7 +298,24 @@ export function SolutionLab() {
           </form>
 
           <section className="ck-panel ck-stack" aria-live="polite">
-            <h2 className="ck-panel-title">Result and steps</h2>
+            <div className="ck-panel-head" style={{ marginBottom: 0 }}>
+              <h2 className="ck-panel-title">Result and steps</h2>
+              {result && (
+                <button
+                  type="button"
+                  className={`ck-btn ck-btn--secondary ck-btn--sm ${copied ? 'ck-success-pulse' : ''}`}
+                  onClick={handleCopy}
+                  title="Copy calculated solution result to clipboard"
+                  aria-label="Copy solution result"
+                >
+                  <span className="ck-icon-swap" aria-hidden="true">
+                    <IconCopy data-active={!copied} />
+                    <IconCheck data-active={copied} />
+                  </span>
+                  {copied ? 'Copied' : 'Copy'}
+                </button>
+              )}
+            </div>
             {result ? (
               <>
                 <div key={result.id} className="ck-readout ck-vial-wrap ck-mask-reveal ck-success-pulse">

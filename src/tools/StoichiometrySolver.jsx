@@ -10,6 +10,7 @@ import { Combobox } from '../components/Select.jsx'
 import {
   IconAlertCircle,
   IconCheck,
+  IconCopy,
   IconRotateCcw,
   IconSparkles,
   IconTrash,
@@ -40,6 +41,7 @@ export function StoichiometrySolver({ prefill, onConsumePrefill }) {
   const [solveError, setSolveError] = useState('')
   const [result, setResult] = useState(null)
   const [history, setHistory] = useLocalStorage('chemkit-stoichiometry-history', [])
+  const [copied, setCopied] = useState(false)
 
   const applyParsed = (parsed, message) => {
     setParsedEquation(parsed)
@@ -127,6 +129,16 @@ export function StoichiometrySolver({ prefill, onConsumePrefill }) {
       setSolveError(error.message)
       setResult(null)
     }
+  }
+
+  const handleCopy = async () => {
+    if (!result) return
+    const text = `${formatNumber(result.result)} ${result.targetUnit === 'grams' ? 'g' : 'mol'} ${result.target.formula} (from ${formatNumber(result.amount)} ${result.givenUnit === 'grams' ? 'g' : 'mol'} ${result.given.formula})`
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {}
   }
 
   const compoundOptions = (parsedEquation?.compounds || []).map((item) => ({
@@ -341,7 +353,24 @@ export function StoichiometrySolver({ prefill, onConsumePrefill }) {
 
         <div className="ck-stack">
           <section className="ck-panel ck-stack" aria-live="polite">
-            <h2 className="ck-panel-title">Solution</h2>
+            <div className="ck-panel-head" style={{ marginBottom: 0 }}>
+              <h2 className="ck-panel-title">Solution</h2>
+              {result && (
+                <button
+                  type="button"
+                  className={`ck-btn ck-btn--secondary ck-btn--sm ${copied ? 'ck-success-pulse' : ''}`}
+                  onClick={handleCopy}
+                  title="Copy stoichiometry solution to clipboard"
+                  aria-label="Copy solution"
+                >
+                  <span className="ck-icon-swap" aria-hidden="true">
+                    <IconCopy data-active={!copied} />
+                    <IconCheck data-active={copied} />
+                  </span>
+                  {copied ? 'Copied' : 'Copy'}
+                </button>
+              )}
+            </div>
             {result ? (
               <>
                 <div key={result.id} className="ck-readout ck-mask-reveal ck-success-pulse">
