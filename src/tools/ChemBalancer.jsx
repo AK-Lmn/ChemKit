@@ -258,7 +258,7 @@ export function ChemBalancer({ onSendToStoichiometry }) {
                 </div>
               </div>
 
-              <div key={result.id} className="ck-readout ck-mask-reveal ck-success-pulse">
+              <div key={result.id} className="ck-readout ck-mask-reveal ck-success-pulse ck-reaction-sparkle">
                 <span className="ck-readout-label">Balanced equation</span>
                 <strong className="ck-readout-value" style={{ fontSize: '1.375rem' }}>
                   {result.subscripted}

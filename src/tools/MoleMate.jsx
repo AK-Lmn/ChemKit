@@ -323,7 +323,7 @@ export function MoleMate({ prefill, onConsumePrefill }) {
             </div>
             {result ? (
               <>
-                <div key={result.time} className="ck-readout ck-mask-reveal ck-success-pulse">
+                <div key={result.time} className="ck-readout ck-mask-reveal ck-success-pulse ck-reaction-sparkle">
                   <span className="ck-readout-label">Moles</span>
                   <strong className="ck-readout-value">{formatNumber(result.moles)} mol</strong>
                   <p className="ck-readout-sub">

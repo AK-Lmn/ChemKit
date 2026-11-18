@@ -22,6 +22,77 @@ const WEAK_PRESETS = [
   { label: 'Ammonia (Kb = 1.8e-5)', type: 'base', concentration: '0.1', kValue: '1.8e-5' },
 ]
 
+function getPhColor(ph) {
+  if (ph <= 2) return '#EF233C'
+  if (ph <= 4) return '#FF5722'
+  if (ph <= 6) return '#FFB703'
+  if (ph <= 8) return '#00C853'
+  if (ph <= 10) return '#00B4D8'
+  if (ph <= 12) return '#3A0CA3'
+  return '#7209B7'
+}
+
+function PhFluidBeaker({ ph, classification }) {
+  const color = getPhColor(ph)
+  return (
+    <div className="ck-ph-viz ck-mask-reveal" aria-hidden="true">
+      <svg viewBox="0 0 100 120" className="ck-ph-beaker-svg">
+        <defs>
+          <clipPath id="beaker-clip">
+            <path d="M 22 20 L 22 96 A 12 12 0 0 0 34 108 L 66 108 A 12 12 0 0 0 78 96 L 78 20 Z" />
+          </clipPath>
+        </defs>
+
+        <line x1="28" y1="40" x2="38" y2="40" stroke="var(--border-strong)" strokeWidth="1.5" strokeOpacity="0.5" />
+        <line x1="28" y1="60" x2="42" y2="60" stroke="var(--border-strong)" strokeWidth="1.5" strokeOpacity="0.7" />
+        <line x1="28" y1="80" x2="38" y2="80" stroke="var(--border-strong)" strokeWidth="1.5" strokeOpacity="0.5" />
+
+        <g clipPath="url(#beaker-clip)">
+          <rect
+            className="ck-ph-fluid"
+            x="15"
+            y="42"
+            width="70"
+            height="70"
+            fill={color}
+            fillOpacity="0.78"
+          />
+          <path
+            className="ck-ph-wave"
+            d="M 15 42 Q 32 38, 50 42 T 85 42"
+            stroke={color}
+            strokeWidth="3"
+            fill="none"
+          />
+          <circle className="ck-ph-bubble ck-ph-b1" cx="36" cy="92" r="2.5" fill="#FFFFFF" />
+          <circle className="ck-ph-bubble ck-ph-b2" cx="62" cy="85" r="2" fill="#FFFFFF" />
+          <circle className="ck-ph-bubble ck-ph-b3" cx="48" cy="98" r="3" fill="#FFFFFF" />
+        </g>
+
+        <path
+          d="M 16 16 L 24 16 L 24 96 A 10 10 0 0 0 34 106 L 66 106 A 10 10 0 0 0 76 96 L 76 16 L 82 16"
+          stroke="var(--border-strong)"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
+      </svg>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        <span style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', color }}>
+          {classification}
+        </span>
+        <span style={{ fontSize: '1.375rem', fontWeight: '800', fontFamily: 'var(--font-mono)' }}>
+          pH {formatNumber(ph)}
+        </span>
+        <span style={{ fontSize: '0.8125rem', color: 'var(--text-muted)' }}>
+          Universal indicator spectrum simulation
+        </span>
+      </div>
+    </div>
+  )
+}
+
 export function PhCalculator() {
   const [subMode, setSubMode] = useState('conversions')
   const [modeId, setModeId] = useState('phToH')
@@ -347,6 +418,7 @@ export function PhCalculator() {
             </div>
             {result ? (
               <>
+                <PhFluidBeaker ph={result.data.pH} classification={result.data.classification} />
                 <div key={result.id} className="ck-readout ck-mask-reveal ck-success-pulse">
                   <span className="ck-readout-label">
                     {result.kind === 'conversion'

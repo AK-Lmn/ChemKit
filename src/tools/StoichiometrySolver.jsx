@@ -373,7 +373,7 @@ export function StoichiometrySolver({ prefill, onConsumePrefill }) {
             </div>
             {result ? (
               <>
-                <div key={result.id} className="ck-readout ck-mask-reveal ck-success-pulse">
+                <div key={result.id} className="ck-readout ck-mask-reveal ck-success-pulse ck-reaction-sparkle">
                   <span className="ck-readout-label">Final answer</span>
                   <strong className="ck-readout-value">
                     {formatNumber(result.result)} {result.targetUnit === 'grams' ? 'g' : 'mol'}{' '}

@@ -17,6 +17,105 @@ function unitOptionsFor(kind) {
   return [{ value: 'mol', label: 'mol' }]
 }
 
+function GasKineticChamber({ calculation, targetVar }) {
+  const isVolume = targetVar?.kind === 'volume'
+  const isPressure = targetVar?.kind === 'pressure'
+  const isTemp = targetVar?.kind === 'temperature'
+
+  let compressionRatio = 0.5
+  if (calculation?.status === 'ok' && Number.isFinite(calculation.value)) {
+    if (isVolume) {
+      compressionRatio = Math.max(0.15, Math.min(0.85, calculation.value / 40))
+    } else if (isPressure) {
+      compressionRatio = Math.max(0.15, Math.min(0.85, 1 - calculation.value / 250))
+    }
+  }
+
+  const pistonY = 30 + (1 - compressionRatio) * 45
+  const needleAngle =
+    isPressure && calculation?.status === 'ok'
+      ? Math.max(-55, Math.min(55, ((calculation.value - 100) / 100) * 45))
+      : -15
+
+  const particleSpeed =
+    isTemp && calculation?.status === 'ok'
+      ? Math.max(0.4, Math.min(2.5, 300 / Math.max(50, calculation.value)))
+      : 1.0
+
+  return (
+    <div className="ck-gas-viz ck-mask-reveal" aria-hidden="true">
+      <svg viewBox="0 0 160 160" className="ck-gas-cylinder-svg">
+        <defs>
+          <clipPath id="cylinder-chamber-clip">
+            <rect x="30" y={pistonY + 12} width="70" height={130 - (pistonY + 12)} />
+          </clipPath>
+        </defs>
+
+        <rect
+          x="30"
+          y="30"
+          width="70"
+          height="100"
+          rx="6"
+          fill="var(--bg-canvas)"
+          stroke="var(--border-strong)"
+          strokeWidth="3"
+        />
+
+        <line x1="34" y1="55" x2="44" y2="55" stroke="var(--border-strong)" strokeWidth="1.5" strokeOpacity="0.4" />
+        <line x1="34" y1="80" x2="48" y2="80" stroke="var(--border-strong)" strokeWidth="1.5" strokeOpacity="0.6" />
+        <line x1="34" y1="105" x2="44" y2="105" stroke="var(--border-strong)" strokeWidth="1.5" strokeOpacity="0.4" />
+
+        <g clipPath="url(#cylinder-chamber-clip)">
+          <circle className="ck-gas-atom" style={{ animationDuration: `${particleSpeed}s` }} cx="45" cy="115" r="4" fill="#FF9100" />
+          <circle className="ck-gas-atom" style={{ animationDuration: `${particleSpeed * 0.8}s` }} cx="62" cy="95" r="3.5" fill="#00E5FF" />
+          <circle className="ck-gas-atom" style={{ animationDuration: `${particleSpeed * 1.2}s` }} cx="80" cy="120" r="4" fill="#FF5252" />
+          <circle className="ck-gas-atom" style={{ animationDuration: `${particleSpeed * 0.9}s` }} cx="52" cy="78" r="3" fill="#00C853" />
+          <circle className="ck-gas-atom" style={{ animationDuration: `${particleSpeed * 1.1}s` }} cx="72" cy="108" r="4" fill="#E040FB" />
+          <circle className="ck-gas-atom" style={{ animationDuration: `${particleSpeed * 0.75}s` }} cx="85" cy="85" r="3.5" fill="#FFD600" />
+        </g>
+
+        <g className="ck-gas-piston-assembly" style={{ transform: `translateY(${pistonY - 30}px)` }}>
+          <line x1="65" y1="5" x2="65" y2="30" stroke="var(--border-strong)" strokeWidth="6" strokeLinecap="round" />
+          <rect
+            x="32"
+            y="26"
+            width="66"
+            height="12"
+            rx="3"
+            fill="var(--surface-2)"
+            stroke="var(--border-strong)"
+            strokeWidth="2.5"
+          />
+          <line x1="45" y1="5" x2="85" y2="5" stroke="var(--border-strong)" strokeWidth="4" strokeLinecap="round" />
+        </g>
+
+        <circle cx="125" cy="45" r="20" fill="var(--surface)" stroke="var(--border-strong)" strokeWidth="2.5" />
+        <circle cx="125" cy="45" r="2.5" fill="var(--border-strong)" />
+        <line x1="125" y1="28" x2="125" y2="32" stroke="var(--border-strong)" strokeWidth="1.5" />
+        <line x1="112" y1="36" x2="115" y2="39" stroke="var(--border-strong)" strokeWidth="1.5" />
+        <line x1="138" y1="36" x2="135" y2="39" stroke="var(--border-strong)" strokeWidth="1.5" />
+        <line
+          className="ck-gas-needle"
+          x1="125"
+          y1="45"
+          x2="125"
+          y2="30"
+          stroke="#FF3B30"
+          strokeWidth="2"
+          strokeLinecap="round"
+          style={{ transformOrigin: '125px 45px', transform: `rotate(${needleAngle}deg)` }}
+        />
+        <path d="M 100 65 L 125 65 L 125 65" stroke="var(--border-strong)" strokeWidth="3" fill="none" />
+      </svg>
+      <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginTop: '8px', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+        <span>Piston Chamber Simulation</span>
+        <span style={{ fontWeight: '600', color: 'var(--accent)' }}>Kinetic State Active</span>
+      </div>
+    </div>
+  )
+}
+
 export function GasLab() {
   const [lawId, setLawId] = useState('boyle')
   const [solveIndex, setSolveIndex] = useState(0)
@@ -245,16 +344,19 @@ export function GasLab() {
               )}
             </div>
             {calculation.status === 'ok' ? (
-              <div
-                key={`${law.id}-${solveIndex}-${formatNumber(calculation.value)}-${targetUnit}`}
-                className="ck-readout ck-mask-reveal ck-success-pulse"
-              >
-                <span className="ck-readout-label">{targetVar.label}</span>
-                <strong className="ck-readout-value">
-                  {formatNumber(calculation.value)} {targetUnit}
-                </strong>
-                <p className="ck-readout-sub">Solved using {law.name} ({law.formula}).</p>
-              </div>
+              <>
+                <GasKineticChamber calculation={calculation} targetVar={targetVar} />
+                <div
+                  key={`${law.id}-${solveIndex}-${formatNumber(calculation.value)}-${targetUnit}`}
+                  className="ck-readout ck-mask-reveal ck-success-pulse"
+                >
+                  <span className="ck-readout-label">{targetVar.label}</span>
+                  <strong className="ck-readout-value">
+                    {formatNumber(calculation.value)} {targetUnit}
+                  </strong>
+                  <p className="ck-readout-sub">Solved using {law.name} ({law.formula}).</p>
+                </div>
+              </>
             ) : (
               <p className="ck-empty">Fill in the three known variables to compute {targetVar.label}.</p>
             )}

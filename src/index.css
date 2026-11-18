@@ -842,10 +842,11 @@ button {
 
 .ck-btn--primary:hover:not(:disabled) {
   background: var(--accent-primary-hover);
+  transform: translateY(-1.5px);
 }
 
 .ck-btn--primary:active:not(:disabled) {
-  transform: scale(0.97);
+  transform: translateY(1.5px) scale(0.98);
 }
 
 .ck-btn--secondary {
@@ -857,10 +858,11 @@ button {
 .ck-btn--secondary:hover:not(:disabled) {
   background: var(--bg-interactive);
   border-color: var(--border-strong);
+  transform: translateY(-1.5px);
 }
 
 .ck-btn--secondary:active:not(:disabled) {
-  transform: scale(0.97);
+  transform: translateY(1.5px) scale(0.98);
 }
 
 .ck-btn--ghost {
@@ -1055,18 +1057,14 @@ button {
     color var(--dur-fast) var(--ease-out), transform var(--dur-press) var(--ease-out);
 }
 
-.ck-chip:active {
-  transform: scale(0.97);
-}
-
-.ck-chip svg {
-  width: 14px;
-  height: 14px;
-}
-
 .ck-chip:hover {
   border-color: var(--border-strong);
   color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.ck-chip:active {
+  transform: translateY(1px) scale(0.97);
 }
 
 .ck-chip[aria-pressed='true'],
@@ -1330,7 +1328,8 @@ button.ck-history-item:hover {
   position: absolute;
   border-radius: 50%;
   filter: blur(120px);
-  opacity: 0.12;
+  opacity: 0.14;
+  will-change: transform;
 }
 
 .background i:nth-child(1) {
@@ -1339,6 +1338,7 @@ button.ck-history-item:hover {
   left: -280px;
   top: -200px;
   background: var(--accent);
+  animation: ck-orb-drift-1 28s ease-in-out infinite alternate;
 }
 
 .background i:nth-child(2) {
@@ -1347,6 +1347,7 @@ button.ck-history-item:hover {
   right: -260px;
   top: 18%;
   background: var(--mint-deep);
+  animation: ck-orb-drift-2 32s ease-in-out infinite alternate;
 }
 
 .background i:nth-child(3) {
@@ -1355,6 +1356,43 @@ button.ck-history-item:hover {
   left: 35%;
   bottom: -320px;
   background: var(--lav);
+  animation: ck-orb-drift-3 24s ease-in-out infinite alternate;
+}
+
+@keyframes ck-orb-drift-1 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(80px, 60px, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(-40px, 100px, 0) scale(0.95);
+  }
+}
+
+@keyframes ck-orb-drift-2 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-90px, -70px, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(50px, -40px, 0) scale(0.92);
+  }
+}
+
+@keyframes ck-orb-drift-3 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(60px, -80px, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(-70px, -40px, 0) scale(0.96);
+  }
 }
 
 /* Landing Page Hero */
@@ -2730,11 +2768,182 @@ button.ck-history-item:hover {
 @keyframes ck-panel-in {
   from {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(12px) scale(0.995);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Interactive Chemistry Motion Systems */
+
+/* 1. pH Beaker Dynamic Fluid System */
+.ck-ph-viz {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1.5px solid var(--border-subtle);
+  margin-bottom: 14px;
+}
+
+.ck-ph-beaker-svg {
+  width: 90px;
+  height: 110px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+}
+
+.ck-ph-fluid {
+  transition: fill 450ms var(--ease-out), height 450ms var(--ease-out), y 450ms var(--ease-out);
+}
+
+.ck-ph-wave {
+  animation: ckPhWave 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes ckPhWave {
+  0% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(4px);
+  }
+}
+
+.ck-ph-bubble {
+  animation: ckPhBubbleRise 2.4s ease-in infinite;
+  opacity: 0.75;
+}
+
+.ck-ph-b1 {
+  animation-delay: 0s;
+}
+
+.ck-ph-b2 {
+  animation-delay: 0.8s;
+}
+
+.ck-ph-b3 {
+  animation-delay: 1.6s;
+}
+
+@keyframes ckPhBubbleRise {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  85% {
+    opacity: 0.8;
+    transform: translateY(-24px) scale(1.1);
+  }
+  100% {
+    transform: translateY(-30px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* 2. GasLab Kinetic Piston Chamber System */
+.ck-gas-viz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1.5px solid var(--border-subtle);
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ck-gas-cylinder-svg {
+  width: 140px;
+  height: 150px;
+}
+
+.ck-gas-piston-assembly {
+  transition: transform 600ms cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+
+.ck-gas-needle {
+  transform-origin: 110px 30px;
+  transition: transform 600ms cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+
+.ck-gas-atom {
+  animation: ckGasJitter 1.2s ease-in-out infinite alternate;
+}
+
+.ck-gas-atom:nth-child(2n) {
+  animation-duration: 0.85s;
+  animation-direction: alternate-reverse;
+}
+
+.ck-gas-atom:nth-child(3n) {
+  animation-duration: 1.5s;
+}
+
+@keyframes ckGasJitter {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(6px, -8px);
+  }
+  100% {
+    transform: translate(-5px, 6px);
+  }
+}
+
+/* 3. Chemical Balancer Reaction Sparkle & Pop */
+.ck-reaction-sparkle {
+  position: relative;
+  overflow: hidden;
+}
+
+.ck-reaction-sparkle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 200, 83, 0.28), transparent);
+  animation: ckReactionShimmer 1.8s ease-out 1;
+  pointer-events: none;
+}
+
+@keyframes ckReactionShimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+
+.ck-coeff-chip {
+  animation: ckCoeffPop 320ms cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  animation-delay: calc(var(--stagger, 0) * 45ms);
+}
+
+@keyframes ckCoeffPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }
 
