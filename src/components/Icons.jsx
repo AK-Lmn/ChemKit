@@ -15,7 +15,16 @@ const baseProps = {
 export function ChemKitMark({ className = '' }) {
   return (
     <svg viewBox="0 0 256 256" className={className} fill="none" aria-hidden="true">
-      <rect width="256" height="256" rx="56" fill="var(--surface, #1E1E1E)" />
+      <rect
+        x="8"
+        y="8"
+        width="240"
+        height="240"
+        rx="52"
+        fill="var(--brand-mark-bg, var(--surface, #1E1E1E))"
+        stroke="var(--brand-mark-border, var(--border))"
+        strokeWidth="14"
+      />
       <g transform="translate(18 16) scale(0.86)">
         {/* Molecular Reaction Node on upper-k arm (Catalyst Emerald) */}
         <circle cx="200" cy="74" r="16" fill="var(--accent, #00C853)" />

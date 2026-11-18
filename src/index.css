@@ -16,6 +16,8 @@
   --border: #333333;
   --border-subtle: #2d2d2d;
   --border-strong: #FFFFFF;
+  --brand-mark-bg: #1E1E1E;
+  --brand-mark-border: #333333;
 
   --ink: #FFFFFF;
   --ink-2: #CCCCCC;
@@ -164,6 +166,8 @@
   --border: #E0E0E0;
   --border-subtle: #E0E0E0;
   --border-strong: #111111;
+  --brand-mark-bg: #FFFFFF;
+  --brand-mark-border: #111111;
 
   --ink: #111111;
   --ink-2: #333333;
@@ -376,9 +380,10 @@ button {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(8, 13, 22, 0.92);
+  background: color-mix(in srgb, var(--bg-canvas) 88%, transparent);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-subtle);
+  transition: background-color 200ms ease-out, border-color 200ms ease-out;
 }
 
 .ck-header-bar {
