@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" fill="none">
+  <title>ChemKit Flask Reaction Brand Mark</title>
+  <!-- Flask Body Outline with exact 60/120 degree conical geometry -->
+  <path
+    d="M 104 32 L 152 32 M 112 32 L 112 80 L 48 190.85 C 44 197.78 44 206 50 216.39 C 56 224 66 224 76 224 L 180 224 C 190 224 200 224 206 216.39 C 212 206 212 197.78 208 190.85 L 144 80 L 144 32"
+    stroke="#00C853"
+    stroke-width="16"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <!-- Liquid Fill / Meniscus -->
+  <path
+    d="M 74 156 C 96 148 120 162 148 156 C 166 152 176 154 182 156 L 198 184 C 204 196 196 208 182 208 L 74 208 C 60 208 52 196 58 184 Z"
+    fill="#00C853"
+  />
+  <!-- Rising Reaction Bubbles -->
+  <circle cx="128" cy="112" r="12" fill="#00C853" />
+  <circle cx="140" cy="70" r="8" fill="#00C853" />
+  <circle cx="116" cy="140" r="6" fill="#FFFFFF" />
+  <!-- Graduation Measurement Marks -->
+  <line x1="86" y1="180" x2="106" y2="180" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
+  <line x1="96" y1="156" x2="116" y2="156" stroke="#00C853" stroke-width="6" stroke-linecap="round" />
+  <line x1="106" y1="132" x2="122" y2="132" stroke="#00C853" stroke-width="6" stroke-linecap="round" />
+</svg>

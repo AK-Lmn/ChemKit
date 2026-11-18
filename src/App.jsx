@@ -3,6 +3,8 @@ import {
   ChemKitMark,
   IconGithub,
   IconLayoutGrid,
+  IconMoon,
+  IconSun,
   LogoChemBalancer,
   LogoElementExplorer,
   LogoGasLab,
@@ -116,7 +118,26 @@ export default function App() {
   const [molePrefill, setMolePrefill] = useState(null)
   const [stoichPrefill, setStoichPrefill] = useState(null)
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, ready: false })
+  const [theme, setTheme] = useState(() => {
+    try {
+      const saved = localStorage.getItem('chemkit-theme')
+      if (saved === 'light' || saved === 'dark') return saved
+    } catch {}
+    return 'dark'
+  })
   const tabRefs = useRef({})
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    document.documentElement.style.colorScheme = theme
+    try {
+      localStorage.setItem('chemkit-theme', theme)
+    } catch {}
+  }, [theme])
+
+  const toggleTheme = useCallback(() => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
+  }, [])
 
   const syncIndicator = useCallback(() => {
     const activeNode = tabRefs.current[activeId]
@@ -214,6 +235,15 @@ export default function App() {
           </button>
 
           <div className="ck-header-right">
+            <button
+              type="button"
+              className="ck-theme-toggle"
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              aria-pressed={theme === 'dark'}
+              onClick={toggleTheme}
+            >
+              {theme === 'dark' ? <IconSun /> : <IconMoon />}
+            </button>
             <a
               className="ck-github-link"
               href={REPO_URL}

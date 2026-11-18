@@ -26,7 +26,7 @@ const TOOLS = [
     name: 'Element Explorer',
     category: 'Elements',
     icon: LogoElementExplorer,
-    accent: '#4dd8e8',
+    accent: '#00C853',
     description: 'A full interactive periodic table for browsing, searching, and studying every element at a glance.',
     features: [
       'Search elements by name or symbol',
@@ -43,7 +43,7 @@ const TOOLS = [
     name: 'MoleMate',
     category: 'Calculations',
     icon: LogoMoleMate,
-    accent: '#a875ff',
+    accent: '#00C853',
     description: 'A mole calculator that turns mass and molar mass into moles and particle counts in one step.',
     features: [
       'Calculates moles from mass and molar mass',
@@ -60,7 +60,7 @@ const TOOLS = [
     name: 'GasLab',
     category: 'Calculations',
     icon: LogoGasLab,
-    accent: '#5b9dff',
+    accent: '#00C853',
     description: 'A guided gas laws calculator that walks you through the setup and shows the formula behind every answer.',
     features: [
       "Boyle's, Charles's, Gay-Lussac's and Avogadro's Laws",
@@ -77,7 +77,7 @@ const TOOLS = [
     name: 'Chemical Equation Balancer',
     category: 'Equations',
     icon: LogoChemBalancer,
-    accent: '#ff8f70',
+    accent: '#00C853',
     description: 'Balance chemical equations and compare atom counts without trial-and-error guessing.',
     features: [
       'Supports common formulas and parentheses',
@@ -94,7 +94,7 @@ const TOOLS = [
     name: 'Stoichiometry Solver',
     category: 'Equations',
     icon: LogoStoichiometry,
-    accent: '#d08cff',
+    accent: '#00C853',
     description: 'Use balanced equations to convert between moles and grams with guided stoichiometry steps.',
     features: [
       'Supports mole-to-mole and gram-to-gram conversions',
@@ -111,7 +111,7 @@ const TOOLS = [
     name: 'pH Calculator',
     category: 'Solutions',
     icon: LogoPhCalculator,
-    accent: '#7ce6c4',
+    accent: '#00C853',
     description: 'Move between pH, pOH, and ion concentration instantly with a focused calculator built for quick conversions.',
     features: [
       'Convert between pH and pOH',
@@ -128,7 +128,7 @@ const TOOLS = [
     name: 'SolutionLab',
     category: 'Solutions',
     icon: LogoSolutionLab,
-    accent: '#ffcf5a',
+    accent: '#00C853',
     description: 'Solve common solution concentration problems including molarity, dilution, mass concentration, and percent concentration.',
     features: [
       'Calculate molarity, moles, and volume',
@@ -141,32 +141,32 @@ const TOOLS = [
 ]
 
 const TOOL_GUIDE = [
-  { need: 'Need element data?', toolName: 'Element Explorer', toolId: 'elements', icon: LogoElementExplorer, accent: '#4dd8e8' },
-  { need: 'Need moles or particles?', toolName: 'MoleMate', toolId: 'moles', icon: LogoMoleMate, accent: '#a875ff' },
-  { need: 'Need gas law variables?', toolName: 'GasLab', toolId: 'gas-laws', icon: LogoGasLab, accent: '#5b9dff' },
-  { need: 'Need to balance a chemical equation?', toolName: 'Chemical Equation Balancer', toolId: 'balancer', icon: LogoChemBalancer, accent: '#ff8f70' },
-  { need: 'Need mole or gram conversions from an equation?', toolName: 'Stoichiometry Solver', toolId: 'stoichiometry', icon: LogoStoichiometry, accent: '#d08cff' },
-  { need: 'Need pH, pOH, or ion concentration?', toolName: 'pH Calculator', toolId: 'ph', icon: LogoPhCalculator, accent: '#7ce6c4' },
-  { need: 'Need molarity, dilution, or percent concentration?', toolName: 'SolutionLab', toolId: 'solutions', icon: LogoSolutionLab, accent: '#ffcf5a' },
+  { need: 'Need element data?', toolName: 'Element Explorer', toolId: 'elements', icon: LogoElementExplorer, accent: '#00C853' },
+  { need: 'Need moles or particles?', toolName: 'MoleMate', toolId: 'moles', icon: LogoMoleMate, accent: '#00C853' },
+  { need: 'Need gas law variables?', toolName: 'GasLab', toolId: 'gas-laws', icon: LogoGasLab, accent: '#00C853' },
+  { need: 'Need to balance a chemical equation?', toolName: 'Chemical Equation Balancer', toolId: 'balancer', icon: LogoChemBalancer, accent: '#00C853' },
+  { need: 'Need mole or gram conversions from an equation?', toolName: 'Stoichiometry Solver', toolId: 'stoichiometry', icon: LogoStoichiometry, accent: '#00C853' },
+  { need: 'Need pH, pOH, or ion concentration?', toolName: 'pH Calculator', toolId: 'ph', icon: LogoPhCalculator, accent: '#00C853' },
+  { need: 'Need molarity, dilution, or percent concentration?', toolName: 'SolutionLab', toolId: 'solutions', icon: LogoSolutionLab, accent: '#00C853' },
 ]
 
 const WHY_CARDS = [
   {
     icon: IconGraduationCap,
     title: 'Student-friendly',
-    accent: '#a875ff',
+    accent: '#00C853',
     description: "Written for the moment you are stuck on a problem set, not for people who already know the answer.",
   },
   {
     icon: IconAtom,
     title: 'Built from real study tools',
-    accent: '#5b9dff',
+    accent: '#00C853',
     description: 'Each app started as something used to pass an actual chemistry class, then got refined into a product.',
   },
   {
     icon: IconListOrdered,
     title: 'Clean UI, guided calculations',
-    accent: '#a875ff',
+    accent: '#00C853',
     description: 'Every calculator shows its formula and its steps, so the answer is never a black box.',
   },
 ]
@@ -201,9 +201,9 @@ export function Overview({ onOpenTool }) {
         <div className="hero-copy">
           <p className="eyebrow">A chemistry toolkit, not a textbook</p>
           <h1>
-            Chemistry feels lighter
+            Chemistry feels <em>lighter</em>
             <br />
-            <span>with the right tools.</span>
+            with the right tools.
           </h1>
           <p className="hero-text">
             ChemKit is a student-built chemistry toolkit for quick calculations, guided practice, and clean study support.
@@ -240,14 +240,14 @@ export function Overview({ onOpenTool }) {
         </div>
 
         <div className="hero-visual" aria-hidden="true">
-          <div className="catalyst-card">
-            <ChemKitMark className="catalyst-card-mark" />
-            <span className="catalyst-card-title">Chem<span className="text-amber">Kit</span></span>
-            <span className="catalyst-card-sub">Catalytic Suite</span>
+          <div className="flask-card">
+            <ChemKitMark className="flask-card-mark" />
+            <span className="flask-card-title">Chem<span className="text-emerald">Kit</span></span>
+            <span className="flask-card-sub">Reaction Suite</span>
           </div>
-          <div className="hex-resonance hex-one" />
-          <div className="hex-resonance hex-two" />
-          <div className="hex-resonance hex-three" />
+          <div className="reaction-ring ring-one" />
+          <div className="reaction-ring ring-two" />
+          <div className="reaction-ring ring-three" />
         </div>
       </section>
 

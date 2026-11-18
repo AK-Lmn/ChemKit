@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" fill="none">
+  <title>ChemKit Flask Reaction Brand Mark - Small Variant</title>
+  <!-- Flask Body Outline with bolder strokes for tiny displays -->
+  <path
+    d="M 104 36 L 152 36 M 112 36 L 112 80 L 48 190.85 C 44 197.78 44 206 50 216.39 C 56 222 66 222 76 222 L 180 222 C 190 222 200 222 206 216.39 C 212 206 212 197.78 208 190.85 L 144 80 L 144 36"
+    stroke="#00C853"
+    stroke-width="24"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <!-- Liquid Fill / Meniscus -->
+  <path
+    d="M 68 156 C 96 148 120 162 148 156 C 166 152 176 154 188 156 L 198 184 C 204 196 196 208 182 208 L 74 208 C 60 208 52 196 58 184 Z"
+    fill="#00C853"
+  />
+  <!-- Primary Reaction Bubble -->
+  <circle cx="128" cy="112" r="16" fill="#00C853" />
+  <circle cx="140" cy="68" r="12" fill="#00C853" />
+</svg>

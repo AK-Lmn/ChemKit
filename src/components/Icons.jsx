@@ -11,22 +11,29 @@ const baseProps = {
 export function ChemKitMark({ className = '' }) {
   return (
     <svg viewBox="0 0 256 256" className={className} fill="none" aria-hidden="true">
-      <rect width="256" height="256" rx="56" fill="#090d14" stroke="rgba(245, 158, 11, 0.32)" strokeWidth="8" />
-      <g transform="translate(16 16) scale(0.875)">
-        {/* Left facet forming 'C' */}
+      <rect width="256" height="256" rx="56" fill="var(--surface, #1E1E1E)" stroke="var(--border-strong, #111111)" strokeWidth="8" />
+      <g transform="translate(18 16) scale(0.86)">
+        {/* Flask Conical Body */}
         <path
-          d="M 128 36 L 48 82.2 L 48 173.8 L 128 220"
-          stroke="#f59e0b"
-          strokeWidth="24"
+          d="M 104 32 L 152 32 M 112 32 L 112 80 L 48 190.85 C 44 197.78 44 206 50 216.39 C 56 224 66 224 76 224 L 180 224 C 190 224 200 224 206 216.39 C 212 206 212 197.78 208 190.85 L 144 80 L 144 32"
+          stroke="var(--accent, #00C853)"
+          strokeWidth="16"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        {/* Central spine and diagonal arms forming 'K' */}
-        <line x1="128" y1="56" x2="128" y2="200" stroke="#f59e0b" strokeWidth="24" strokeLinecap="round" />
-        <line x1="128" y1="128" x2="208" y2="82.2" stroke="#f59e0b" strokeWidth="24" strokeLinecap="round" />
-        <line x1="128" y1="128" x2="208" y2="173.8" stroke="#f59e0b" strokeWidth="24" strokeLinecap="round" />
-        {/* Central Catalytic Prism Core */}
-        <circle cx="128" cy="128" r="20" fill="#3b82f6" stroke="#fbbf24" strokeWidth="6" />
+        {/* Liquid Meniscus */}
+        <path
+          d="M 74 156 C 96 148 120 162 148 156 C 166 152 176 154 182 156 L 198 184 C 204 196 196 208 182 208 L 74 208 C 60 208 52 196 58 184 Z"
+          fill="var(--accent, #00C853)"
+        />
+        {/* Rising Reaction Bubbles */}
+        <circle cx="128" cy="112" r="12" fill="var(--accent, #00C853)" />
+        <circle cx="140" cy="70" r="8" fill="var(--accent, #00C853)" />
+        <circle cx="116" cy="140" r="6" fill="#FFFFFF" />
+        {/* Graduation Measurement Marks */}
+        <line x1="86" y1="180" x2="106" y2="180" stroke="#FFFFFF" strokeWidth="6" strokeLinecap="round" />
+        <line x1="96" y1="156" x2="116" y2="156" stroke="var(--accent, #00C853)" strokeWidth="6" strokeLinecap="round" />
+        <line x1="106" y1="132" x2="122" y2="132" stroke="var(--accent, #00C853)" strokeWidth="6" strokeLinecap="round" />
       </g>
     </svg>
   )
@@ -34,6 +41,23 @@ export function ChemKitMark({ className = '' }) {
 
 export const AtomMark = ChemKitMark
 
+
+export function IconMoon({ className = '' }) {
+  return (
+    <svg {...baseProps} className={className}>
+      <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
+    </svg>
+  )
+}
+
+export function IconSun({ className = '' }) {
+  return (
+    <svg {...baseProps} className={className}>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+    </svg>
+  )
+}
 
 export function IconLayoutGrid({ className = '' }) {
   return (
