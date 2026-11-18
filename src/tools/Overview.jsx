@@ -31,13 +31,14 @@ export function Overview({ tools, onOpenTool }) {
 
       <section aria-label="Chemistry tools directory">
         <div className="ck-suite-list">
-          {tools.map((tool) => {
+          {tools.map((tool, index) => {
             const Icon = tool.icon
             return (
               <button
                 key={tool.id}
                 type="button"
-                className="ck-suite-row"
+                className="ck-suite-row ck-stagger-row"
+                style={{ '--stagger': Math.min(index, 7) }}
                 onClick={() => onOpenTool(tool.id)}
               >
                 <div className="ck-suite-row-head">

@@ -20,8 +20,32 @@ export function ElementExplorer({ onSendToMoleMate }) {
   const [search, setSearch] = useState('')
   const [categoryFilter, setCategoryFilter] = useState('All')
   const [selectedElement, setSelectedElement] = useState(null)
+  const [dialogOpen, setDialogOpen] = useState(false)
   const [favorites, setFavorites] = useLocalStorage('chemistry-hub-favorites', [])
   const closeBtnRef = useRef(null)
+  const dialogTimerRef = useRef(null)
+
+  const openDialog = (element) => {
+    if (dialogTimerRef.current) {
+      window.clearTimeout(dialogTimerRef.current)
+      dialogTimerRef.current = null
+    }
+    setSelectedElement(element)
+    setDialogOpen(true)
+  }
+
+  const closeDialog = () => {
+    setDialogOpen(false)
+    if (dialogTimerRef.current) window.clearTimeout(dialogTimerRef.current)
+    dialogTimerRef.current = window.setTimeout(() => {
+      setSelectedElement(null)
+      dialogTimerRef.current = null
+    }, 160)
+  }
+
+  useEffect(() => () => {
+    if (dialogTimerRef.current) window.clearTimeout(dialogTimerRef.current)
+  }, [])
 
   const favoriteSet = useMemo(
     () => new Set(Array.isArray(favorites) ? favorites.filter((v) => Number.isInteger(v)) : []),
@@ -52,14 +76,14 @@ export function ElementExplorer({ onSendToMoleMate }) {
   const hasFilter = search.trim().length > 0 || categoryFilter !== 'All'
 
   useEffect(() => {
-    if (!selectedElement) return undefined
+    if (!dialogOpen) return undefined
     closeBtnRef.current?.focus()
     const onKeyDown = (event) => {
-      if (event.key === 'Escape') setSelectedElement(null)
+      if (event.key === 'Escape') closeDialog()
     }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [selectedElement])
+  }, [dialogOpen])
 
   const toggleFavorite = (atomicNumber) => {
     setFavorites((current) => {
@@ -181,11 +205,11 @@ export function ElementExplorer({ onSendToMoleMate }) {
                     }`}
                     style={{ gridColumn: element.column, gridRow }}
                     aria-label={`${element.name}, symbol ${element.symbol}, atomic number ${element.atomicNumber}`}
-                    onClick={() => setSelectedElement(element)}
+                    onClick={() => openDialog(element)}
                     onKeyDown={(event) => {
                       if (event.key === 'Enter' || event.key === ' ') {
                         event.preventDefault()
-                        setSelectedElement(element)
+                        openDialog(element)
                       }
                     }}
                   >
@@ -217,12 +241,17 @@ export function ElementExplorer({ onSendToMoleMate }) {
       {selectedElement && (
         <div
           className="ck-backdrop"
+          data-state={dialogOpen ? 'open' : 'closed'}
           role="dialog"
           aria-modal="true"
           aria-labelledby="element-dialog-title"
-          onClick={() => setSelectedElement(null)}
+          onClick={closeDialog}
         >
-          <div className="ck-dialog ck-stack" onClick={(event) => event.stopPropagation()}>
+          <div
+            className="ck-dialog ck-stack"
+            data-state={dialogOpen ? 'open' : 'closed'}
+            onClick={(event) => event.stopPropagation()}
+          >
             <div className="ck-panel-head" style={{ marginBottom: 0 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                 <div
@@ -266,47 +295,32 @@ export function ElementExplorer({ onSendToMoleMate }) {
                 type="button"
                 className="ck-btn ck-btn--secondary ck-btn--sm"
                 aria-label="Close element details"
-                onClick={() => setSelectedElement(null)}
+                onClick={closeDialog}
               >
                 <IconX />
               </button>
             </div>
 
             <div className="ck-stat-grid">
-              <div className="ck-stat">
-                <span>Atomic weight</span>
-                <strong>{selectedElement.atomicWeight} u</strong>
-              </div>
-              <div className="ck-stat">
-                <span>Standard weight</span>
-                <strong>{selectedElement.atomicWeightFull}</strong>
-              </div>
-              <div className="ck-stat">
-                <span>Group / Period</span>
-                <strong>
-                  {selectedElement.group ?? 'f-block'} / {selectedElement.period}
-                </strong>
-              </div>
-              <div className="ck-stat">
-                <span>Block</span>
-                <strong>{selectedElement.block}-block</strong>
-              </div>
-              <div className="ck-stat">
-                <span>Phase (STP)</span>
-                <strong>{selectedElement.occurrence}</strong>
-              </div>
-              <div className="ck-stat">
-                <span>Origin</span>
-                <strong>{selectedElement.stateOfMatter}</strong>
-              </div>
-              <div className="ck-stat">
-                <span>Valence electrons</span>
-                <strong>{selectedElement.valenceElectrons}</strong>
-              </div>
-              <div className="ck-stat">
-                <span>Electron config</span>
-                <strong>{selectedElement.electronConfiguration}</strong>
-              </div>
+              {[
+                ['Atomic weight', `${selectedElement.atomicWeight} u`],
+                ['Standard weight', selectedElement.atomicWeightFull],
+                ['Group / Period', `${selectedElement.group ?? 'f-block'} / ${selectedElement.period}`],
+                ['Block', `${selectedElement.block}-block`],
+                ['Phase (STP)', selectedElement.occurrence],
+                ['Origin', selectedElement.stateOfMatter],
+                ['Valence electrons', selectedElement.valenceElectrons],
+                ['Electron config', selectedElement.electronConfiguration],
+              ].map(([label, value], index) => (
+                <div
+                  key={label}
+                  className="ck-stat ck-detail-settle"
+                  style={{ '--stagger': Math.min(index, 6) }}
+                >
+                  <span>{label}</span>
+                  <strong>{value}</strong>
+                </div>
+              ))}
             </div>
 
             <div className="ck-btn-row" style={{ justifyContent: 'space-between' }}>
@@ -324,7 +338,7 @@ export function ElementExplorer({ onSendToMoleMate }) {
                 className="ck-btn ck-btn--primary"
                 onClick={() => {
                   const target = selectedElement
-                  setSelectedElement(null)
+                  closeDialog()
                   onSendToMoleMate(target.symbol, target.atomicMass)
                 }}
               >

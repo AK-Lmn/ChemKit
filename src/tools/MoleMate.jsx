@@ -239,7 +239,7 @@ export function MoleMate({ prefill, onConsumePrefill }) {
             <h2 className="ck-panel-title">Results</h2>
             {result ? (
               <>
-                <div className="ck-readout">
+                <div key={result.time} className="ck-readout ck-mask-reveal ck-success-pulse">
                   <span className="ck-readout-label">Moles</span>
                   <strong className="ck-readout-value">{formatNumber(result.moles)} mol</strong>
                   <p className="ck-readout-sub">
@@ -248,11 +248,11 @@ export function MoleMate({ prefill, onConsumePrefill }) {
                   </p>
                 </div>
                 <div className="ck-stat-grid">
-                  <div className="ck-stat">
+                  <div className="ck-stat ck-detail-settle" style={{ '--stagger': 0 }}>
                     <span>Estimated particles</span>
                     <strong>{formatScientific(result.particles, 3)}</strong>
                   </div>
-                  <div className="ck-stat">
+                  <div className="ck-stat ck-detail-settle" style={{ '--stagger': 1 }}>
                     <span>Mass in grams</span>
                     <strong>{formatNumber(result.massInGrams)} g</strong>
                   </div>
@@ -282,8 +282,12 @@ export function MoleMate({ prefill, onConsumePrefill }) {
                     </tr>
                   </thead>
                   <tbody>
-                    {breakdown.items.map((item) => (
-                      <tr key={item.symbol}>
+                    {breakdown.items.map((item, index) => (
+                      <tr
+                        key={item.symbol}
+                        className="ck-stagger-row"
+                        style={{ '--stagger': Math.min(index, 6) }}
+                      >
                         <td>
                           <strong className="mono">{item.symbol}</strong> {item.name}
                         </td>

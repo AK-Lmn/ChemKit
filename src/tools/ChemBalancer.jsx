@@ -45,6 +45,7 @@ export function ChemBalancer({ onSendToStoichiometry }) {
       const atomRows = getAtomCounts(solution.parsed, solution.coefficients, solution.elements)
       const subscripted = formatSubscriptEquation(solution.parsed, solution.coefficients, '->')
       setResult({
+        id: Date.now(),
         plain: solution.equation,
         subscripted,
         terms: terms.map((term, index) => ({
@@ -171,8 +172,15 @@ export function ChemBalancer({ onSendToStoichiometry }) {
               <div className="ck-panel-head" style={{ marginBottom: 0 }}>
                 <h2 className="ck-panel-title">Balanced result</h2>
                 <div className="ck-btn-row">
-                  <button type="button" className="ck-btn ck-btn--secondary ck-btn--sm" onClick={handleCopy}>
-                    {copied ? <IconCheck /> : <IconCopy />}
+                  <button
+                    type="button"
+                    className={`ck-btn ck-btn--secondary ck-btn--sm ${copied ? 'ck-success-pulse' : ''}`}
+                    onClick={handleCopy}
+                  >
+                    <span className="ck-icon-swap" aria-hidden="true">
+                      <IconCopy data-active={!copied} />
+                      <IconCheck data-active={copied} />
+                    </span>
                     {copied ? 'Copied' : 'Copy'}
                   </button>
                   <button
@@ -186,7 +194,7 @@ export function ChemBalancer({ onSendToStoichiometry }) {
                 </div>
               </div>
 
-              <div className="ck-readout">
+              <div key={result.id} className="ck-readout ck-mask-reveal ck-success-pulse">
                 <span className="ck-readout-label">Balanced equation</span>
                 <strong className="ck-readout-value" style={{ fontSize: '1.375rem' }}>
                   {result.subscripted}
@@ -197,7 +205,11 @@ export function ChemBalancer({ onSendToStoichiometry }) {
                 <span className="ck-label">Stoichiometric coefficients</span>
                 <div className="ck-coeff-grid">
                   {result.terms.map((term, index) => (
-                    <div className="ck-coeff-chip" key={`${term.formula}-${index}`}>
+                    <div
+                      className="ck-coeff-chip ck-detail-settle"
+                      style={{ '--stagger': Math.min(index, 6) }}
+                      key={`${result.id}-${term.formula}-${index}`}
+                    >
                       <span className="ck-coeff-num">{term.coefficient}</span>
                       <span className="ck-coeff-formula">{formatFormulaSubscripts(term.formula)}</span>
                     </div>
@@ -218,8 +230,12 @@ export function ChemBalancer({ onSendToStoichiometry }) {
                       </tr>
                     </thead>
                     <tbody>
-                      {result.atomRows.map((row) => (
-                        <tr key={row.element}>
+                      {result.atomRows.map((row, index) => (
+                        <tr
+                          key={`${result.id}-${row.element}`}
+                          className="ck-detail-settle"
+                          style={{ '--stagger': Math.min(index, 6) }}
+                        >
                           <td className="mono">{row.element}</td>
                           <td className="num">{row.reactants}</td>
                           <td className="num">{row.products}</td>

@@ -98,7 +98,7 @@ export function SolutionLab() {
 
     try {
       const solved = solveSolution(mode.id, parsedValues, { dilutionSolveFor, volumeResultUnit })
-      setResult(solved)
+      setResult({ ...solved, id: Date.now() })
       setHistory((prev) =>
         [
           {
@@ -279,7 +279,7 @@ export function SolutionLab() {
             <h2 className="ck-panel-title">Result and steps</h2>
             {result ? (
               <>
-                <div className="ck-readout ck-vial-wrap">
+                <div key={result.id} className="ck-readout ck-vial-wrap ck-mask-reveal ck-success-pulse">
                   <div className="ck-vial" aria-hidden="true">
                     <div
                       className="ck-vial-fill"
@@ -297,7 +297,11 @@ export function SolutionLab() {
 
                 <ol className="ck-steps">
                   {result.steps.map((stepItem, index) => (
-                    <li className="ck-step" key={index}>
+                    <li
+                      className="ck-step ck-detail-settle"
+                      style={{ '--stagger': Math.min(index, 6) }}
+                      key={`${result.id}-${index}`}
+                    >
                       <span className="ck-step-tag">{stepItem.tag}</span>
                       <span className="mono">{stepItem.text}</span>
                     </li>

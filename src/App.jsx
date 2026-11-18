@@ -115,7 +115,24 @@ export default function App() {
   const [activeId, setActiveId] = useState(resolveRouteId)
   const [molePrefill, setMolePrefill] = useState(null)
   const [stoichPrefill, setStoichPrefill] = useState(null)
+  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, ready: false })
   const tabRefs = useRef({})
+
+  const syncIndicator = useCallback(() => {
+    const activeNode = tabRefs.current[activeId]
+    if (!activeNode) return
+    setIndicatorStyle({
+      left: activeNode.offsetLeft,
+      width: activeNode.offsetWidth,
+      ready: true,
+    })
+  }, [activeId])
+
+  useEffect(() => {
+    syncIndicator()
+    window.addEventListener('resize', syncIndicator)
+    return () => window.removeEventListener('resize', syncIndicator)
+  }, [syncIndicator])
 
   const navigate = useCallback((nextId) => {
     const target = NAV_ITEMS.find((item) => item.id === nextId) || NAV_ITEMS[0]
@@ -207,6 +224,15 @@ export default function App() {
         <nav className="ck-tabbar-wrap" aria-label="Chemistry tools">
           <div className="ck-shell">
             <div className="ck-tablist" role="tablist" aria-label="ChemKit workspace tabs">
+              <span
+                className="ck-tab-indicator"
+                aria-hidden="true"
+                style={{
+                  transform: `translateX(${indicatorStyle.left}px)`,
+                  width: `${indicatorStyle.width}px`,
+                  opacity: indicatorStyle.ready ? 1 : 0,
+                }}
+              />
               {NAV_ITEMS.map((item, index) => {
                 const Icon = item.icon
                 const isSelected = activeId === item.id
@@ -238,10 +264,11 @@ export default function App() {
 
       <main className="ck-main">
         <div
+          key={activeId}
           id={`panel-${activeId}`}
           role="tabpanel"
           aria-labelledby={`tab-${activeId}`}
-          className="ck-shell"
+          className="ck-shell ck-panel-enter"
         >
           {activeId === 'overview' && <Overview tools={TOOLS_ONLY} onOpenTool={navigate} />}
           {activeId === 'elements' && <ElementExplorer onSendToMoleMate={handleSendToMoleMate} />}

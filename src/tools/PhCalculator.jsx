@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   PH_MODES,
   formatIonConcentration,
@@ -31,7 +31,22 @@ export function PhCalculator() {
   const [weakK, setWeakK] = useState('')
   const [error, setError] = useState('')
   const [result, setResult] = useState(null)
+  const [markerMoving, setMarkerMoving] = useState(false)
+  const markerTimerRef = useRef(null)
   const [history, setHistory] = useLocalStorage('chemkit-ph-calculator-history', [])
+
+  const triggerMarkerStretch = () => {
+    setMarkerMoving(true)
+    if (markerTimerRef.current) window.clearTimeout(markerTimerRef.current)
+    markerTimerRef.current = window.setTimeout(() => {
+      setMarkerMoving(false)
+      markerTimerRef.current = null
+    }, 220)
+  }
+
+  useEffect(() => () => {
+    if (markerTimerRef.current) window.clearTimeout(markerTimerRef.current)
+  }, [])
 
   const activeMode = PH_MODES.find((item) => item.id === modeId) || PH_MODES[0]
 
@@ -50,7 +65,8 @@ export function PhCalculator() {
     }
     try {
       const solved = solvePhConversion(modeId, num)
-      setResult({ kind: 'conversion', data: solved })
+      setResult({ id: Date.now(), kind: 'conversion', data: solved })
+      triggerMarkerStretch()
       setHistory((prev) =>
         [
           {
@@ -78,7 +94,8 @@ export function PhCalculator() {
     }
     try {
       const solved = solveWeakDissociation({ type: weakType, concentration: conc, kValue: kVal })
-      setResult({ kind: 'weak', data: solved })
+      setResult({ id: Date.now(), kind: 'weak', data: solved })
+      triggerMarkerStretch()
       setHistory((prev) =>
         [
           {
@@ -291,7 +308,7 @@ export function PhCalculator() {
             <h2 className="ck-panel-title">Equilibrium readout</h2>
             {result ? (
               <>
-                <div className="ck-readout">
+                <div key={result.id} className="ck-readout ck-mask-reveal ck-success-pulse">
                   <span className="ck-readout-label">
                     {result.kind === 'conversion'
                       ? `${result.data.mode.resultLabel} (${result.data.classification})`
@@ -303,7 +320,10 @@ export function PhCalculator() {
                       : `pH = ${formatNumber(result.data.pH)}`}
                   </strong>
                   <div className="ck-ph-scale" aria-hidden="true">
-                    <div className="ck-ph-marker" style={{ left: `${clampedPhPercent}%` }} />
+                    <div
+                      className={`ck-ph-marker ${markerMoving ? 'is-moving' : ''}`}
+                      style={{ left: `${clampedPhPercent}%` }}
+                    />
                   </div>
                   <div className="ck-ph-ticks" aria-hidden="true">
                     <span>0 Acidic</span>
@@ -313,24 +333,24 @@ export function PhCalculator() {
                 </div>
 
                 <div className="ck-stat-grid">
-                  <div className="ck-stat">
+                  <div className="ck-stat ck-detail-settle" style={{ '--stagger': 0 }}>
                     <span>pH</span>
                     <strong>{formatNumber(result.data.pH)}</strong>
                   </div>
-                  <div className="ck-stat">
+                  <div className="ck-stat ck-detail-settle" style={{ '--stagger': 1 }}>
                     <span>pOH</span>
                     <strong>{formatNumber(result.data.pOH)}</strong>
                   </div>
-                  <div className="ck-stat">
+                  <div className="ck-stat ck-detail-settle" style={{ '--stagger': 2 }}>
                     <span>[H+]</span>
                     <strong>{formatIonConcentration(result.data.hConcentration)} M</strong>
                   </div>
-                  <div className="ck-stat">
+                  <div className="ck-stat ck-detail-settle" style={{ '--stagger': 3 }}>
                     <span>[OH-]</span>
                     <strong>{formatIonConcentration(result.data.ohConcentration)} M</strong>
                   </div>
                   {result.kind === 'weak' && (
-                    <div className="ck-stat">
+                    <div className="ck-stat ck-detail-settle" style={{ '--stagger': 4 }}>
                       <span>Percent ionization</span>
                       <strong>{formatNumber(result.data.percentIonization)}%</strong>
                     </div>
@@ -339,7 +359,11 @@ export function PhCalculator() {
 
                 <ol className="ck-steps">
                   {result.data.steps.map((stepText, index) => (
-                    <li className="ck-step" key={index}>
+                    <li
+                      className="ck-step ck-detail-settle"
+                      style={{ '--stagger': Math.min(index + 1, 6) }}
+                      key={`${result.id}-${index}`}
+                    >
                       <span className="ck-step-tag">Step {index + 1}</span>
                       <span>{stepText}</span>
                     </li>

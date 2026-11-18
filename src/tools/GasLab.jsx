@@ -206,7 +206,10 @@ export function GasLab() {
           <section className="ck-panel ck-stack" aria-live="polite">
             <h2 className="ck-panel-title">Calculated result</h2>
             {calculation.status === 'ok' ? (
-              <div className="ck-readout">
+              <div
+                key={`${law.id}-${solveIndex}-${formatNumber(calculation.value)}-${targetUnit}`}
+                className="ck-readout ck-mask-reveal ck-success-pulse"
+              >
                 <span className="ck-readout-label">{targetVar.label}</span>
                 <strong className="ck-readout-value">
                   {formatNumber(calculation.value)} {targetUnit}

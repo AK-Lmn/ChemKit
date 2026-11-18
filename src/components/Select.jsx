@@ -1,8 +1,11 @@
-import { useEffect, useId, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import { IconCheck, IconChevronDown } from './Icons.jsx'
+
+const EXIT_MS = 160
 
 /**
  * Accessible custom select built on ARIA listbox pattern.
+ * Popover enters from trigger at 0.95 scale (200ms ease-out) and exits 20% faster (160ms).
  * Supports ArrowUp, ArrowDown, Home, End, Enter, Space, and Escape.
  */
 export function Select({
@@ -22,22 +25,54 @@ export function Select({
   const listboxId = `${triggerId}-listbox`
   const containerRef = useRef(null)
   const triggerRef = useRef(null)
+  const closeTimerRef = useRef(null)
   const [open, setOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
 
   const selectedIndex = options.findIndex((option) => option.value === value)
   const selectedOption = selectedIndex >= 0 ? options[selectedIndex] : null
 
+  const clearTimer = () => {
+    if (closeTimerRef.current) {
+      window.clearTimeout(closeTimerRef.current)
+      closeTimerRef.current = null
+    }
+  }
+
+  const closeMenu = useCallback(() => {
+    setOpen(false)
+    clearTimer()
+    closeTimerRef.current = window.setTimeout(() => {
+      setMounted(false)
+      closeTimerRef.current = null
+    }, EXIT_MS)
+  }, [])
+
+  const openMenu = useCallback(
+    (startIndex) => {
+      if (disabled || options.length === 0) return
+      clearTimer()
+      const fallback = selectedIndex >= 0 ? selectedIndex : 0
+      setActiveIndex(startIndex !== undefined ? startIndex : fallback)
+      setMounted(true)
+      setOpen(true)
+    },
+    [disabled, options.length, selectedIndex],
+  )
+
+  useEffect(() => () => clearTimer(), [])
+
   useEffect(() => {
     if (!open) return undefined
     const handlePointerDown = (event) => {
       if (containerRef.current && !containerRef.current.contains(event.target)) {
-        setOpen(false)
+        closeMenu()
       }
     }
     const handleEscape = (event) => {
       if (event.key === 'Escape') {
-        setOpen(false)
+        closeMenu()
         triggerRef.current?.focus()
       }
     }
@@ -47,20 +82,13 @@ export function Select({
       document.removeEventListener('mousedown', handlePointerDown)
       document.removeEventListener('keydown', handleEscape)
     }
-  }, [open])
-
-  const openMenu = (startIndex) => {
-    if (disabled || options.length === 0) return
-    const fallback = selectedIndex >= 0 ? selectedIndex : 0
-    setActiveIndex(startIndex !== undefined ? startIndex : fallback)
-    setOpen(true)
-  }
+  }, [open, closeMenu])
 
   const commitIndex = (index) => {
     const chosen = options[index]
     if (!chosen) return
     onChange(chosen.value)
-    setOpen(false)
+    closeMenu()
     triggerRef.current?.focus()
   }
 
@@ -93,7 +121,7 @@ export function Select({
       event.preventDefault()
       commitIndex(activeIndex)
     } else if (event.key === 'Tab') {
-      setOpen(false)
+      closeMenu()
     }
   }
 
@@ -106,21 +134,28 @@ export function Select({
         role="combobox"
         aria-haspopup="listbox"
         aria-expanded={open}
-        aria-controls={listboxId}
+        aria-controls={mounted ? listboxId : undefined}
         aria-activedescendant={open ? `${listboxId}-opt-${activeIndex}` : undefined}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
         disabled={disabled}
         className={`ck-select-trigger ${open ? 'is-open' : ''}`}
-        onClick={() => (open ? setOpen(false) : openMenu())}
+        onClick={() => (open ? closeMenu() : openMenu())}
         onKeyDown={handleKeyDown}
       >
         <span className="ck-select-value">{selectedOption ? selectedOption.label : placeholder}</span>
         <IconChevronDown className={`ck-select-chevron ${open ? 'is-rotated' : ''}`} />
       </button>
 
-      {open && (
-        <ul id={listboxId} role="listbox" aria-label={ariaLabel} className="ck-select-menu">
+      {mounted && (
+        <ul
+          id={listboxId}
+          role="listbox"
+          aria-label={ariaLabel}
+          aria-hidden={!open}
+          data-state={open ? 'open' : 'closed'}
+          className="ck-select-menu"
+        >
           {options.map((option, index) => {
             const isSelected = option.value === value
             const isActive = index === activeIndex

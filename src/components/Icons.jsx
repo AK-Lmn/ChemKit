@@ -129,17 +129,17 @@ export function IconChevronDown({ className = '' }) {
   )
 }
 
-export function IconCheck({ className = '' }) {
+export function IconCheck({ className = '', ...props }) {
   return (
-    <svg {...baseProps} className={className}>
+    <svg {...baseProps} {...props} className={className}>
       <path d="M20 6 9 17l-5-5" />
     </svg>
   )
 }
 
-export function IconCopy({ className = '' }) {
+export function IconCopy({ className = '', ...props }) {
   return (
-    <svg {...baseProps} className={className}>
+    <svg {...baseProps} {...props} className={className}>
       <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
       <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
     </svg>

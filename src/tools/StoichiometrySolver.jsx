@@ -105,7 +105,8 @@ export function StoichiometrySolver({ prefill, onConsumePrefill }) {
         targetFormula,
         targetUnit,
       })
-      setResult(solved)
+      const stamp = Date.now()
+      setResult({ ...solved, id: stamp })
       setHistory((prev) =>
         [
           {
@@ -331,7 +332,7 @@ export function StoichiometrySolver({ prefill, onConsumePrefill }) {
             <h2 className="ck-panel-title">Solution</h2>
             {result ? (
               <>
-                <div className="ck-readout">
+                <div key={result.id} className="ck-readout ck-mask-reveal ck-success-pulse">
                   <span className="ck-readout-label">Final answer</span>
                   <strong className="ck-readout-value">
                     {formatNumber(result.result)} {result.targetUnit === 'grams' ? 'g' : 'mol'}{' '}
@@ -344,15 +345,15 @@ export function StoichiometrySolver({ prefill, onConsumePrefill }) {
                 </div>
 
                 <div className="ck-stat-grid">
-                  <div className="ck-stat">
+                  <div className="ck-stat ck-detail-settle" style={{ '--stagger': 0 }}>
                     <span>Mole ratio</span>
                     <strong>{result.moleRatio}</strong>
                   </div>
-                  <div className="ck-stat">
+                  <div className="ck-stat ck-detail-settle" style={{ '--stagger': 1 }}>
                     <span>{result.given.formula} molar mass</span>
                     <strong>{formatNumber(result.given.molarMass)} g/mol</strong>
                   </div>
-                  <div className="ck-stat">
+                  <div className="ck-stat ck-detail-settle" style={{ '--stagger': 2 }}>
                     <span>{result.target.formula} molar mass</span>
                     <strong>{formatNumber(result.target.molarMass)} g/mol</strong>
                   </div>
@@ -360,7 +361,11 @@ export function StoichiometrySolver({ prefill, onConsumePrefill }) {
 
                 <ol className="ck-steps">
                   {result.steps.map((stepText, index) => (
-                    <li className="ck-step" key={index}>
+                    <li
+                      className="ck-step ck-detail-settle"
+                      style={{ '--stagger': Math.min(index + 1, 6) }}
+                      key={`${result.id}-${index}`}
+                    >
                       <span className="ck-step-tag">Step {index + 1}</span>
                       <span>{stepText}</span>
                     </li>

@@ -55,9 +55,14 @@
   --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-  /* Motion */
+  /* Motion (UI Animation Playbook defaults) */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --dur-fast: 140ms;
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-press: 120ms;
+  --dur-fast: 150ms;
+  --dur-enter: 200ms;
+  --dur-exit: 160ms;
+  --dur-move: 220ms;
   --dur-base: 200ms;
 }
 
@@ -238,6 +243,7 @@ button {
 }
 
 .ck-tablist {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -250,7 +256,24 @@ button {
   display: none;
 }
 
+.ck-tab-indicator {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  height: 38px;
+  border-radius: var(--radius-md);
+  background: var(--accent-primary-muted);
+  border: 1px solid var(--accent-primary-border);
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform, width;
+  transition: transform var(--dur-move) var(--ease-in-out), width var(--dur-move) var(--ease-in-out),
+    opacity var(--dur-fast) var(--ease-out);
+}
+
 .ck-tab {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -265,7 +288,7 @@ button {
   font-weight: 500;
   white-space: nowrap;
   transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out),
-    border-color var(--dur-fast) var(--ease-out);
+    border-color var(--dur-fast) var(--ease-out), transform var(--dur-press) var(--ease-out);
 }
 
 .ck-tab svg {
@@ -276,17 +299,15 @@ button {
 
 .ck-tab:hover {
   color: var(--text-primary);
-  background: var(--bg-surface);
+  background: rgba(20, 31, 50, 0.55);
 }
 
 .ck-tab[aria-selected='true'] {
   color: var(--accent-primary);
-  background: var(--accent-primary-muted);
-  border-color: var(--accent-primary-border);
 }
 
 .ck-tab:active {
-  transform: translateY(1px);
+  transform: scale(0.97);
 }
 
 /* Main Workspace */
@@ -501,7 +522,7 @@ button {
 }
 
 .ck-btn--primary:active:not(:disabled) {
-  transform: translateY(1px);
+  transform: scale(0.97);
 }
 
 .ck-btn--secondary {
@@ -516,7 +537,7 @@ button {
 }
 
 .ck-btn--secondary:active:not(:disabled) {
-  transform: translateY(1px);
+  transform: scale(0.97);
 }
 
 .ck-btn--ghost {
@@ -530,6 +551,10 @@ button {
   color: var(--text-primary);
 }
 
+.ck-btn--ghost:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
 .ck-btn--danger {
   background: transparent;
   border-color: var(--status-error-border);
@@ -538,6 +563,10 @@ button {
 
 .ck-btn--danger:hover:not(:disabled) {
   background: var(--status-error-bg);
+}
+
+.ck-btn--danger:active:not(:disabled) {
+  transform: scale(0.97);
 }
 
 .ck-btn:disabled {
@@ -628,6 +657,16 @@ button {
   border: 1px solid var(--border-strong);
   background: var(--bg-elevated);
   box-shadow: var(--shadow-menu);
+  transform-origin: top center;
+}
+
+.ck-select-menu[data-state='open'] {
+  animation: ck-popover-in var(--dur-enter) var(--ease-out) both;
+}
+
+.ck-select-menu[data-state='closed'] {
+  pointer-events: none;
+  animation: ck-popover-out var(--dur-exit) var(--ease-out) both;
 }
 
 .ck-select-option {
@@ -690,7 +729,11 @@ button {
   font-size: 0.8125rem;
   font-weight: 500;
   transition: background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out),
-    color var(--dur-fast) var(--ease-out);
+    color var(--dur-fast) var(--ease-out), transform var(--dur-press) var(--ease-out);
+}
+
+.ck-chip:active {
+  transform: scale(0.97);
 }
 
 .ck-chip svg {
@@ -1201,6 +1244,15 @@ button.ck-history-item:hover {
   padding: 16px;
 }
 
+.ck-backdrop[data-state='open'] {
+  animation: ck-fade-in var(--dur-enter) var(--ease-out) both;
+}
+
+.ck-backdrop[data-state='closed'] {
+  pointer-events: none;
+  animation: ck-fade-out var(--dur-exit) var(--ease-out) both;
+}
+
 .ck-dialog {
   width: 100%;
   max-width: 560px;
@@ -1211,6 +1263,15 @@ button.ck-history-item:hover {
   background: var(--bg-surface);
   box-shadow: var(--shadow-dialog);
   padding: 22px;
+  transform-origin: center center;
+}
+
+.ck-dialog[data-state='open'] {
+  animation: ck-popover-in var(--dur-enter) var(--ease-out) both;
+}
+
+.ck-dialog[data-state='closed'] {
+  animation: ck-popover-out var(--dur-exit) var(--ease-out) both;
 }
 
 /* pH Scale Bar */
@@ -1236,12 +1297,16 @@ button.ck-history-item:hover {
   top: 50%;
   width: 18px;
   height: 18px;
-  border-radius: 50%;
+  border-radius: 999px;
   background: var(--text-primary);
   border: 3px solid var(--bg-canvas);
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scaleX(1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  transition: left var(--dur-base) var(--ease-out);
+  transition: left var(--dur-move) var(--ease-in-out), transform var(--dur-fast) var(--ease-out);
+}
+
+.ck-ph-marker.is-moving {
+  transform: translate(-50%, -50%) scaleX(1.12);
 }
 
 .ck-ph-ticks {
@@ -1416,11 +1481,160 @@ button.ck-history-item:hover {
   }
 }
 
+.ck-el-tile:active {
+  transform: scale(0.97);
+}
+
+.ck-mode-btn:active {
+  transform: scale(0.97);
+}
+
+/* Playbook Motion Utilities & Keyframes */
+.ck-panel-enter {
+  animation: ck-panel-in var(--dur-enter) var(--ease-out) both;
+}
+
+.ck-stagger-row {
+  animation: ck-row-in var(--dur-enter) var(--ease-out) both;
+  animation-delay: calc(var(--stagger, 0) * 30ms);
+}
+
+.ck-detail-settle {
+  animation: ck-row-in var(--dur-enter) var(--ease-out) both;
+  animation-delay: calc(50ms + var(--stagger, 0) * 30ms);
+}
+
+.ck-success-pulse {
+  animation: ck-success-pulse 360ms var(--ease-out) 1;
+}
+
+.ck-mask-reveal {
+  animation: ck-mask-in 240ms var(--ease-out) both;
+}
+
+.ck-icon-swap {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+}
+
+.ck-icon-swap > svg {
+  grid-area: 1 / 1;
+  width: 16px;
+  height: 16px;
+  transition: opacity var(--dur-exit) var(--ease-out), filter var(--dur-exit) var(--ease-out),
+    transform var(--dur-exit) var(--ease-out);
+}
+
+.ck-icon-swap > svg[data-active='true'] {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+}
+
+.ck-icon-swap > svg[data-active='false'] {
+  opacity: 0;
+  filter: blur(2px);
+  transform: scale(0.88);
+  pointer-events: none;
+}
+
+@keyframes ck-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ck-row-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ck-popover-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes ck-popover-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.95);
+  }
+}
+
+@keyframes ck-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ck-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes ck-success-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(56, 217, 232, 0.35);
+  }
+  45% {
+    transform: scale(1.008);
+    box-shadow: 0 0 0 6px rgba(56, 217, 232, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(56, 217, 232, 0);
+  }
+}
+
+@keyframes ck-mask-in {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 14% 0 round var(--radius-md));
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0 round var(--radius-md));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
