@@ -1,3 +1,5 @@
+import { useId } from 'react'
+
 const baseProps = {
   width: 20,
   height: 20,
@@ -740,8 +742,16 @@ export function LogoPhCalculator({ className = '', ...props }) {
 }
 
 export function LogoSolutionLab({ className = '', ...props }) {
+  const clipId = useId()
   return (
     <svg {...baseProps} {...props} className={`ck-icon-solution ${className}`}>
+      <defs>
+        {/* Precise inner flask contour clip preventing any fluid bleed outside the glass walls */}
+        <clipPath id={clipId}>
+          <path d="M10.5 8 L5.6 18.2 A 1.2 1.2 0 0 0 6.8 20.2 h10.4 a 1.2 1.2 0 0 0 1.2 -2.0 L13.5 8 Z" />
+        </clipPath>
+      </defs>
+
       {/* Volumetric Erlenmeyer flask rim and conical body */}
       <path
         d="M9 2h6"
@@ -755,21 +765,48 @@ export function LogoSolutionLab({ className = '', ...props }) {
         strokeWidth="2"
         strokeLinejoin="round"
       />
-      {/* Solution liquid volumetric fill */}
-      <path
-        d="M7 14.5 C 9 13.8, 11 15.2, 13 14.5 C 15 13.8, 16 14.2, 17 14.8 L 17.8 18.5 A 2 2 0 0 1 16.2 21.5 H 6.2 A 2 2 0 0 1 4.5 18.5 Z"
-        fill="var(--tool-accent, #00E5FF)"
-        fillOpacity="var(--tool-fill-opacity, 0.35)"
-      />
-      {/* Solution liquid meniscus wave */}
-      <path
-        className="ck-anim-meniscus"
-        d="M6.5 14.5c1.5.8 3.5.8 5.5 0s3.5-.8 5 0"
-        fill="none"
-        stroke="var(--tool-accent, #00E5FF)"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
+
+      {/* Liquid contents strictly locked inside flask boundary */}
+      <g clipPath={`url(#${clipId})`}>
+        {/* Solution liquid volumetric fill */}
+        <path
+          d="M6 14 C8.5 13.2, 11 14.8, 13 14 C15 13.2, 16.5 13.8, 18.5 14.2 L19.5 22 H4.5 L5.5 14 Z"
+          fill="var(--tool-accent, #00E5FF)"
+          fillOpacity="var(--tool-fill-opacity, 0.35)"
+        />
+        {/* Solution liquid meniscus wave */}
+        <path
+          className="ck-anim-meniscus"
+          d="M5 14 C8 13.2, 11 14.8, 13 14 C15 13.2, 17 13.8, 19 14.2"
+          fill="none"
+          stroke="var(--tool-accent, #00E5FF)"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        {/* Dissolved solute effervescent bubbles */}
+        <circle
+          className="ck-anim-bubble ck-anim-b1"
+          cx="8.5"
+          cy="18"
+          r="1.2"
+          fill="var(--tool-sec, #00E676)"
+        />
+        <circle
+          className="ck-anim-bubble ck-anim-b2"
+          cx="14"
+          cy="18.5"
+          r="1.2"
+          fill="var(--tool-sec, #00E676)"
+        />
+        <circle
+          className="ck-anim-bubble ck-anim-b3"
+          cx="11.5"
+          cy="16.5"
+          r="1.2"
+          fill="var(--tool-sec, #00E676)"
+        />
+      </g>
+
       {/* Calibration graduation marks */}
       <line
         x1="12"
@@ -790,28 +827,6 @@ export function LogoSolutionLab({ className = '', ...props }) {
         strokeWidth="1.25"
         strokeLinecap="round"
         strokeOpacity="0.7"
-      />
-      {/* Dissolved solute effervescent bubbles */}
-      <circle
-        className="ck-anim-bubble ck-anim-b1"
-        cx="8.5"
-        cy="18"
-        r="1.2"
-        fill="var(--tool-sec, #00E676)"
-      />
-      <circle
-        className="ck-anim-bubble ck-anim-b2"
-        cx="14"
-        cy="18.5"
-        r="1.2"
-        fill="var(--tool-sec, #00E676)"
-      />
-      <circle
-        className="ck-anim-bubble ck-anim-b3"
-        cx="11.5"
-        cy="16.5"
-        r="1.2"
-        fill="var(--tool-sec, #00E676)"
       />
     </svg>
   )
