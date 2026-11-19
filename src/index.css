@@ -281,6 +281,21 @@
   --tool-solution-glow: rgba(14, 116, 144, 0.25);
 }
 
+/* Zero-Jank Theme Transition Shield: Disables multi-element repaint transitions during theme toggle */
+html.ck-theme-switching,
+html.ck-theme-switching *,
+html.ck-theme-switching *::before,
+html.ck-theme-switching *::after {
+  transition: none !important;
+}
+
+/* Hardware-accelerated View Transition for buttery smooth GPU cross-fade */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 160ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 * {
   box-sizing: border-box;
 }

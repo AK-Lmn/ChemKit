@@ -150,6 +150,10 @@ export default function App() {
   const [paletteOpen, setPaletteOpen] = useState(false)
   const [theme, setTheme] = useState(() => {
     try {
+      if (typeof document !== 'undefined') {
+        const current = document.documentElement.getAttribute('data-theme')
+        if (current === 'light' || current === 'dark') return current
+      }
       const saved = localStorage.getItem('chemkit-theme')
       if (saved === 'light' || saved === 'dark') return saved
     } catch {}
@@ -160,14 +164,46 @@ export default function App() {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
     document.documentElement.style.colorScheme = theme
+    const metaTheme = document.querySelector('meta[name="theme-color"]')
+    if (metaTheme) metaTheme.setAttribute('content', theme === 'dark' ? '#111111' : '#FFFFFF')
     try {
       localStorage.setItem('chemkit-theme', theme)
     } catch {}
   }, [theme])
 
   const toggleTheme = useCallback(() => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
-  }, [])
+    const nextTheme = theme === 'dark' ? 'light' : 'dark'
+
+    const applyTheme = () => {
+      const root = document.documentElement
+      root.classList.add('ck-theme-switching')
+      root.setAttribute('data-theme', nextTheme)
+      root.style.colorScheme = nextTheme
+      const metaTheme = document.querySelector('meta[name="theme-color"]')
+      if (metaTheme) metaTheme.setAttribute('content', nextTheme === 'dark' ? '#111111' : '#FFFFFF')
+      try {
+        localStorage.setItem('chemkit-theme', nextTheme)
+      } catch {}
+      setTheme(nextTheme)
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          root.classList.remove('ck-theme-switching')
+        })
+      })
+    }
+
+    if (
+      typeof document !== 'undefined' &&
+      typeof document.startViewTransition === 'function' &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      document.startViewTransition(() => {
+        applyTheme()
+      })
+    } else {
+      applyTheme()
+    }
+  }, [theme])
 
   const syncIndicator = useCallback(() => {
     const activeNode = tabRefs.current[activeId]
